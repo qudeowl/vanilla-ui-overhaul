@@ -1,0 +1,23 @@
+#
+# Ignore everything by default
+#
+*
+
+# Allow Git to traverse directories
+!*/
+
+# Keep these tracked
+!/html/**
+!/lua/**
+!/gamemodes/**
+!/resource/**
+
+# In /resource, only keep these two files
+/resource/*
+!/resource/SourceScheme.res
+!/resource/LoadingDialogNoBanner.res
+
+# Keep root files tracked
+!.gitignore
+!README.md
+!install_vanilla_ui_overhaul.bat
