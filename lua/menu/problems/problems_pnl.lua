@@ -137,12 +137,18 @@ function PANEL:Init()
         for _, child in ipairs( lbl:GetChildren() ) do
             if child.ClassName == "DCheckBox" then
                 child.Paint = function( s, w, h )
-                    draw.RoundedBox( 2, 0, 0, w, h, Color( 15, 18, 28, 220 ) )
-                    surface.SetDrawColor( 35, 135, 237, 140 )
+                    -- CheckButton.BgColor = Theme_ContentBG
+                    draw.RoundedBox( 2, 0, 0, w, h, Color( 20, 28, 48, 170 ) )
+                    -- CheckButton.Border1/2 = 35 135 237 80
+                    surface.SetDrawColor( 35, 135, 237, 80 )
                     surface.DrawOutlinedRect( 0, 0, w, h, 1 )
                     if s:GetChecked() then
-                        surface.SetDrawColor( 35, 135, 237, 230 )
+                        -- CheckButton.Check = Theme_Blue
+                        surface.SetDrawColor( 35, 135, 237, 255 )
                         surface.DrawRect( 3, 3, w - 6, h - 6 )
+                        -- İç parlak vurgu
+                        surface.SetDrawColor( 100, 180, 255, 120 )
+                        surface.DrawRect( 4, 4, w - 8, math.floor((h-8)/2) )
                     end
                 end
                 return
