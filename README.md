@@ -36,7 +36,6 @@ Replaces the default white and yellow UI elements with a dark, semi-transparent 
 **Automatic**
 Run `install_uninstall_vanilla_ui_overhaul.bat` and select **[2] Uninstall**.
 
-**Manual**
 Verify your game files on Steam to revert everything back to default.
 
 `Steam Library → Garry's Mod → Properties → Installed Files → Verify integrity of game files`
@@ -45,4 +44,4 @@ Verify your game files on Steam to revert everything back to default.
 
 ---
 
-Also on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3737107792).
+Also on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3737107792)
