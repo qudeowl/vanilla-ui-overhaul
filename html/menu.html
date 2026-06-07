@@ -1,0 +1,403 @@
+<html>
+<head>
+
+	<title>Garry's Mod Main Menu</title>
+
+	<link rel="stylesheet" type="text/css" href="css/menu/Menu.css" />
+	<link rel="stylesheet" type="text/css" href="css/menu/NavBar.css" />
+	<link rel="stylesheet" type="text/css" href="css/menu/PageOptions.css" />
+	<link rel="stylesheet" type="text/css" href="css/menu/NewGame.css" />
+	<link rel="stylesheet" type="text/css" href="css/menu/Servers.css" />
+	<link rel="stylesheet" type="text/css" href="css/Workshop.css" />
+	<link rel="stylesheet" type="text/css" href="css/menu/Custom.css" />
+	<link rel="stylesheet" type="text/css" href="awesomium_global.css" />
+
+	<script type="text/javascript" src="js/thirdparty/jquery.js"></script>
+	<script type="text/javascript" src="js/thirdparty/angular.js"></script>
+	<script type="text/javascript" src="js/thirdparty/angular-route.js"></script>
+
+	<script type="text/javascript" src="js/menu/WorkshopFiles.js"></script>
+	<script type="text/javascript" src="js/menu/Subscriptions.js"></script>
+	<script type="text/javascript" src="js/menu/menuApp.js"></script>
+	<script type="text/javascript" src="js/menu/common.js"></script>
+	<script type="text/javascript" src="js/menu/control.Menu.js"></script>
+	<script type="text/javascript" src="js/menu/control.Main.js"></script>
+	<script type="text/javascript" src="js/menu/control.NewGame.js"></script>
+	<script type="text/javascript" src="js/menu/control.Servers.js"></script>
+	<script type="text/javascript" src="js/menu/control.Addons.js"></script>
+	<script type="text/javascript" src="js/menu/control.Demos.js"></script>
+	<script type="text/javascript" src="js/menu/control.Saves.js"></script>
+	<script type="text/javascript" src="js/menu/control.Dupes.js"></script>
+
+	<script type="text/javascript" src="js/svc.Tranny.js"></script>
+
+	<script type="text/javascript" src="js/menu/TestData.js"></script>
+	<script type="text/javascript" src="js/menu/TestServers.js"></script>
+	<script type="text/javascript" src="js/menu/TestWorkshop.js"></script>
+
+</head>
+
+<body ng-app="MenuApp" ng-controller="MenuController">
+
+<div id="version" ng-click="ShowNews()" ng-show="Branch"><span ng-show="Branch != 'unknown'">You are on the {{Branch}} branch. Click here to find out more. ( </span>{{Version}}<span ng-show="Branch != 'unknown'"> )</span></div>
+
+<div ng-view>
+
+</div>
+
+<div id="NavBar">
+
+	<div class="group left">
+
+		<a href="#/" class="button ui_sound_return" ng-show="ShowBack" id="BackToMenu"><img src='img/back_to_main_menu.png' loading="lazy"><span ng-Tranny="'back_to_main_menu'" ></span></a>
+		<div class="button bigicon" ng-show="InGame" ng-click="BackToGame()"><a href="#/"><img src='img/back_to_game.png' loading="lazy"><span ng-Tranny="'back_to_game'"></span></a></div>
+		<div class="button bigicon hidelabel" ng-show="InGame && ShowFavButton && !IsCurrentServerFav" ng-click="ToggleServerFavorites( true )"><a href="#/"><img src='img/favourite_server.png' loading="lazy"><span ng-Tranny="'favorite_this_server'"></span></a></div>
+		<div class="button bigicon hidelabel" ng-show="InGame && ShowFavButton && IsCurrentServerFav" ng-click="ToggleServerFavorites( false )"><a href="#/"><img src='img/favourite_server_del.png' loading="lazy"><span ng-Tranny="'unfavorite_this_server'"></span></a></div>
+
+	</div>
+
+	<div class="group center">
+		<!--
+		<div class="button" ng-show="InGame" ng-click="Disconnect()"><a href="#/"><img src='img/disconnect.png'><span ng-Tranny="'disconnect'"></span></a></div>
+		-->
+	</div>
+	
+	<div class="group right">
+		<div class="button smallicon hidelabel" style="overflow: visible;" ng-click="ToggleProblems()"><img ng-src='img/error.png'>
+			<span ng-Tranny="'problems'"></span>
+			<number ng-show="ProblemCount > 0" class="{{IfElse( ProblemSeverity > 0, 'severity' + ProblemSeverity, '' )}}">{{ProblemCount}}</number>
+		</div>
+		<div class="button smallicon" ng-click="TogglePopup('.kinect_settings')" ng-show="kinect.available"><img ng-src='img/kinect.png' loading="lazy"><span></span></div>
+		<div class="button smallicon hidelabel" ng-click="ToggleGames()"><img ng-src='img/games.png'><span ng-Tranny="'games'"></span></div>
+		<div class="button smallicon" ng-click="ToggleLanguage()"><img style="margin-top: 9px;" ng-src='../resource/localization/{{Language}}.png'><span></span></div>
+		<div class="button bigicon" ng-click="ToggleGamemodes()"><img ng-src='../gamemodes/{{Gamemode}}/icon24.png'><span>{{GamemodeTitle}}</span></div>
+	</div>
+
+</div>
+
+<ul class="gamemode_list popup">
+	<li ng-repeat="gm in Gamemodes|filter:{menusystem:true}|orderBy:'name'" ng-click="SelectGamemode( gm )">
+		<img ng-src='../gamemodes/{{gm.name}}/icon24.png' loading="lazy"><span>{{gm.title}}</span>
+	</li>
+</ul>
+
+<ul class="language_list popup">
+	<li ng-repeat="lang in Languages" ng-click="SelectLanguage( lang )">
+		<img ng-src='../resource/localization/{{lang}}.png' loading="lazy">
+	</li>
+</ul>
+
+<ul class="games_list popup">
+
+	<li class="notowned"><img src='img/notowned.png' width="16" height="16" loading="lazy"> <span ng-Tranny="'game_not_owned'"></span></li>
+	<li class="notinstalled"><img src='img/notinstalled.png' width="16" height="16" loading="lazy"> <span ng-Tranny="'game_not_installed'"></span></li>
+	<hr/>
+	<li ng-repeat="game in Games|orderBy:['-installed','-owned','title']" class="game-item {{ !game.owned ? 'notowned' : '' }} {{ !game.installed ? 'notinstalled' : '' }}">
+		<input type=checkbox ng-model="game.mounted" ng-show="game.installed" ng-change="GameMountChanged( game )"/>
+		<img src='img/notowned.png' ng-show="!game.owned" width="16" height="16" loading="lazy">
+		<img src='img/notinstalled.png' ng-show="game.owned && !game.installed" width="16" height="16" loading="lazy">
+		<img ng-src='../materials/games/16/{{game.folder}}.png' style="margin-left: 20px;" loading="lazy">
+		<span style="margin-left: 16px;">{{game.title}}</span>
+	</li>
+
+</ul>
+
+<ul class="kinect_settings popup">
+
+	<li>
+		<div>
+
+			<p>
+				<label style="display: block">
+					<input type="checkbox" ng-model="kinect.show_color" ng-change="kinect.update()">  <span ng-Tranny="'motionsensor.showcolor'"></span>
+				</label>
+			</p>
+
+
+			<div ng-show="kinect.show_color">
+
+				<span ng-Tranny="'motionsensor.colorpos'"></span>
+
+				<p style="margin-left: 5px;">
+					<label ng-repeat="option in kinect.color_options" style="display: block">
+						<input type="radio" name="kinect.color" ng-model="kinect.color" value="{{option}}" ng-change="kinect.update()">
+						<span ng-Tranny="'motionsensor.showcolor.'+ option"></span>
+					</label>
+				</p>
+			</div>
+
+			<div  ng-show="kinect.show_color">
+				<span ng-Tranny="'motionsensor.colorsize'"></span>
+
+				<p style="margin-left: 5px;">
+					<label ng-repeat="option in kinect.size_options" style="display: block">
+						<input type="radio" name="kinect.color_size" ng-model="kinect.color_size" value="{{option}}" ng-change="kinect.update()">
+						<span ng-Tranny="'motionsensor.colorsize.'+ option"></span>
+					</label>
+				</p>
+			</div>
+
+		</div>
+
+	</li>
+
+</ul>
+
+
+<script type="text/javascript">
+// ── NightFrame: UpdateNewsList wrapper — ilk yüklemede paneli KAPALI başlat ──
+(function() {
+    function wrapUpdateNewsList() {
+        if (typeof UpdateNewsList === 'undefined') {
+            setTimeout(wrapUpdateNewsList, 200);
+            return;
+        }
+        if (UpdateNewsList._nfWrapped) return;
+        var _orig = UpdateNewsList;
+        UpdateNewsList = function(newslist, hide) {
+            // Her zaman kapalı başlat — kullanıcı News butonuyla açar
+            _orig(newslist, true);
+        };
+        UpdateNewsList._nfWrapped = true;
+    }
+    setTimeout(wrapUpdateNewsList, 100);
+})();
+
+// ── NightFrame: News hover, pager & toggle button ───────────────────
+(function() {
+
+
+        // Başlık (span) hover — vanilla sarı yerine tema mavisi
+    function styleNewsItem(item) {
+        if (item._nfDone) return;
+        item._nfDone = true;
+        var span = item.querySelector('div > span');
+        if (!span) return;
+
+        // Çizgi: news_item içindeki div = alt bilgi şeridi (span+font'u içeren)
+        // Çizgi doğrudan span'a: text-align:right div içinde span sağda olduğu için
+        // span'ın kendi sol kenarına border verince yazının hemen soluna gelir
+        span.style.display      = 'inline-block';
+        span.style.borderLeft   = '2px solid transparent';
+        span.style.paddingLeft  = '6px';
+        span.style.transition   = 'color 0.18s ease, letter-spacing 0.18s ease, ' +
+                                   'text-shadow 0.18s ease, border-color 0.18s ease';
+
+        span.addEventListener('mouseenter', function() {
+            span.style.borderLeft    = '2px solid rgba(35,135,237,0.85)';
+            span.style.color         = '#3fa8ff';
+            span.style.letterSpacing = '1.5px';
+            span.style.textShadow    =
+                '0 0 8px rgba(35,135,237,0.9), 0 0 20px rgba(35,135,237,0.4), 1px 1px 2px rgba(0,0,0,0.8)';
+            span.style.cursor        = 'pointer';
+        });
+        span.addEventListener('mouseleave', function() {
+            span.style.borderLeft    = '2px solid transparent';
+            span.style.color         = '';
+            span.style.letterSpacing = '';
+            span.style.textShadow    = '2px 2px 1px #000';
+        });
+    }
+
+    // Nokta butonları (.news_buttons div) — tema renklerine uyarla
+    function styleNewsButtons(news) {
+        if (news._nfBtnDone) return;
+        // _nfBtnDone'u hemen set etme — Angular ng-repeat sonradan ekliyor
+        var btns = news.querySelectorAll('.news_buttons div');
+        if (btns.length === 0) return;
+        news._nfBtnDone = true;
+
+        for (var i = 0; i < btns.length; i++) {
+            (function(b) {
+                if (b._nfBtn) return;
+                b._nfBtn = true;
+                // Renkleri override et
+                b.style.transition   = 'background 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease';
+                b.style.borderRadius = '50%';
+                b.style.width        = '14px';
+                b.style.height       = '14px';
+                b.style.marginLeft   = '4px';
+                b.style.background   = b.classList.contains('selected')
+                                        ? 'rgba(35,135,237,0.90)'
+                                        : 'rgba(255,255,255,0.22)';
+                b.style.boxShadow    = b.classList.contains('selected')
+                                        ? '0 0 8px rgba(35,135,237,0.65)' : '';
+
+                b.addEventListener('mouseenter', function() {
+                    b.style.background  = 'rgba(35,135,237,0.72)';
+                    b.style.boxShadow   = '0 0 6px rgba(35,135,237,0.55)';
+                    b.style.transform   = 'scale(1.3)';
+                });
+                b.addEventListener('mouseleave', function() {
+                    b.style.background = b.classList.contains('selected')
+                                          ? 'rgba(35,135,237,0.90)' : 'rgba(255,255,255,0.22)';
+                    b.style.boxShadow  = b.classList.contains('selected')
+                                          ? '0 0 8px rgba(35,135,237,0.65)' : '';
+                    b.style.transform  = '';
+                });
+            })(btns[i]);
+        }
+    }
+
+    // News toggle butonu — .news panelinin sol üstünde, body'e fixed olarak eklenir
+    var nfNewsBtn = null;
+
+    function initNewsBtn() {
+        if (nfNewsBtn) return;
+
+        var newsDiv = document.querySelector('.news');
+        if (!newsDiv) return;
+
+        var btn = document.createElement('div');
+        btn.id = 'nf_news_btn';
+        nfNewsBtn = btn;
+
+        // NavBar butonlarıyla aynı boyut: 32px img + span
+        // Ama biz sadece ikon kullanıyoruz, tıklanabilir küçük buton
+        // NavBar butonlarıyla aynı boyut: ikon solda, "News" yanında
+        // "News" çeviri tablosu — GMod'un desteklediği tüm diller
+        var nfNewsI18n = {
+            'en':       'News',
+            'de':       'Neuigkeiten',
+            'fr':       'Actualités',
+            'es':       'Noticias',
+            'es-es':    'Noticias',
+            'pt':       'Notícias',
+            'pt-br':    'Notícias',
+            'pt-pt':    'Notícias',
+            'it':       'Notizie',
+            'nl':       'Nieuws',
+            'pl':       'Aktualności',
+            'ru':       'Новости',
+            'uk':       'Новини',
+            'cs':       'Novinky',
+            'hu':       'Hírek',
+            'ro':       'Știri',
+            'tr':       'Haberler',
+            'fi':       'Uutiset',
+            'sv-se':    'Nyheter',
+            'da':       'Nyheder',
+            'no':       'Nyheter',
+            'ko':       '뉴스',
+            'ja':       'ニュース',
+            'zh-cn':    '新闻',
+            'zh-tw':    '新聞',
+            'th':       'ข่าวสาร',
+            'bg':       'Новини',
+            'el':       'Νέα',
+            'he':       'חדשות',
+            'lt':       'Naujienos',
+            'et':       'Uudised',
+            'hr':       'Vijesti',
+            'sk':       'Správy',
+            'vi':       'Tin tức'
+        };
+        function nfGetNewsLabel() {
+            var lang = (typeof gScope !== 'undefined' && gScope) ? gScope.Language : 'en';
+            return nfNewsI18n[lang] || nfNewsI18n[lang && lang.split('-')[0]] || 'News';
+        }
+        var nfNewsSpan = document.createElement('span');
+        nfNewsSpan.style.cssText = 'margin-left:5px;font-size:11px;font-weight:bold;';
+        nfNewsSpan.textContent = nfGetNewsLabel();
+        var nfNewsImg = document.createElement('img');
+        nfNewsImg.src = 'img/news.png';
+        nfNewsImg.style.cssText = 'width:16px;height:16px;flex-shrink:0;';
+        btn.appendChild(nfNewsImg);
+        btn.appendChild(nfNewsSpan);
+        btn.style.cssText = [
+            'position:fixed',
+            'top:5px',
+            'left:5px',
+            'z-index:9999',
+            'display:flex',
+            'align-items:center',
+            'box-sizing:border-box',
+            'height:40px',
+            'padding:0 10px 0 8px',
+            'background:rgba(14,14,18,0.55)',
+            'border:1px solid rgba(255,255,255,0.08)',
+            'border-radius:4px',
+            'cursor:pointer',
+            'color:rgba(216,228,240,0.85)',
+            'white-space:nowrap',
+            'transition:color 0.18s,background 0.18s,border-color 0.18s,box-shadow 0.18s',
+            'user-select:none',
+            'backdrop-filter:blur(6px)'
+        ].join(';');
+
+        btn.addEventListener('mouseenter', function() {
+            btn.style.color       = '#fff';
+            btn.style.background  = 'rgba(35,135,237,0.30)';
+            btn.style.borderColor = 'rgba(35,135,237,0.60)';
+            btn.style.boxShadow   = '0 0 12px rgba(35,135,237,0.35)';
+        });
+        btn.addEventListener('mouseleave', function() {
+            btn.style.color       = 'rgba(216,228,240,0.85)';
+            btn.style.background  = 'rgba(14,14,18,0.55)';
+            btn.style.borderColor = 'rgba(255,255,255,0.08)';
+            btn.style.boxShadow   = '';
+        });
+
+        btn.addEventListener('click', function() {
+            if (typeof scope !== 'undefined' && scope && scope.ToggleNewsList) {
+                scope.ToggleNewsList();
+                try {
+                    if (!scope.$$phase && !scope.$root.$$phase) scope.$apply();
+                } catch(e) {}
+            }
+        });
+
+        document.body.appendChild(btn);
+        positionNewsBtn();
+
+        // Route + HideNews durumuna göre buton ve news_buttons'ı güncelle
+        var _lastState = null;
+        setInterval(function() {
+            // Sadece ana sayfada (#/ veya boş hash) göster
+            var hash = window.location.hash;
+            var onMain = (hash === '#/' || hash === '#' || hash === '');
+            var hidden = (typeof scope !== 'undefined' && scope) ? !!scope.HideNews : true;
+
+            var lang = (typeof gScope !== 'undefined' && gScope) ? gScope.Language : 'en';
+            var state = onMain + '|' + hidden + '|' + lang;
+            if (state === _lastState) return;
+            _lastState = state;
+            // Dil değişince butonu güncelle
+            if (typeof nfNewsSpan !== 'undefined') nfNewsSpan.textContent = nfGetNewsLabel();
+
+            // Buton: ana sayfada göster, diğerlerinde gizle
+            btn.style.display = onMain ? 'flex' : 'none';
+            // Opaklık
+            btn.style.opacity = hidden ? '0.45' : '1';
+            // news_buttons
+            var nb = document.querySelector('.news_buttons');
+            if (nb) nb.style.visibility = (!hidden && onMain) ? 'visible' : 'hidden';
+        }, 50);
+    }
+
+    function positionNewsBtn() {
+        // Buton sabit konumda: top:5px left:5px — NavBar sağ alt ile simetrik
+    }
+
+    function process() {
+        var items = document.querySelectorAll('.news_item');
+        for (var i = 0; i < items.length; i++) styleNewsItem(items[i]);
+        var newsDivs = document.querySelectorAll('.news');
+        for (var i = 0; i < newsDivs.length; i++) {
+            styleNewsButtons(newsDivs[i]);
+        }
+        initNewsBtn();
+        positionNewsBtn();
+    }
+
+    // Angular ng-repeat'i izle
+    var observer = new MutationObserver(process);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    setTimeout(process, 300);
+    setTimeout(process, 1000);
+    setTimeout(process, 2500);
+})();
+// ────────────────────────────────────────────────────────────────────
+</script>
+</body>
