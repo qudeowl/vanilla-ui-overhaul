@@ -10,7 +10,7 @@ Replaces the default white and yellow UI elements with a dark, semi-transparent 
 
 - Centered main menu with smooth hover animations and drop shadow
 - Blue accent system replacing the default yellow highlights
-- Trade Gothic font across the menu UI (in-game elements unaffected)
+- Trade Gothic font
 - Dark glass panels across menus, server browser, and scrollbars
 - Restyled loading screen, workshop cards, dropdowns, and news panel
 - Hover animation on side panel links (Addons, Dupes, Saves, Demos)
