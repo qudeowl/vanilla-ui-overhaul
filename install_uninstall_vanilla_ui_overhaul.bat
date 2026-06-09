@@ -52,7 +52,7 @@ echo    [1/4] Locating Steam installation...
 
 set "GITHUB_OWNER=qudeowl"
 set "GITHUB_REPO=vanilla-ui-overhaul"
-set "ARCHIVE_NAME=Vanilla_UI_Overhaul_Beta.zip"
+set "ARCHIVE_NAME=Vanilla_UI_Overhaul_v1.2_Beta.zip"
 set "DOWNLOAD_URL=https://github.com/%GITHUB_OWNER%/%GITHUB_REPO%/releases/latest/download/%ARCHIVE_NAME%"
 
 :: ── Steam path: try all known registry locations ──────────────────────
@@ -266,7 +266,7 @@ if not exist "!GMOD_PATH!" (
 echo    [OK] Removing files from: !GMOD_PATH!
 echo.
 
-:: Delete all mod files
+:: Delete all mod files (tüm versiyonlar dahil)
 for %%F in (
     "html\main.html"
     "html\menu.html"
@@ -277,8 +277,10 @@ for %%F in (
     "html\dupes.html"
     "html\css\menu\Custom.css"
     "html\img\gradient.png"
+    "html\fonts\tgnormal.ttf"
     "resource\SourceScheme.res"
     "resource\LoadingDialogNoBanner.res"
+    "resource\fonts\tgnormal.ttf"
     "lua\menu\loading.lua"
     "lua\menu\mount\vgui\workshop.lua"
     "lua\menu\problems\problems_pnl.lua"
