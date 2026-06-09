@@ -20,10 +20,44 @@ echo                       =====================================================
 echo.
 set /p "CHOICE=Selection: "
 
-if "%CHOICE%"=="1" goto PreChecks
+if "%CHOICE%"=="1" goto VariantMenu
 if "%CHOICE%"=="2" goto UninstallMenu
 if "%CHOICE%"=="3" exit /b
 goto MainMenu
+
+:: ═════════════════════════════════════════════════════════════════════
+:VariantMenu
+cls
+echo.
+echo                       ========================================================
+echo                                    Vanilla UI Overhaul - Beta
+echo                                 github.com/qudeowl/vanilla-ui-overhaul
+echo                       ========================================================
+echo.
+echo                         Choose your main menu layout:
+echo.
+echo                           [1] Centered Main Menu
+echo                               Menu items are centered on screen.
+echo.
+echo                           [2] Vanilla Main Menu  (No Center)
+echo                               Menu items stay in the original top-left position.
+echo.
+echo                                  [3] Back
+echo.
+echo                       ========================================================
+echo.
+set /p "VCHOICE=Selection: "
+
+if "%VCHOICE%"=="1" (
+    set "ARCHIVE_NAME=Vanilla_UI_Overhaul_v1.2_Beta.zip"
+    goto PreChecks
+)
+if "%VCHOICE%"=="2" (
+    set "ARCHIVE_NAME=Vanilla_UI_Overhaul_NoCenter_v1.2_Beta.zip"
+    goto PreChecks
+)
+if "%VCHOICE%"=="3" goto MainMenu
+goto VariantMenu
 
 :PreChecks
 set "GAME_RUNNING=0"
@@ -52,8 +86,7 @@ echo    [1/4] Locating Steam installation...
 
 set "GITHUB_OWNER=qudeowl"
 set "GITHUB_REPO=vanilla-ui-overhaul"
-set "ARCHIVE_NAME=Vanilla_UI_Overhaul_v1.2_Beta.zip"
-set "DOWNLOAD_URL=https://github.com/%GITHUB_OWNER%/%GITHUB_REPO%/releases/latest/download/%ARCHIVE_NAME%"
+set "DOWNLOAD_URL=https://github.com/%GITHUB_OWNER%/%GITHUB_REPO%/releases/latest/download/!ARCHIVE_NAME!"
 
 :: ── Steam path: try all known registry locations ──────────────────────
 set "STEAM_PATH="
@@ -129,18 +162,18 @@ timeout /t 1 >nul
 
 :: ── Download ──────────────────────────────────────────────────────────
 echo.
-echo    [2/4] Downloading Vanilla UI Overhaul...
+echo    [2/4] Downloading !ARCHIVE_NAME!...
 set "TEMP_DIR=%TEMP%\vanilla_ui_installer_%RANDOM%"
 mkdir "!TEMP_DIR!" 2>nul
 
-curl -L -o "!TEMP_DIR!\%ARCHIVE_NAME%" "%DOWNLOAD_URL%" --ssl-no-revoke --progress-bar 2>nul
+curl -L -o "!TEMP_DIR!\!ARCHIVE_NAME!" "!DOWNLOAD_URL!" --ssl-no-revoke --progress-bar 2>nul
 
-if not exist "!TEMP_DIR!\%ARCHIVE_NAME%" (
+if not exist "!TEMP_DIR!\!ARCHIVE_NAME!" (
     echo    [INFO] curl failed, trying PowerShell...
-    powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; (New-Object Net.WebClient).DownloadFile('%DOWNLOAD_URL%', '!TEMP_DIR!\%ARCHIVE_NAME%')" 2>nul
+    powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; (New-Object Net.WebClient).DownloadFile('!DOWNLOAD_URL!', '!TEMP_DIR!\!ARCHIVE_NAME!')" 2>nul
 )
 
-if not exist "!TEMP_DIR!\%ARCHIVE_NAME%" (
+if not exist "!TEMP_DIR!\!ARCHIVE_NAME!" (
     color 0C
     echo    [FATAL] Download failed. Check your internet connection.
     pause
@@ -152,7 +185,7 @@ echo.
 echo    [3/4] Installing...
 set "STAGE_DIR=!TEMP_DIR!\extracted"
 
-powershell -Command "Expand-Archive -Path '!TEMP_DIR!\%ARCHIVE_NAME%' -DestinationPath '!STAGE_DIR!' -Force" 2>nul
+powershell -Command "Expand-Archive -Path '!TEMP_DIR!\!ARCHIVE_NAME!' -DestinationPath '!STAGE_DIR!' -Force" 2>nul
 if errorlevel 1 (
     color 0C
     echo    [ERROR] Extraction failed. Check folder permissions.
