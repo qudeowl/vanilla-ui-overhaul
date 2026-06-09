@@ -1,6 +1,6 @@
 # Vanilla UI Overhaul
 
-Replaces the default white and yellow UI elements with a dark, semi-transparent style. Panels turn into frosted glass, yellow hover effects become blue, and the main menu re-centers itself. The loading screen is restyled to match. The menu now uses Trade Gothic — the font from Left 4 Dead.
+Replaces the default white and yellow UI elements with a dark, semi-transparent style. Panels turn into frosted glass, yellow hover effects become blue, and the main menu re-centers itself. The loading screen is restyled to match. The menu now uses Trade Gothic, the font from Left 4 Dead.
 
 > **Beta** — things might change. Bug reports welcome via [Issues](https://github.com/qudeowl/vanilla-ui-overhaul/issues).
 
