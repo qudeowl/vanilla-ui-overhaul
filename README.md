@@ -8,7 +8,7 @@ Replaces the default white and yellow UI elements with a dark, semi-transparent 
 
 ## Variants
 
-Two builds are available — pick the one you prefer:
+Two builds are available, pick the one you prefer:
 
 | | Centered | No Center |
 |---|---|---|
