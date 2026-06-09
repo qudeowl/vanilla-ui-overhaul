@@ -43,8 +43,8 @@ Everything else (theme, font, colors, animations, loading screen, workshop cards
 **Manual**
 
 1. Download your preferred zip from the [latest release](https://github.com/qudeowl/vanilla-ui-overhaul/releases/latest)
-   - `Vanilla_UI_Overhaul_v1.2_Beta.zip` — centered menu
-   - `Vanilla_UI_Overhaul_NoCenter_v1.2_Beta.zip` — vanilla top-left menu
+   - `Vanilla_UI_Overhaul_v1.2_Beta.zip` - centered menu
+   - `Vanilla_UI_Overhaul_NoCenter_v1.2_Beta.zip` - vanilla top-left menu
 2. Extract and drop the `garrysmod` folder into `...\Steam\steamapps\common\GarrysMod`
 
 ---
