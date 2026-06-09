@@ -17,7 +17,6 @@ Replaces the default white and yellow UI elements with a dark, semi-transparent 
 - News panel auto-cycles through headlines every 30 seconds
 - Hover and click sounds on navbar buttons and news panel links
 - Color-coded server browser (map name, ping, player count)
-- Multi-language support — UI elements no longer break in other languages
 
 ---
 
