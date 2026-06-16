@@ -25,7 +25,7 @@ Replaces the default white and yellow UI elements with a dark, semi-transparent 
 **Manual (Alternative)**
 1. Download your preferred zip from the [latest release](https://github.com/qudeowl/vanilla-ui-overhaul/releases/latest)
 2. Extract and drop the `garrysmod` folder into `...\Steam\steamapps\common\GarrysMod\garrysmod\addons`
-`The alternative installation method avoids modifying game files and reduces issues caused by official updates. However, some interface elements may be unavailable or may not work as expected, as they may be ignored by the game.`
+> The alternative installation method avoids modifying game files and reduces issues caused by official updates. However, some interface elements may be unavailable or may not work as expected, as they may be ignored by the game.
 
 ---
 
@@ -40,8 +40,7 @@ Verify game files on Steam. If you installed v1.0, also delete `spawnmenu_theme.
 **Manual (Alternative)**
 1. Go to `...\Steam\steamapps\common\GarrysMod\garrysmod\addons`
 2. Delete its folder.
-`Follow these steps only if you installed the mod using the alternative installation method.
-`
+>Follow these steps only if you installed the mod using the alternative installation method.
 
 ---
 
