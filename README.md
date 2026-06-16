@@ -46,7 +46,7 @@ Replaces the default white and yellow UI elements with a dark, semi-transparent 
 
 1. Go to `...\Steam\steamapps\common\GarrysMod\garrysmod\addons`
 2. Delete its folder
->Follow these steps only if you installed the mod using the alternative installation method.
+>Follow alternative steps only if you installed the mod using the alternative installation method.
 
 ---
 
