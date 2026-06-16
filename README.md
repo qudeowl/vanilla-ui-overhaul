@@ -6,7 +6,7 @@ Replaces the default white and yellow UI elements with a dark, semi-transparent 
 > 
 ## Installation
 
-**Automatic (recommended)**
+**Automatic (Recommended)**
 
 1. Download `install_uninstall_vanilla_ui_overhaul.bat` from the [latest release](https://github.com/qudeowl/vanilla-ui-overhaul/releases/latest) and run it
 2. Choose your preferred variant when prompted (Centered or No Center)
@@ -31,7 +31,7 @@ Replaces the default white and yellow UI elements with a dark, semi-transparent 
 
 ## Uninstall
 
-**Automatic (recommended)**
+**Automatic (Recommended)**
 
 1. Run the .bat
 2. Select [2] Uninstall
