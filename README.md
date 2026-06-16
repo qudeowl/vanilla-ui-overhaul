@@ -50,4 +50,4 @@ Replaces the default white and yellow UI elements with a dark, semi-transparent 
 
 ---
 
-Also on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3737107792).
+Also on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3737107792)
