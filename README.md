@@ -32,12 +32,15 @@ Replaces the default white and yellow UI elements with a dark, semi-transparent 
 ## Uninstall
 
 **Automatic (recommended)**
+
 Run the installer again and choose **Uninstall**, or verify your game files on Steam to revert everything back to default.
 
 **Manual**
+
 Verify game files on Steam. If you installed v1.0, also delete `spawnmenu_theme.lua` from `...\garrysmod\lua\autorun\client" if it exists`
 
 **Manual (Alternative)**
+
 1. Go to `...\Steam\steamapps\common\GarrysMod\garrysmod\addons`
 2. Delete its folder.
 >Follow these steps only if you installed the mod using the alternative installation method.
