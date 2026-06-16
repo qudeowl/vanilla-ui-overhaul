@@ -33,11 +33,14 @@ Replaces the default white and yellow UI elements with a dark, semi-transparent 
 
 **Automatic (recommended)**
 
-Run the installer again and choose **Uninstall**, or verify your game files on Steam to revert everything back to default.
+1. Run the .bat
+2. Select [2] Uninstall
+3. Verify game files on Steam.
 
 **Manual**
 
-Verify game files on Steam. If you installed v1.0, also delete `spawnmenu_theme.lua` from `...\garrysmod\lua\autorun\client" if it exists`
+1. Verify game files on Steam.
+2. If you installed v1.0, also delete `spawnmenu_theme.lua` from `...\garrysmod\lua\autorun\client" if it exists`
 
 **Manual (Alternative)**
 
