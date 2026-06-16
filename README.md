@@ -1,6 +1,6 @@
 # Vanilla UI Overhaul
 
-Replaces the default white and yellow UI elements with a dark, semi-transparent style. Panels turn into frosted glass, yellow hover effects become blue, and the loading screen and spawnmenu are restyled to match.
+Replaces the default white and yellow UI elements with a dark, semi-transparent style.
 
 > **Beta** - things might change. Bug reports welcome via [Issues](https://github.com/qudeowl/vanilla-ui-overhaul/issues).
 > 
