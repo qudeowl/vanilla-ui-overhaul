@@ -1,6 +1,6 @@
 # Vanilla UI Overhaul
 
-Replaces the default white and yellow UI elements with a dark, semi-transparent style.
+A refined and customizable main menu overhaul designed to enhance the vanilla experience with custom fonts, backgrounds, music, and layout options.
 
 > **Beta** - things might change. Bug reports welcome via [Issues](https://github.com/qudeowl/vanilla-ui-overhaul/issues).
 > 
