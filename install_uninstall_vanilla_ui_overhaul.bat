@@ -8,7 +8,7 @@ color 0B
 cls
 echo.
 echo                       ========================================================
-echo                                    Vanilla UI Overhaul - Beta
+echo                                   Vanilla UI Overhaul - Beta v1.3
 echo                                 github.com/qudeowl/vanilla-ui-overhaul
 echo                       ========================================================
 echo.
@@ -30,7 +30,7 @@ goto MainMenu
 cls
 echo.
 echo                       ========================================================
-echo                                    Vanilla UI Overhaul - Beta
+echo                                   Vanilla UI Overhaul - Beta v1.3
 echo                                 github.com/qudeowl/vanilla-ui-overhaul
 echo                       ========================================================
 echo.
@@ -39,7 +39,7 @@ echo.
 echo                           [1] Centered Main Menu
 echo                               Menu items are centered on screen.
 echo.
-echo                           [2] Vanilla Main Menu  (No Center)
+echo                           [2] Vanilla Main Menu  (Vanilla Layout)
 echo                               Menu items stay in the original top-left position.
 echo.
 echo                                  [3] Back
@@ -49,11 +49,11 @@ echo.
 set /p "VCHOICE=Selection: "
 
 if "%VCHOICE%"=="1" (
-    set "ARCHIVE_NAME=Vanilla_UI_Overhaul_v1.2_Beta.zip"
+    set "ARCHIVE_NAME=Vanilla_UI_Overhaul_v1.3_Beta_Centered.zip"
     goto PreChecks
 )
 if "%VCHOICE%"=="2" (
-    set "ARCHIVE_NAME=Vanilla_UI_Overhaul_NoCenter_v1.2_Beta.zip"
+    set "ARCHIVE_NAME=Vanilla_UI_Overhaul_v1.3_Beta_VanillaLayout.zip"
     goto PreChecks
 )
 if "%VCHOICE%"=="3" goto MainMenu
@@ -317,11 +317,35 @@ for %%F in (
     "lua\menu\loading.lua"
     "lua\menu\mount\vgui\workshop.lua"
     "lua\menu\problems\problems_pnl.lua"
+    "lua\menu\errors.lua"
     "lua\autorun\client\spawnmenu_theme.lua"
+    "html\template\servers.html"
+    "html\fonts\Roboto-Regular.ttf"
+    "html\fonts\Roboto-Medium.ttf"
+    "html\fonts\Roboto-SemiBold.ttf"
+    "resource\LoadingDialogGMod.res"
+    "resource\LoadingDialogNoBannerSingle.res"
+    "resource\LoadingDialogVAC.res"
+    "resource\fonts\Roboto-Regular.ttf"
+    "resource\fonts\Roboto-Medium.ttf"
+    "resource\fonts\Roboto-SemiBold.ttf"
 ) do (
     if exist "!GMOD_PATH!\%%~F" (
         del /f /q "!GMOD_PATH!\%%~F"
         echo    Removed: %%~F
+    )
+)
+
+:: Remove mod-only folders (custom backgrounds / fonts / music / sounds)
+for %%D in (
+    "materials\vuo_backgrounds"
+    "materials\vuo_fonts"
+    "sound\vuo_music"
+    "sound\vuo_sounds"
+) do (
+    if exist "!GMOD_PATH!\%%~D" (
+        rd /s /q "!GMOD_PATH!\%%~D"
+        echo    Removed folder: %%~D
     )
 )
 
