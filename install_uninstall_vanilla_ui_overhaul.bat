@@ -1,305 +1,161 @@
 @echo off
 setlocal EnableDelayedExpansion
-mode con: cols=100 lines=30
-title Vanilla UI Overhaul Installer
-color 0B
+title Vanilla UI Overhaul
 
-:MainMenu
+:menu
 cls
 echo.
-echo                       ========================================================
-echo                                   Vanilla UI Overhaul - Beta v1.3
-echo                                 github.com/qudeowl/vanilla-ui-overhaul
-echo                       ========================================================
+echo  VUO Beta v1.3
+echo  github.com/qudeowl/vanilla-ui-overhaul
 echo.
-echo                                  [1] Install / Update Vanilla UI Overhaul
-echo                                  [2] Uninstall (Reset to default)
-echo                                  [3] Exit
+echo   1. Install / Update
+echo   2. Uninstall (Reset To Default)
+echo   3. Exit
 echo.
-echo                       ========================================================
-echo.
-set /p "CHOICE=Selection: "
+set /p "choice=Select an option: "
+if "%choice%"=="1" goto variant
+if "%choice%"=="2" goto uninstall
+if "%choice%"=="3" exit /b
+goto menu
 
-if "%CHOICE%"=="1" goto VariantMenu
-if "%CHOICE%"=="2" goto UninstallMenu
-if "%CHOICE%"=="3" exit /b
-goto MainMenu
-
-:: ═════════════════════════════════════════════════════════════════════
-:VariantMenu
+:variant
+set "archive="
 cls
 echo.
-echo                       ========================================================
-echo                                   Vanilla UI Overhaul - Beta v1.3
-echo                                 github.com/qudeowl/vanilla-ui-overhaul
-echo                       ========================================================
+echo  Choose your main menu layout:
 echo.
-echo                         Choose your main menu layout:
+echo   1. Centered
+echo   2. Vanilla
+echo   3. Back
 echo.
-echo                           [1] Centered Main Menu
-echo                               Menu items are centered on screen.
-echo.
-echo                           [2] Vanilla Main Menu  (Vanilla Layout)
-echo                               Menu items stay in the original top-left position.
-echo.
-echo                                  [3] Back
-echo.
-echo                       ========================================================
-echo.
-set /p "VCHOICE=Selection: "
+set /p "v=Select an option: "
+if "%v%"=="1" set "archive=Vanilla_UI_Overhaul_v1.3_Beta_Centered.zip"
+if "%v%"=="2" set "archive=Vanilla_UI_Overhaul_v1.3_Beta_VanillaLayout.zip"
+if "%v%"=="3" goto menu
+if defined archive goto checkgame
+goto variant
 
-if "%VCHOICE%"=="1" (
-    set "ARCHIVE_NAME=Vanilla_UI_Overhaul_v1.3_Beta_Centered.zip"
-    goto PreChecks
-)
-if "%VCHOICE%"=="2" (
-    set "ARCHIVE_NAME=Vanilla_UI_Overhaul_v1.3_Beta_VanillaLayout.zip"
-    goto PreChecks
-)
-if "%VCHOICE%"=="3" goto MainMenu
-goto VariantMenu
-
-:PreChecks
-set "GAME_RUNNING=0"
-tasklist /NH /FI "IMAGENAME eq hl2.exe" 2>nul | find /I "hl2.exe" >nul
-if not errorlevel 1 set "GAME_RUNNING=1"
-tasklist /NH /FI "IMAGENAME eq gmod.exe" 2>nul | find /I "gmod.exe" >nul
-if not errorlevel 1 set "GAME_RUNNING=1"
-
-if "!GAME_RUNNING!"=="1" (
-    color 0C
+:checkgame
+set "running="
+tasklist /fi "imagename eq gmod.exe" 2>nul | find /i "gmod.exe" >nul && set "running=1"
+tasklist /fi "imagename eq hl2.exe" 2>nul | find /i "hl2.exe" >nul && set "running=1"
+if defined running (
     echo.
-    echo    [CRITICAL] Garry's Mod is currently running!
-    echo    Please close the game before installing.
-    echo.
-    echo    Press any key to retry check...
+    echo  Garry's Mod is running. Please close it, then press any key.
     pause >nul
-    color 0B
-    goto PreChecks
+    goto checkgame
 )
-goto Locate
 
-:Locate
+:locate
 cls
-echo.
-echo    [1/4] Locating Steam installation...
+echo  Looking for Steam...
+set "steam="
+for /f "tokens=2*" %%a in ('reg query "HKCU\Software\Valve\Steam" /v SteamPath 2^>nul') do set "steam=%%b"
+if not defined steam for /f "tokens=2*" %%a in ('reg query "HKLM\SOFTWARE\Valve\Steam" /v InstallPath 2^>nul') do set "steam=%%b"
+if not defined steam for /f "tokens=2*" %%a in ('reg query "HKLM\SOFTWARE\WOW6432Node\Valve\Steam" /v InstallPath 2^>nul') do set "steam=%%b"
+if not defined steam if exist "C:\Program Files (x86)\Steam\steam.exe" set "steam=C:\Program Files (x86)\Steam"
+if not defined steam if exist "C:\Program Files\Steam\steam.exe" set "steam=C:\Program Files\Steam"
+if not defined steam set /p "steam=Couldn't find Steam. Paste your Steam folder path: "
+set "steam=!steam:"=!"
+set "steam=!steam:/=\!"
 
-set "GITHUB_OWNER=qudeowl"
-set "GITHUB_REPO=vanilla-ui-overhaul"
-set "DOWNLOAD_URL=https://github.com/%GITHUB_OWNER%/%GITHUB_REPO%/releases/latest/download/!ARCHIVE_NAME!"
-
-:: ── Steam path: try all known registry locations ──────────────────────
-set "STEAM_PATH="
-
-:: HKCU (most reliable — user-specific, forward-slash path)
-for /f "tokens=2*" %%a in ('reg query "HKCU\Software\Valve\Steam" /v SteamPath 2^>nul') do set "STEAM_PATH=%%b"
-
-:: HKLM 32-bit node (fallback)
-if not defined STEAM_PATH (
-    for /f "tokens=2*" %%a in ('reg query "HKLM\SOFTWARE\Valve\Steam" /v InstallPath 2^>nul') do set "STEAM_PATH=%%b"
-)
-
-:: HKLM WOW6432Node (64-bit Windows)
-if not defined STEAM_PATH (
-    for /f "tokens=2*" %%a in ('reg query "HKLM\SOFTWARE\WOW6432Node\Valve\Steam" /v InstallPath 2^>nul') do set "STEAM_PATH=%%b"
-)
-
-:: Common fallback paths
-if not defined STEAM_PATH if exist "C:\Program Files (x86)\Steam\steam.exe" set "STEAM_PATH=C:\Program Files (x86)\Steam"
-if not defined STEAM_PATH if exist "C:\Program Files\Steam\steam.exe"       set "STEAM_PATH=C:\Program Files\Steam"
-
-if not defined STEAM_PATH (
-    echo    [ERROR] Steam not found automatically.
-    set /p STEAM_PATH="    Enter Steam path manually: "
-    set "STEAM_PATH=!STEAM_PATH:"=!"
-)
-
-:: Normalize forward slashes to backslashes
-set "STEAM_PATH=!STEAM_PATH:/=\!"
-echo    [OK] Steam: !STEAM_PATH!
-
-:: ── Find GMod across ALL Steam libraries ─────────────────────────────
-set "GMOD_PATH="
-
-:: Check main library
-if exist "!STEAM_PATH!\steamapps\common\GarrysMod\garrysmod" (
-    set "GMOD_PATH=!STEAM_PATH!\steamapps\common\GarrysMod\garrysmod"
-)
-
-:: Parse libraryfolders.vdf for additional libraries
-if not defined GMOD_PATH (
-    set "VDF=!STEAM_PATH!\steamapps\libraryfolders.vdf"
-    if exist "!VDF!" (
-        for /f "usebackq tokens=2 delims=	 " %%L in ("!VDF!") do (
-            set "LIB=%%~L"
-            set "LIB=!LIB:"=!"
-            set "LIB=!LIB:/=\!"
-            if exist "!LIB!\steamapps\common\GarrysMod\garrysmod" (
-                set "GMOD_PATH=!LIB!\steamapps\common\GarrysMod\garrysmod"
-            )
-        )
+set "gmod="
+if exist "!steam!\steamapps\common\GarrysMod\garrysmod" set "gmod=!steam!\steamapps\common\GarrysMod\garrysmod"
+if not defined gmod if exist "!steam!\steamapps\libraryfolders.vdf" (
+    for /f "usebackq tokens=2 delims=	 " %%L in ("!steam!\steamapps\libraryfolders.vdf") do (
+        set "lib=%%~L"
+        set "lib=!lib:/=\!"
+        if exist "!lib!\steamapps\common\GarrysMod\garrysmod" set "gmod=!lib!\steamapps\common\GarrysMod\garrysmod"
     )
 )
-
-if not defined GMOD_PATH (
-    echo.
-    echo    [ERROR] Garry's Mod folder not found automatically.
-    echo.
-    set /p GMOD_PATH="    Paste full path to 'garrysmod' folder: "
-    set "GMOD_PATH=!GMOD_PATH:"=!"
-    set "GMOD_PATH=!GMOD_PATH:/=\!"
-    if not exist "!GMOD_PATH!" (
-        color 0C
-        echo    [ERROR] Invalid path specified. Returning to menu...
-        timeout /t 3 >nul
-        color 0B
-        goto MainMenu
-    )
+if not defined gmod (
+    echo  Couldn't find the garrysmod folder automatically.
+    set /p "gmod=Paste the full path to your 'garrysmod' folder: "
+    set "gmod=!gmod:"=!"
+    set "gmod=!gmod:/=\!"
 )
-
-echo    [OK] Target: !GMOD_PATH!
-timeout /t 1 >nul
-
-:: ── Download ──────────────────────────────────────────────────────────
-echo.
-echo    [2/4] Downloading !ARCHIVE_NAME!...
-set "TEMP_DIR=%TEMP%\vanilla_ui_installer_%RANDOM%"
-mkdir "!TEMP_DIR!" 2>nul
-
-curl -L -o "!TEMP_DIR!\!ARCHIVE_NAME!" "!DOWNLOAD_URL!" --ssl-no-revoke --progress-bar 2>nul
-
-if not exist "!TEMP_DIR!\!ARCHIVE_NAME!" (
-    echo    [INFO] curl failed, trying PowerShell...
-    powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; (New-Object Net.WebClient).DownloadFile('!DOWNLOAD_URL!', '!TEMP_DIR!\!ARCHIVE_NAME!')" 2>nul
+if not exist "!gmod!" (
+    echo  That path doesn't exist. Going back to the menu.
+    timeout /t 3 >nul
+    goto menu
 )
+echo  Found Garry's Mod at: !gmod!
 
-if not exist "!TEMP_DIR!\!ARCHIVE_NAME!" (
-    color 0C
-    echo    [FATAL] Download failed. Check your internet connection.
+echo  Downloading...
+set "tmp=%TEMP%\vuo_%RANDOM%"
+mkdir "!tmp!" 2>nul
+set "url=https://github.com/qudeowl/vanilla-ui-overhaul/releases/latest/download/!archive!"
+curl -L --ssl-no-revoke -o "!tmp!\!archive!" "!url!"
+if not exist "!tmp!\!archive!" powershell -Command "[Net.ServicePointManager]::SecurityProtocol='Tls12';(New-Object Net.WebClient).DownloadFile('!url!','!tmp!\!archive!')"
+if not exist "!tmp!\!archive!" (
+    echo  Download failed. Check your internet connection and try again.
     pause
-    goto MainMenu
+    goto menu
 )
 
-:: ── Extract + Copy ────────────────────────────────────────────────────
-echo.
-echo    [3/4] Installing...
-set "STAGE_DIR=!TEMP_DIR!\extracted"
-
-powershell -Command "Expand-Archive -Path '!TEMP_DIR!\!ARCHIVE_NAME!' -DestinationPath '!STAGE_DIR!' -Force" 2>nul
-if errorlevel 1 (
-    color 0C
-    echo    [ERROR] Extraction failed. Check folder permissions.
-    pause
-    goto MainMenu
-)
-
-powershell -NoProfile -Command ^
-    "$src = Get-ChildItem '!STAGE_DIR!' -Directory | Select-Object -First 1;" ^
-    "if ($src) {" ^
-    "  $inner = Join-Path $src.FullName 'garrysmod';" ^
-    "  if (Test-Path $inner) { Copy-Item -Path (Join-Path $inner '*') -Destination '!GMOD_PATH!' -Recurse -Force }" ^
-    "  else { Copy-Item -Path (Join-Path $src.FullName '*') -Destination '!GMOD_PATH!' -Recurse -Force }" ^
-    "}" 2>nul
-
-if errorlevel 1 (
-    color 0C
-    echo    [ERROR] File copy failed. Try running as Administrator.
-    pause
-    goto MainMenu
-)
-
-:: ── Cleanup ───────────────────────────────────────────────────────────
-echo.
-echo    [4/4] Cleanup...
-rd /s /q "!TEMP_DIR!" 2>nul
+echo  Installing...
+powershell -Command "Expand-Archive -Path '!tmp!\!archive!' -DestinationPath '!tmp!\out' -Force"
+powershell -NoProfile -Command "$d=Get-ChildItem '!tmp!\out' -Directory | Select-Object -First 1; if($d){$g=Join-Path $d.FullName 'garrysmod'; if(Test-Path $g){Copy-Item (Join-Path $g '*') '!gmod!' -Recurse -Force}else{Copy-Item (Join-Path $d.FullName '*') '!gmod!' -Recurse -Force}}"
+rd /s /q "!tmp!" 2>nul
 
 cls
-color 0A
 echo.
-echo                             =========================================
-echo                                      INSTALLATION SUCCESSFUL
-echo                             =========================================
+echo  Done. Installed to:
+echo  !gmod!
 echo.
-echo                              Repository: %GITHUB_OWNER%/%GITHUB_REPO%
-echo              Location: !GMOD_PATH!
+echo  Launch Garry's Mod to see your new menu.
 echo.
-echo                              Launch Garry's Mod to see your new menu.
-echo.
-echo                                      Press any key to exit...
+echo  Press any key to exit.
 pause >nul
 exit /b 0
 
-:: ═════════════════════════════════════════════════════════════════════
-:UninstallMenu
+
+:uninstall
 cls
 echo.
-echo                       ========================================================
-echo                                    Vanilla UI Overhaul - Uninstall
-echo                       ========================================================
+echo  This removes the mod files. Afterwards, verify the game files
+echo  in Steam to bring the original ones back.
 echo.
-echo                         This will delete all mod files and then guide you
-echo                         to verify game files in Steam to restore originals.
+echo   1. Continue
+echo   2. Back
 echo.
-echo                                  [1] Continue with uninstall
-echo                                  [2] Back to main menu
-echo.
-echo                       ========================================================
-echo.
-set /p "UCHOICE=Selection: "
-if "%UCHOICE%"=="1" goto DoUninstall
-if "%UCHOICE%"=="2" goto MainMenu
-goto UninstallMenu
+set /p "u=Select an option: "
+if "%u%"=="2" goto menu
+if not "%u%"=="1" goto uninstall
 
-:DoUninstall
 cls
-echo.
-echo    Locating Garry's Mod...
+echo  Looking for Garry's Mod...
+set "steam="
+for /f "tokens=2*" %%a in ('reg query "HKCU\Software\Valve\Steam" /v SteamPath 2^>nul') do set "steam=%%b"
+if not defined steam for /f "tokens=2*" %%a in ('reg query "HKLM\SOFTWARE\Valve\Steam" /v InstallPath 2^>nul') do set "steam=%%b"
+if not defined steam for /f "tokens=2*" %%a in ('reg query "HKLM\SOFTWARE\WOW6432Node\Valve\Steam" /v InstallPath 2^>nul') do set "steam=%%b"
+if not defined steam if exist "C:\Program Files (x86)\Steam\steam.exe" set "steam=C:\Program Files (x86)\Steam"
 
-set "STEAM_PATH="
-for /f "tokens=2*" %%a in ('reg query "HKCU\Software\Valve\Steam" /v SteamPath 2^>nul') do set "STEAM_PATH=%%b"
-if not defined STEAM_PATH for /f "tokens=2*" %%a in ('reg query "HKLM\SOFTWARE\Valve\Steam" /v InstallPath 2^>nul') do set "STEAM_PATH=%%b"
-if not defined STEAM_PATH for /f "tokens=2*" %%a in ('reg query "HKLM\SOFTWARE\WOW6432Node\Valve\Steam" /v InstallPath 2^>nul') do set "STEAM_PATH=%%b"
-if not defined STEAM_PATH if exist "C:\Program Files (x86)\Steam\steam.exe" set "STEAM_PATH=C:\Program Files (x86)\Steam"
-
-set "GMOD_PATH="
-if defined STEAM_PATH (
-    set "STEAM_PATH=!STEAM_PATH:/=\!"
-    if exist "!STEAM_PATH!\steamapps\common\GarrysMod\garrysmod" (
-        set "GMOD_PATH=!STEAM_PATH!\steamapps\common\GarrysMod\garrysmod"
-    )
-    if not defined GMOD_PATH (
-        set "VDF=!STEAM_PATH!\steamapps\libraryfolders.vdf"
-        if exist "!VDF!" (
-            for /f "usebackq tokens=2 delims=	 " %%L in ("!VDF!") do (
-                set "LIB=%%~L"
-                set "LIB=!LIB:"=!"
-                set "LIB=!LIB:/=\!"
-                if exist "!LIB!\steamapps\common\GarrysMod\garrysmod" (
-                    set "GMOD_PATH=!LIB!\steamapps\common\GarrysMod\garrysmod"
-                )
-            )
+set "gmod="
+if defined steam (
+    set "steam=!steam:/=\!"
+    if exist "!steam!\steamapps\common\GarrysMod\garrysmod" set "gmod=!steam!\steamapps\common\GarrysMod\garrysmod"
+    if not defined gmod if exist "!steam!\steamapps\libraryfolders.vdf" (
+        for /f "usebackq tokens=2 delims=	 " %%L in ("!steam!\steamapps\libraryfolders.vdf") do (
+            set "lib=%%~L"
+            set "lib=!lib:/=\!"
+            if exist "!lib!\steamapps\common\GarrysMod\garrysmod" set "gmod=!lib!\steamapps\common\GarrysMod\garrysmod"
         )
     )
 )
-
-if not defined GMOD_PATH (
-    set /p GMOD_PATH="    Paste full path to 'garrysmod' folder: "
-    set "GMOD_PATH=!GMOD_PATH:"=!"
-    set "GMOD_PATH=!GMOD_PATH:/=\!"
+if not defined gmod (
+    set /p "gmod=Paste the full path to your 'garrysmod' folder: "
+    set "gmod=!gmod:"=!"
+    set "gmod=!gmod:/=\!"
 )
-
-if not exist "!GMOD_PATH!" (
-    color 0C
-    echo    [ERROR] garrysmod folder not found. Returning to menu...
+if not exist "!gmod!" (
+    echo  Couldn't find the garrysmod folder. Going back to the menu.
     timeout /t 3 >nul
-    color 0B
-    goto MainMenu
+    goto menu
 )
 
-echo    [OK] Removing files from: !GMOD_PATH!
+echo  Removing files from !gmod!
 echo.
-
-:: Delete all mod files (tüm versiyonlar dahil)
 for %%F in (
     "html\main.html"
     "html\menu.html"
@@ -329,42 +185,24 @@ for %%F in (
     "resource\fonts\Roboto-Regular.ttf"
     "resource\fonts\Roboto-Medium.ttf"
     "resource\fonts\Roboto-SemiBold.ttf"
-) do (
-    if exist "!GMOD_PATH!\%%~F" (
-        del /f /q "!GMOD_PATH!\%%~F"
-        echo    Removed: %%~F
-    )
-)
+) do if exist "!gmod!\%%~F" (del /f /q "!gmod!\%%~F" & echo   Removed %%~F)
 
-:: Remove mod-only folders (custom backgrounds / fonts / music / sounds)
 for %%D in (
     "materials\vuo_backgrounds"
     "materials\vuo_fonts"
     "sound\vuo_music"
     "sound\vuo_sounds"
-) do (
-    if exist "!GMOD_PATH!\%%~D" (
-        rd /s /q "!GMOD_PATH!\%%~D"
-        echo    Removed folder: %%~D
-    )
-)
+) do if exist "!gmod!\%%~D" (rd /s /q "!gmod!\%%~D" & echo   Removed %%~D)
 
 cls
-color 0A
 echo.
-echo                             =========================================
-echo                                        FILES REMOVED
-echo                             =========================================
+echo  Mod files removed.
 echo.
-echo                             To restore original Garry's Mod files:
+echo  To restore the original Garry's Mod files:
+echo   1. Open your Steam library, right-click Garry's Mod, then Properties
+echo   2. Go to the Installed Files tab
+echo   3. Click Verify integrity of game files
 echo.
-echo                             1. Open Steam Library
-echo                             2. Right-click "Garry's Mod" - Properties
-echo                             3. Click "Installed Files" tab
-echo                             4. Click "Verify integrity of game files"
-echo.
-echo                             =========================================
-echo.
-echo                                   Press any key to exit...
+echo  Press any key to exit.
 pause >nul
 exit /b 0
