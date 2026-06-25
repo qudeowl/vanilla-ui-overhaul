@@ -1,4 +1,4 @@
-# Vanilla UI Overhaul
+# Vanilla UI+
 
 A refined and customizable main menu overhaul designed to enhance the vanilla experience with custom fonts, backgrounds, music, and layout options.
 
