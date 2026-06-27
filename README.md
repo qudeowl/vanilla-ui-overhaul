@@ -9,7 +9,7 @@ A refined and customizable main menu overhaul designed to enhance the vanilla ex
 **Automatic (Recommended)**
 
 1. Download `install_uninstall_vanilla_ui_overhaul.bat` from the [latest release](https://github.com/qudeowl/vanilla-ui-overhaul/releases/latest) and run it
-2. Choose your preferred variant when prompted (Centered or No Center)
+2. Choose your preferred variant when prompted
 3. The script finds your GMod folder automatically and installs the files
 4. Launch Garry's Mod
 
@@ -34,7 +34,7 @@ A refined and customizable main menu overhaul designed to enhance the vanilla ex
 **Automatic (Recommended)**
 
 1. Run the .bat
-2. Select [2] Uninstall
+2. Select > 2. Uninstall (Reset To Default)
 3. Verify game files on Steam
 
 **Manual**
@@ -46,7 +46,7 @@ A refined and customizable main menu overhaul designed to enhance the vanilla ex
 
 1. Go to `...\Steam\steamapps\common\GarrysMod\garrysmod\addons`
 2. Delete its folder
->Follow alternative steps only if you installed the mod using the alternative installation method.
+> Follow alternative steps only if you installed the mod using the alternative installation method.
 
 ---
 
