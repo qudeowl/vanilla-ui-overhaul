@@ -9,7 +9,7 @@ A refined and customizable main menu overhaul designed to enhance the vanilla ex
 **Automatic (Recommended)**
 
 1. Download `install_uninstall_vanilla_ui_overhaul.bat` from the [latest release](https://github.com/qudeowl/vanilla-ui-overhaul/releases/latest) and run it
-2. Choose your preferred variant when prompted
+2. Select your preferred setup when prompted
 3. The script finds your GMod folder automatically and installs the files
 4. Launch Garry's Mod
 
@@ -17,13 +17,12 @@ A refined and customizable main menu overhaul designed to enhance the vanilla ex
 
 **Manual**
 
-1. Download your preferred zip from the [latest release](https://github.com/qudeowl/vanilla-ui-overhaul/releases/latest)
-   - `Vanilla_UI_Overhaul_v1.2_Beta.zip` - centered menu
-   - `Vanilla_UI_Overhaul_NoCenter_v1.2_Beta.zip` - vanilla top-left menu
+1. Download the zip from the [latest release](https://github.com/qudeowl/vanilla-ui-overhaul/releases/latest)
 2. Extract and drop the `garrysmod` folder into `...\Steam\steamapps\common\GarrysMod`
+> You're ready.
 
 **Manual (Alternative)**
-1. Download your preferred zip from the [latest release](https://github.com/qudeowl/vanilla-ui-overhaul/releases/latest)
+1. Download the zip from the [latest release](https://github.com/qudeowl/vanilla-ui-overhaul/releases/latest)
 2. Extract and drop the `garrysmod` folder into `...\Steam\steamapps\common\GarrysMod\garrysmod\addons`
 > The alternative installation method avoids modifying game files and reduces issues caused by official updates. However, some interface elements may be unavailable or may not work as expected, as they may be ignored by the game.
 
