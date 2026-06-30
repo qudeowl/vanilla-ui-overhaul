@@ -19,20 +19,31 @@ if "%choice%"=="3" exit /b
 goto menu
 
 :variant
-set "archive="
+set "archive=Vanilla_UI_Overhaul_v1.3_Beta.zip"
+set "mode="
 cls
 echo.
-echo  Choose your main menu layout:
+echo  Choose your installation method:
 echo.
-echo   1. Centered
-echo   2. Vanilla
+echo   1. Standard
+echo      Installs directly into the Garry's Mod folder. All features are
+echo      fully supported, but some game files are replaced. If a future
+echo      Garry's Mod update causes compatibility issues, simply reinstall
+echo      the mod.
+echo.
+echo   2. Addons Folder
+echo      Installs into garrysmod\addons instead. This avoids modifying game
+echo      files and reduces issues caused by official updates. However, some
+echo      interface elements may be unavailable or may not work as expected,
+echo      as they may be ignored by the game.
+echo.
 echo   3. Back
 echo.
-set /p "v=Select an option: "
-if "%v%"=="1" set "archive=Vanilla_UI_Overhaul_v1.3_Beta_Centered.zip"
-if "%v%"=="2" set "archive=Vanilla_UI_Overhaul_v1.3_Beta_VanillaLayout.zip"
-if "%v%"=="3" goto menu
-if defined archive goto checkgame
+set /p "m=Select an option: "
+if "%m%"=="1" set "mode=standard"
+if "%m%"=="2" set "mode=addon"
+if "%m%"=="3" goto menu
+if defined mode goto checkgame
 goto variant
 
 :checkgame
@@ -84,7 +95,7 @@ echo  Found Garry's Mod at: !gmod!
 echo  Downloading...
 set "tmp=%TEMP%\vuo_%RANDOM%"
 mkdir "!tmp!" 2>nul
-set "url=https://github.com/qudeowl/vanilla-ui-overhaul/releases/latest/download/!archive!"
+set "url=https://github.com/qudeowl/vanilla-ui-overhaul/releases/download/vuo_v1.3_beta/!archive!"
 curl -L --ssl-no-revoke -o "!tmp!\!archive!" "!url!"
 if not exist "!tmp!\!archive!" powershell -Command "[Net.ServicePointManager]::SecurityProtocol='Tls12';(New-Object Net.WebClient).DownloadFile('!url!','!tmp!\!archive!')"
 if not exist "!tmp!\!archive!" (
@@ -95,13 +106,18 @@ if not exist "!tmp!\!archive!" (
 
 echo  Installing...
 powershell -Command "Expand-Archive -Path '!tmp!\!archive!' -DestinationPath '!tmp!\out' -Force"
-powershell -NoProfile -Command "$d=Get-ChildItem '!tmp!\out' -Directory | Select-Object -First 1; if($d){$g=Join-Path $d.FullName 'garrysmod'; if(Test-Path $g){Copy-Item (Join-Path $g '*') '!gmod!' -Recurse -Force}else{Copy-Item (Join-Path $d.FullName '*') '!gmod!' -Recurse -Force}}"
+powershell -NoProfile -Command "$d=Get-ChildItem '!tmp!\out' -Directory | Select-Object -First 1; if($d){$g=Join-Path $d.FullName 'garrysmod'; $src=if(Test-Path $g){$g}else{$d.FullName}; if('!mode!' -eq 'addon'){$dest=Join-Path '!gmod!' 'addons\garrysmod'; New-Item -ItemType Directory -Force -Path $dest | Out-Null; Copy-Item (Join-Path $src '*') $dest -Recurse -Force}else{Copy-Item (Join-Path $src '*') '!gmod!' -Recurse -Force}}"
 rd /s /q "!tmp!" 2>nul
 
 cls
 echo.
-echo  Done. Installed to:
-echo  !gmod!
+if "!mode!"=="addon" (
+    echo  Done. Installed as an addon to:
+    echo  !gmod!\addons\garrysmod
+) else (
+    echo  Done. Installed to:
+    echo  !gmod!
+)
 echo.
 echo  Launch Garry's Mod to see your new menu.
 echo.
@@ -182,12 +198,14 @@ for %%F in (
     "resource\LoadingDialogGMod.res"
     "resource\LoadingDialogNoBannerSingle.res"
     "resource\LoadingDialogVAC.res"
+    "resource\loadingdialogerror.res"
     "resource\fonts\Roboto-Regular.ttf"
     "resource\fonts\Roboto-Medium.ttf"
     "resource\fonts\Roboto-SemiBold.ttf"
 ) do if exist "!gmod!\%%~F" (del /f /q "!gmod!\%%~F" & echo   Removed %%~F)
 
 for %%D in (
+    "addons\garrysmod"
     "materials\vuo_backgrounds"
     "materials\vuo_fonts"
     "sound\vuo_music"
