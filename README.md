@@ -8,7 +8,7 @@ A refined and customizable main menu overhaul designed to enhance the vanilla ex
 
 **Automatic (Recommended)**
 
-1. Download `install_uninstall_vanilla_ui_overhaul.bat` from the [latest release](https://github.com/qudeowl/vanilla-ui-overhaul/releases/latest) and run it
+1. Download `install_update_uninstall_vanilla_ui.bat` from the [latest release](https://github.com/qudeowl/vanilla-ui-overhaul/releases/latest) and run it
 2. Select your preferred setup when prompted
 3. The script finds your GMod folder automatically and installs the files
 4. Launch Garry's Mod
