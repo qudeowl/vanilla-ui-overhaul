@@ -33,7 +33,7 @@ A refined and customizable main menu overhaul designed to enhance the vanilla ex
 **Automatic (Recommended)**
 
 1. Run the .bat
-2. Select > 2. Uninstall (Reset To Default)
+2. Select > 3. Uninstall (Reset To Default)
 3. Verify game files on Steam
 
 **Manual**
