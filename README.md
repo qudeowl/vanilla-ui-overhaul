@@ -48,5 +48,3 @@ A refined and customizable main menu overhaul designed to enhance the vanilla ex
 > Follow alternative steps only if you installed the mod using the alternative installation method.
 
 ---
-
-Also on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3737107792)
