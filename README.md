@@ -1,6 +1,6 @@
 # Vanilla UI+
 
-A refined and customizable main menu overhaul designed to enhance the vanilla experience with custom fonts, backgrounds, music, and layout options.
+A redesigned main menu. Choose your own fonts, backgrounds, music and layout.
 
 > **Beta** - things might change. Bug reports welcome via [Issues](https://github.com/qudeowl/vanilla-ui-overhaul/issues).
 > 
