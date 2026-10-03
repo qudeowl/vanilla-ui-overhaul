@@ -8,17 +8,41 @@ A redesigned main menu. Choose your own fonts, backgrounds, music and layout.
 
 **Automatic (Recommended)**
 
-1. Download `install_update_uninstall_vanilla_ui.bat` from the [latest release](https://github.com/qudeowl/vanilla-ui-overhaul/releases/latest) and run it
+1. Download the installer from the [latest release](https://github.com/qudeowl/vanilla-ui-overhaul/releases/latest)
+   - **Windows:** `install_update_uninstall_vanilla_ui.bat`, then run it
+   - **Linux:** `install_update_uninstall_vanilla_ui.sh`, then run `bash install_update_uninstall_vanilla_ui.sh` in a terminal
 2. Select your preferred setup when prompted
 3. The script finds your GMod folder automatically and installs the files
 4. Launch Garry's Mod
 
 > Make sure the game is closed before running the installer.
 
+**Linux**
+
+Linux support is still experimental. If the menu doesn't load properly (for example, the top bar buttons have no labels), this setup has worked for our testers:
+
+1. In Steam, open Garry's Mod **Properties > Betas** and select the `x86-64` branch
+2. Open **Properties > Compatibility**, enable **Force the use of a specific Steam Play compatibility tool** and select **Proton Experimental**
+3. Install Vanilla UI+ with the **Standard** method, as the Addons Folder method may not load every interface file
+
+If the menu still looks broken, the third-party [GModPatchTool](https://github.com/solsticegamestudios/GModPatchTool) can help by updating the game's built-in browser. It isn't part of Vanilla UI+ and changes game files, so it's up to you. If you run it after installing Vanilla UI+, add `--no-sourcescheme` so it keeps Vanilla UI+'s look.
+
+The Linux installer can also run without menus:
+
+| Command | Action |
+|---|---|
+| `bash install_update_uninstall_vanilla_ui.sh -a` | Install (Standard) |
+| `bash install_update_uninstall_vanilla_ui.sh -A` | Install (Addons Folder) |
+| `bash install_update_uninstall_vanilla_ui.sh -U -a` | Update (Standard) |
+| `bash install_update_uninstall_vanilla_ui.sh -U -A` | Update (Addons Folder) |
+| `bash install_update_uninstall_vanilla_ui.sh -r` | Uninstall |
+
+If your Garry's Mod folder isn't found automatically, set `GMOD_DIR` to it, for example `GMOD_DIR=~/path/to/garrysmod bash install_update_uninstall_vanilla_ui.sh -a`.
+
 **Manual**
 
 1. Download the zip from the [latest release](https://github.com/qudeowl/vanilla-ui-overhaul/releases/latest)
-2. Extract and drop the `garrysmod` folder into `...\Steam\steamapps\common\GarrysMod`
+2. Extract and drop the `garrysmod` folder into `...\Steam\steamapps\common\GarrysMod` (on Linux usually `~/.local/share/Steam/steamapps/common/GarrysMod`)
 > You're ready.
 
 **Manual (Alternative)**
@@ -33,7 +57,7 @@ A redesigned main menu. Choose your own fonts, backgrounds, music and layout.
 
 **Automatic (Recommended)**
 
-1. Run the .bat
+1. Run the .bat (or the .sh on Linux)
 2. Select > 3. Uninstall (Reset To Default)
 3. Verify game files on Steam
 
@@ -51,3 +75,11 @@ A redesigned main menu. Choose your own fonts, backgrounds, music and layout.
 > Follow alternative steps only if you installed the mod using the alternative installation method.
 
 ---
+
+## Credits
+
+Inspired by [TuPiDAn](https://steamcommunity.com/sharedfiles/filedetails/?id=3599195211)'s Dark Main Menu, [Remedy](https://steamcommunity.com/id/voidcubes/myworkshopfiles/)'s Theme Engine and [Portal](https://store.steampowered.com/bundle/234/Portal_Bundle/).
+
+Linux testing and setup steps by [Tiddie](https://github.com/Tiddiee).
+
+Made by Qude, with help from AI.
