@@ -917,9 +917,9 @@
         vuoMusic.vol = (vuoCfg.vol!=null?vuoCfg.vol:0.7); a0.volume = vuoMusic.vol; a1.volume = vuoMusic.vol; vuoEl('vuo_mp_volfill').style.width = Math.round(vuoMusic.vol*100)+'%';
 
         vuoEl('vuo_mp_folder').addEventListener('click', function(){
-            var ok=false;
-            try { var ta=document.createElement('textarea'); ta.value='steamapps\\common\\GarrysMod\\garrysmod\\sound\\vuo_music'; ta.style.cssText='position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); ok=document.execCommand('copy'); document.body.removeChild(ta); } catch(e){}
-            var m=vuoEl('vuo_mp_msg'); if(m){ m.textContent = ok?vuoT('copied'):'steamapps\\common\\GarrysMod\\...'; setTimeout(function(){ if(m) m.textContent=''; }, 3400); }
+            var ok=false, sep=/win/i.test(navigator.platform||'')?'\\':'/';
+            try { var ta=document.createElement('textarea'); ta.value=['steamapps','common','GarrysMod','garrysmod','sound','vuo_music'].join(sep); ta.style.cssText='position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); ok=document.execCommand('copy'); document.body.removeChild(ta); } catch(e){}
+            var m=vuoEl('vuo_mp_msg'); if(m){ m.textContent = ok?vuoT('copied'):['steamapps','common','GarrysMod','...'].join(sep); setTimeout(function(){ if(m) m.textContent=''; }, 3400); }
         });
 
         function vuoSeekMark(){ vuoMusic.seekUntil = Date.now() + 2500; }
