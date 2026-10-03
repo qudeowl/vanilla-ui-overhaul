@@ -25,7 +25,7 @@ Linux support is still experimental. If the menu doesn't load properly (for exam
 2. Open **Properties > Compatibility**, enable **Force the use of a specific Steam Play compatibility tool** and select **Proton Experimental**
 3. Install Vanilla UI+ with the **Standard** method, as the Addons Folder method may not load every interface file
 
-If the menu still looks broken, the third-party [GModPatchTool](https://github.com/solsticegamestudios/GModPatchTool) can help by updating the game's built-in browser. It isn't part of Vanilla UI+ and changes game files, so it's up to you. If you run it after installing Vanilla UI+, add `--no-sourcescheme` so it keeps Vanilla UI+'s look.
+If the menu still looks broken, the third-party [GModPatchTool](https://github.com/solsticegamestudios/GModPatchTool) can help by updating the game's built-in browser. It isn't part of Vanilla UI+ and changes game files, so it's up to you.
 
 The Linux installer can also run without menus:
 
