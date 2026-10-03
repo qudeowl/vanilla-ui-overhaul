@@ -78,8 +78,6 @@ If your Garry's Mod folder isn't found automatically, set `GMOD_DIR` to it, for 
 
 ## Credits
 
-Inspired by [TuPiDAn](https://steamcommunity.com/sharedfiles/filedetails/?id=3599195211)'s Dark Main Menu, [Remedy](https://steamcommunity.com/id/voidcubes/myworkshopfiles/)'s Theme Engine and [Portal](https://store.steampowered.com/bundle/234/Portal_Bundle/).
+Inspired by [TuPiDAn](https://steamcommunity.com/sharedfiles/filedetails/?id=3599195211)'s Dark Main Menu, [Remedy](https://steamcommunity.com/id/voidcubes/myworkshopfiles/)'s Theme Engine and [Portal](https://store.steampowered.com/bundle/234/Portal_Bundle/)
 
-Linux testing and setup steps by [Tiddie](https://github.com/Tiddiee).
-
-Made by Qude, with help from AI.
+Linux testing and Setup steps by [Tiddie](https://github.com/Tiddiee)
