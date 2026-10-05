@@ -80,3 +80,5 @@ Inspired by [TuPiDAn](https://steamcommunity.com/sharedfiles/filedetails/?id=359
 
 Linux Setup & Testing by [Tiddie](https://steamcommunity.com/id/Tiddster/)
 > Thank you for all your support from the beginning
+
+Made by [Qude](https://steamcommunity.com/id/qudeowl/myworkshopfiles/?p=1&numperpage=30)
