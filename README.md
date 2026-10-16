@@ -73,6 +73,9 @@ If your Garry's Mod folder isn't found automatically, set `GMOD_DIR` to it, for 
 > Follow alternative steps only if you installed the mod using the alternative installation method.
 
 ---
+## Support
+**Vanilla UI+** is free and always will be. If you enjoy it, you can [support me here](https://buymeacoffee.com/qudeowl). Thank you!
+
 
 ## Credits
 
