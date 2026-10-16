@@ -74,7 +74,8 @@ If your Garry's Mod folder isn't found automatically, set `GMOD_DIR` to it, for 
 
 ---
 ## Support
-**Vanilla UI+** is free and always will be. If you enjoy it, you can [support me here](https://buymeacoffee.com/qudeowl). Thank you!
+**Vanilla UI+** is free and always will be. If you enjoy it, you can [support me here](https://buymeacoffee.com/qudeowl)
+> Thank you!
 
 
 ## Credits
@@ -82,6 +83,5 @@ If your Garry's Mod folder isn't found automatically, set `GMOD_DIR` to it, for 
 Inspired by [TuPiDAn](https://steamcommunity.com/sharedfiles/filedetails/?id=3599195211)'s Dark Main Menu, [Remedy](https://steamcommunity.com/id/voidcubes/myworkshopfiles/)'s Theme Engine and [Portal](https://store.steampowered.com/bundle/234/Portal_Bundle/)
 
 Linux Setup & Testing by [Tiddie](https://steamcommunity.com/id/Tiddster/)
-> Thank you for all your support from the beginning
 
 Made by [Qude](https://steamcommunity.com/id/qudeowl/myworkshopfiles/?p=1&numperpage=30)
