@@ -1,6 +1,13 @@
 
+local function uoSettingsRaw()
+	local raw = cookie and cookie.GetString( "vuo_settings" )
+	if ( isstring( raw ) and raw != "" ) then return raw end
+	local ok, legacy = pcall( file.Read, "vuo_settings.txt", "DATA" )
+	if ( ok and isstring( legacy ) and legacy != "" ) then return legacy end
+end
+
 local function uoSettings()
-	local raw = file.Read( "vuo_settings.txt", "DATA" )
+	local raw = uoSettingsRaw()
 	local cfg = raw and util.JSONToTable( raw ) or nil
 	return istable( cfg ) and cfg or {}
 end
@@ -97,7 +104,7 @@ local function uoTheme()
 	local t = {
 		frame		= Color( 10, 12, 18, 242 ),
 		tooltip		= Color( 18, 21, 30, 250 ),
-		border		= Color( pr, pg, pb, 46 ),
+		border		= Color( 255, 255, 255, 4 ),
 		lineA		= Color( pr, pg, pb ),
 		lineB		= Color( sr, sg, sb ),
 		title		= Color( 225, 238, 255, 235 ),

@@ -84,9 +84,6 @@ hook.Add( "DrawOverlay", "MenuDrawLuaErrors", function()
 
 		draw.RoundedBox( 8, v.x, v.y, v.w, height, Color( 10, 10, 14, 220 ) )
 
-		surface.SetDrawColor( 255, 255, 255, 25 )
-		surface.DrawOutlinedRect( v.x, v.y, v.w, height, 1 )
-
 		if ( v.last > Recent ) then
 			local alpha = ( v.last - Recent ) * 180
 			if v.iserr then

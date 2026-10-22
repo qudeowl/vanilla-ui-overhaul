@@ -108,7 +108,7 @@ body.dark {
     gap: 0;
 
     background: rgba(8, 10, 18, 0.70);
-    border: 1px solid rgba(var(--vuo-a, 35, 135, 237), 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 10px;
     padding: 0;
     visibility: hidden;
@@ -132,7 +132,7 @@ body.dark {
     flex-shrink: 0;
     border-radius: 0;
     border: none;
-    border-right: 1px solid rgba(var(--vuo-a, 35, 135, 237), 0.15);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
     background: rgba(8, 10, 18, 0.65);
     object-fit: cover;
     display: block;

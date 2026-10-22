@@ -11,7 +11,7 @@
 				transform: translateY(calc(-100% * var(--ld-y, 1)));
 
 				background: rgba(8, 10, 18, 0.70);
-				border: 1px solid rgba(var(--vuo-a, 35, 135, 237), 0.18);
+				border: 1px solid rgba(255, 255, 255, 0.05);
 				border-radius: 10px;
 				padding: 14px 16px 12px 16px;
 				display: flex;
@@ -144,7 +144,7 @@
 
 			function SetFilesNeeded(n) {}
 			function SetFilesTotal(n) {
-				if (n > 0) document.getElementById('nf_status').innerText = 'Downloading files...';
+				if (n > 0) document.getElementById('nf_status').innerText = window.nfTxtFiles || 'Downloading files...';
 			}
 			function DownloadingFile(file) {
 				var el = document.getElementById('nf_status');

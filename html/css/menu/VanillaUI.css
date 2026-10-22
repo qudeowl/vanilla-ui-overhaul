@@ -539,20 +539,20 @@ DIV.innerpage, div.ugc_content {
 workshopcontainer,
 .maplist {
     background-color: rgba(8, 10, 18, 0.55) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
     color: #eee !important;
     border-radius: 6px !important;
 }
 gamesettings {
     background-color: rgba(8, 10, 18, 0.55) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
     color: #eee !important;
     border-radius: 6px !important;
 }
 
 div.centermessage {
     background: rgba(8, 10, 18, 0.82) !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 8px !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.65) !important;
     color: rgba(255, 255, 255, 0.85) !important;
@@ -1005,7 +1005,7 @@ DIV.page .add_fav_server .fav_inputs button {
 
 .flags_filter {
     background: rgba(16, 20, 40, 0.82) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 5px !important;
 }
 .flags_filter .flag {
@@ -1022,7 +1022,7 @@ DIV.page .add_fav_server .fav_inputs button {
 }
 div.serverinfo, #serverinfo {
     background-color: rgba(6, 8, 14, 0.60) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 6px !important;
 }
 .serverinfo name {
@@ -1421,7 +1421,7 @@ UL.popup LI:hover {
 
 UL.language_list, UL.games_list, UL.gamemode_list, .popup {
     background-color: rgba(8, 10, 18, 0.85) !important;
-    border: 1px solid rgba(255, 255, 255, 0.10) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 8px !important;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65) !important;
 }
@@ -1644,7 +1644,7 @@ A.bglink:hover {
 
 workshopicon {
     position: relative !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 5px !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.42) !important;
     background-color: rgba(8, 10, 18, 0.65) !important;
@@ -1732,7 +1732,7 @@ workshopicon description {
 
 .ugc_settings {
     background: rgba(6, 8, 14, 0.75) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.10) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
 }
 .ugc_settings span { color: #c8d8f0 !important; }
 .ugc_settings a {
@@ -1769,7 +1769,7 @@ workshopicon description {
 
 pagination {
     background-color: rgba(6, 8, 14, 0.65) !important;
-    border: 1px solid rgba(var(--vuo-blue-rgb), 0.22) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 5px !important;
     box-shadow:
         0 2px 12px rgba(0, 0, 0, 0.35),
@@ -2150,7 +2150,7 @@ controls control[ng-click="Favorite( file, false )"] img {
     display: flex !important;
     flex-direction: column !important;
     background: rgba(7, 8, 11, 0.84) !important;
-    border: 1px solid rgba(255, 255, 255, 0.10) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 12px !important;
     box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7) !important;
     color: #e0ecff !important;
@@ -2298,7 +2298,7 @@ controls control[ng-click="Favorite( file, false )"] img {
 .vuo-np { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 10001; display: flex; align-items: center; justify-content: center; background: rgba(4,5,9,0.55); opacity: 0; pointer-events: none; transition: opacity 0.25s ease; font-family: var(--vuo-font); }
 .vuo-np.vuo-open { opacity: 1; pointer-events: auto; }
 .vuo-np-bg { position: absolute; top: -60px; left: -60px; right: -60px; bottom: -60px; background-size: cover; background-position: center; filter: blur(46px) brightness(0.4) saturate(1.2); transform: scale(1.15); z-index: 0; }
-.vuo-np-inner { position: relative; z-index: 1; width: 460px; max-width: 92vw; max-height: 94vh; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 34px 34px 28px; background: rgba(9,11,16,0.93); border: 1px solid rgba(255,255,255,0.12); border-radius: 18px; box-shadow: 0 30px 90px rgba(0,0,0,0.78), inset 0 1px 0 rgba(255,255,255,0.05); }
+.vuo-np-inner { position: relative; z-index: 1; width: 460px; max-width: 92vw; max-height: 94vh; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 34px 34px 28px; background: rgba(9,11,16,0.93); border: 1px solid rgba(255,255,255,0.05); border-radius: 18px; box-shadow: 0 30px 90px rgba(0,0,0,0.78), inset 0 1px 0 rgba(255,255,255,0.05); }
 .vuo-np-collapse { position: absolute; top: 12px; right: 14px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: rgba(200,215,240,0.8); font-size: 14px; cursor: pointer; transition: background 0.15s ease, color 0.15s ease; }
 .vuo-np-collapse:hover { background: rgba(200,60,60,0.6); color: #fff; }
 .vuo-np-art { width: 230px; height: 230px; flex-shrink: 0; border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 76px; color: #cfe0f5; background-color: #0a0c11; background-image: linear-gradient(135deg, rgba(var(--vuo-blue-rgb),0.35), rgba(8,10,18,0.7)); border: 1px solid rgba(var(--vuo-blue-rgb),0.4); background-size: cover; background-position: center; background-repeat: no-repeat; box-shadow: 0 18px 50px rgba(0,0,0,0.55); }
@@ -2351,7 +2351,7 @@ controls control[ng-click="Favorite( file, false )"] img {
     position: fixed !important; top: 50px !important;
     width: 320px !important; max-height: 82vh !important;
     background: rgba(7, 8, 11, 0.84) !important;
-    border: 1px solid rgba(255,255,255,0.10) !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
     border-radius: 10px !important;
     box-shadow: 0 12px 34px rgba(0,0,0,0.66) !important;
     color: #e0ecff !important; font-family: var(--vuo-font) !important;
@@ -2405,7 +2405,7 @@ controls control[ng-click="Favorite( file, false )"] img {
 .vuo-st-bg {
     position: relative; height: 62px; border-radius: 8px; cursor: pointer; overflow: hidden;
     background-size: cover; background-position: center; background-repeat: no-repeat; background-clip: padding-box;
-    border: 1px solid rgba(255,255,255,0.08); transition: border-color 0.12s ease, transform 0.12s ease;
+    border: 1px solid rgba(255,255,255,0.05); transition: border-color 0.12s ease, transform 0.12s ease;
 }
 .vuo-st-bg:hover { border-color: rgba(var(--vuo-blue-rgb),0.7); transform: translateY(-1px); }
 .vuo-st-bg.vuo-sel { border-color: rgba(var(--vuo-green-rgb),0.9); box-shadow: 0 0 0 1px rgba(var(--vuo-green-rgb),0.6); }
@@ -2658,7 +2658,7 @@ body.vuo-malign-right  div[ng-controller="ControllerMain"] .options ul li { text
     display: flex !important; flex-direction: row !important; align-items: center !important; gap: 12px !important;
     padding: 14px 16px 12px 16px !important;
     background: rgba(8, 10, 18, 0.70) !important;
-    border: 1px solid rgba(var(--vuo-blue-rgb), 0.18) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 10px !important;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.60), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
     font-family: var(--vuo-font) !important; letter-spacing: 0.06em !important;
@@ -2688,7 +2688,7 @@ body.vuo-malign-right  div[ng-controller="ControllerMain"] .options ul li { text
     z-index: 10000 !important; box-sizing: border-box !important;
     display: inline-flex !important; flex-direction: row !important; align-items: center !important;
     background: rgba(8, 10, 18, 0.70) !important;
-    border: 1px solid rgba(var(--vuo-blue-rgb), 0.18) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 10px !important; overflow: hidden !important; white-space: nowrap !important;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.60), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
     font-family: var(--vuo-font) !important;
@@ -2701,7 +2701,7 @@ body.vuo-malign-right  div[ng-controller="ControllerMain"] .options ul li { text
 #vuo_ldi_preview[data-pos="right"] { left: auto !important; right: 16px !important; transform-origin: top right !important; }
 .vuo-ldi-map {
     width: 72px; height: 72px; flex-shrink: 0;
-    border-right: 1px solid rgba(var(--vuo-blue-rgb), 0.15);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
     background: url('asset://mapimage/gm_construct') center / cover no-repeat, rgba(8, 10, 18, 0.65);
 }
 .vuo-ldi-text { display: flex; flex-direction: column; justify-content: center; padding: 12px 18px; gap: 3px; }

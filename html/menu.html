@@ -1605,7 +1605,7 @@
                     ldWidth:280, ldBar:7, ldText:13, ldPos:'right', ldY:0, ldInfoScale:1, ldInfoPos:'left', ldInfoY:100 };
     var vuoSt  = { built:false, open:false, panel:null, btn:null, bgs:[], defbgs:[], defOpen:false, cusOpen:false, navTarget:'all' };
 
-    function vuoSaveCfg(){ try { if (typeof lua!=='undefined' && lua.Run) lua.Run("file.Write('vuo_settings.txt', %s)", JSON.stringify(vuoCfg)); } catch(e){} }
+    function vuoSaveCfg(){ try { if (typeof lua!=='undefined' && lua.Run) lua.Run("if cookie then cookie.Set('vuo_settings', %s) end", JSON.stringify(vuoCfg)); } catch(e){} }
 
     function vuoOpenURL(u){ if (typeof lua!=='undefined' && lua.Run){ try { lua.Run("if gui and gui.OpenURL then gui.OpenURL(%s) end", u); } catch(e){} } }
 

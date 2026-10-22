@@ -10,7 +10,7 @@ local THEME = {
 
     tabBarBg     = Color( 8,   8,   12,  140 ),
 
-    frameBorder  = Color( 255, 255, 255, 26  ),
+    frameBorder  = Color( 255, 255, 255, 4   ),
 
     tabActive    = Color( 35,  135, 237, 35  ),
 
@@ -27,6 +27,13 @@ local THEME = {
     titleBg      = Color( 35,  135, 237, 25  ),
 }
 
+local function nfSettingsRaw()
+    local raw = cookie and cookie.GetString( "vuo_settings" )
+    if ( isstring( raw ) and raw ~= "" ) then return raw end
+    local ok, legacy = pcall( file.Read, "vuo_settings.txt", "DATA" )
+    if ( ok and isstring( legacy ) and legacy ~= "" ) then return legacy end
+end
+
 local function nfReadAccents()
     local blue  = { 35, 135, 237 }
     local green = { 60, 200, 140 }
@@ -36,7 +43,7 @@ local function nfReadAccents()
         if ( r and g and b ) then return { tonumber( r ), tonumber( g ), tonumber( b ) } end
         return fallback
     end
-    local raw = file.Read( "vuo_settings.txt", "DATA" )
+    local raw = nfSettingsRaw()
     if ( raw ) then
         local cfg = util.JSONToTable( raw )
         if ( cfg ) then
@@ -48,7 +55,7 @@ local function nfReadAccents()
 end
 
 local function nfCustomSounds()
-    local raw = file.Read( "vuo_settings.txt", "DATA" )
+    local raw = nfSettingsRaw()
     if ( raw ) then
         local cfg = util.JSONToTable( raw )
         if ( cfg and cfg.customSounds ~= nil ) then return cfg.customSounds and true or false end

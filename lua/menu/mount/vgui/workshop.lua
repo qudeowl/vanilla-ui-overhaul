@@ -3,7 +3,11 @@ PANEL.Base = "DPanel"
 local pnlRocket = vgui.RegisterFile( "addon_rocket.lua" )
 
 local function wsSettings()
-	local raw = file.Read( "vuo_settings.txt", "DATA" )
+	local raw = cookie and cookie.GetString( "vuo_settings" )
+	if ( !isstring( raw ) or raw == "" ) then
+		local ok, legacy = pcall( file.Read, "vuo_settings.txt", "DATA" )
+		raw = ( ok and isstring( legacy ) and legacy != "" ) and legacy or nil
+	end
 	return raw and util.JSONToTable( raw ) or {}
 end
 
@@ -15,123 +19,19 @@ local function wsColor( str, r, g, b )
 	return r, g, b
 end
 
-local function u16( s, o )
-	local a, b = string.byte( s, o + 1, o + 2 )
-	return ( a or 0 ) * 256 + ( b or 0 )
+local wsFont = "Helvetica"
+if ( system and system.IsLinux and system.IsLinux() ) then
+	wsFont = "DejaVu Sans"
+elseif ( system and system.IsWindows and system.IsWindows() ) then
+	wsFont = "Tahoma"
 end
 
-local function u32( s, o )
-	return u16( s, o ) * 65536 + u16( s, o + 2 )
-end
-
-local function wsFamilyName( path )
-
-	local f = file.Open( path, "rb", "GAME" )
-	if ( !f ) then return end
-
-	local head = f:Read( 12 ) or ""
-	local count = u16( head, 4 )
-	local dir = count > 0 and f:Read( count * 16 ) or ""
-	local tbl
-
-	for i = 0, count - 1 do
-		if ( string.sub( dir, i * 16 + 1, i * 16 + 4 ) == "name" ) then
-			f:Seek( u32( dir, i * 16 + 8 ) )
-			tbl = f:Read( u32( dir, i * 16 + 12 ) )
-			break
-		end
-	end
-
-	f:Close()
-	if ( !tbl ) then return end
-
-	local strings = u16( tbl, 4 )
-	local found
-
-	for i = 0, u16( tbl, 2 ) - 1 do
-		local rec = 6 + i * 12
-		if ( u16( tbl, rec ) == 3 and u16( tbl, rec + 6 ) == 1 ) then
-			local len, off = u16( tbl, rec + 8 ), strings + u16( tbl, rec + 10 )
-			local chars = {}
-			for j = 0, len - 2, 2 do
-				local c = u16( tbl, off + j )
-				if ( c < 32 or c > 126 ) then chars = nil break end
-				chars[ #chars + 1 ] = string.char( c )
-			end
-			if ( chars and #chars > 0 ) then
-				found = table.concat( chars )
-				if ( u16( tbl, rec + 4 ) == 0x409 ) then break end
-			end
-		end
-	end
-
-	return found
-
-end
-
-local function wsFontWorks( family )
-
-	local sample = "The quick brown fox 0123456789"
-
-	surface.CreateFont( "WorkshopProbe_" .. family, { font = family, size = 32 } )
-	surface.SetFont( "WorkshopProbe_" .. family )
-	local aw, ah = surface.GetTextSize( sample )
-
-	surface.CreateFont( "WorkshopProbeMissing", { font = "vuo_missing_font", size = 32 } )
-	surface.SetFont( "WorkshopProbeMissing" )
-	local bw, bh = surface.GetTextSize( sample )
-
-	return aw != bw or ah != bh
-
-end
-
-local familyCache = {}
-
-function VUO_FontFamily()
-
-	local name = wsSettings().font
-	if ( !isstring( name ) or name == "" or string.find( name, "[/\\]" ) ) then return nil end
-	if ( familyCache[ name ] != nil ) then return familyCache[ name ] or nil end
-
-	local family
-
-	for _, ext in ipairs( { ".ttf", ".otf" } ) do
-		local path = "materials/vuo_fonts/" .. name .. ext
-		if ( file.Exists( path, "GAME" ) ) then
-			family = wsFamilyName( path )
-			break
-		end
-	end
-
-	if ( family and !wsFontWorks( family ) ) then family = nil end
-
-	familyCache[ name ] = family or false
-	return family
-
-end
-
-local function wsFonts()
-
-	local family = VUO_FontFamily()
-	local suffix = family and ( "_" .. family ) or ""
-
-	surface.CreateFont( "WorkshopLarge" .. suffix, {
-		font		= family or "Roboto Medium",
-		size		= 18,
-		antialias	= true,
-		weight		= 500
-	})
-
-	surface.CreateFont( "WorkshopSmall" .. suffix, {
-		font		= family or "Roboto",
-		size		= 13,
-		antialias	= true,
-		weight		= 400
-	})
-
-	return "WorkshopLarge" .. suffix, "WorkshopSmall" .. suffix
-
-end
+surface.CreateFont( "WorkshopLarge", {
+	font		= wsFont,
+	size		= 19,
+	antialias	= true,
+	weight		= 800
+})
 
 local cornerRadius = 8
 local cornerPixels = {}
@@ -181,10 +81,10 @@ function PANEL:Init()
 	local pr, pg, pb = wsColor( cfg.accentBlue, 35, 135, 237 )
 	local sr, sg, sb = wsColor( cfg.accentGreen, 60, 200, 140 )
 
-	local fontLarge, fontSmall = wsFonts()
+	local fontLarge, fontSmall = "WorkshopLarge", "DermaDefault"
 
 	self.BoxColor		= Color( 8, 10, 18, 179 )
-	self.BorderColor	= Color( pr, pg, pb, 46 )
+	self.BorderColor	= Color( 255, 255, 255, 4 )
 	self.TrackColor		= Color( 255, 255, 255, 18 )
 	self.FillColor		= Color( pr, pg, pb, 242 )
 	self.TotalFillColor	= Color( sr, sg, sb, 210 )
