@@ -1061,16 +1061,11 @@
     }
     function vuoToastTick(onMain){
         var d=vuoToast.el; if(!d) return;
-        var on=(vuoToast.hover || Date.now()<vuoToast.until) && onMain && !vuoUpd.ingame && !vuoSt.open && !vuoMusic.open && !vuoNpIsOpen() && vuoCfg.npToast!==false;
+        var upd=!!(vuoUpd.el && vuoUpd.el.classList.contains('vuo-open'));
+        var on=(vuoToast.hover || Date.now()<vuoToast.until) && onMain && !upd && !vuoUpd.ingame && !vuoSt.open && !vuoMusic.open && !vuoNpIsOpen() && vuoCfg.npToast!==false;
         if(on){ var br=vuoRect(vuoMusic.btn); if(br.width===0 && br.height===0) on=false; }
-        if(on){
-            vuoPositionPanel(d, vuoMusic.btn);
-            var up=vuoUpd.el;
-            if(up && up.classList.contains('vuo-open')){
-                var ur=vuoRect(up), tr=vuoRect(d);
-                if(tr.left<ur.right && tr.right>ur.left && tr.top<ur.bottom && tr.bottom>ur.top) d.style.setProperty('top', (ur.bottom+8)+'px', 'important');
-            }
-        } else if(!vuoToast.hover){ vuoToast.until=Math.min(vuoToast.until, Date.now()); }
+        if(on) vuoPositionPanel(d, vuoMusic.btn);
+        else { vuoToast.until=0; vuoToast.hover=false; }
         d.classList.toggle('vuo-open', on);
     }
 
