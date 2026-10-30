@@ -83,7 +83,7 @@ function PANEL:Init()
 
 	local fontLarge, fontSmall = "WorkshopLarge", "DermaDefault"
 
-	self.BoxColor		= Color( 8, 10, 18, 179 )
+	self.BoxColor		= Color( 0, 0, 0, 179 )
 	self.BorderColor	= Color( 255, 255, 255, 4 )
 	self.TrackColor		= Color( 255, 255, 255, 18 )
 	self.FillColor		= Color( pr, pg, pb, 242 )

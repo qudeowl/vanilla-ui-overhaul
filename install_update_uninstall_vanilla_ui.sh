@@ -1,20 +1,24 @@
 #!/usr/bin/env -S bash \c
 grep -q $'\r' "$0" 2> /dev/null && sed -i 's/\r$//' "$0" && exec bash "$0" "$@";
 
-ARCHIVE="Vanilla_UI_Overhaul_v1.4.zip"
-URL="https://github.com/qudeowl/vanilla-ui-overhaul/releases/download/vuo_v1.4/$ARCHIVE"
+ARCHIVE="Vanilla_UI_Overhaul_v1.5.zip"
+URL="https://github.com/qudeowl/vanilla-ui-overhaul/releases/download/vuo_v1.5/$ARCHIVE"
+CSS_URL="https://raw.githubusercontent.com/Facepunch/garrysmod/master/garrysmod/html/awesomium_global.css"
 
 FILES=(
 	"html/main.html"
 	"html/menu.html"
 	"html/loading.html"
 	"html/loading.css"
-	"html/awesomium_global.css"
 	"html/saves.html"
 	"html/dupes.html"
 	"html/css/menu/VanillaUI.css"
 	"html/css/menu/Custom.css"
+	"html/js/menu/VanillaUI.js"
 	"html/img/gradient.png"
+	"html/img/vuo_logo.svg"
+	"html/img/vuo_logo_brave.png"
+	"html/img/vuo_logo_gmod10.svg"
 	"html/fonts/Roboto-Regular.ttf"
 	"html/fonts/Roboto-Medium.ttf"
 	"html/fonts/Roboto-SemiBold.ttf"
@@ -38,6 +42,8 @@ FILES=(
 	"lua/menu/problems/problems_pnl.lua"
 	"lua/menu/openurl.lua"
 	"lua/autorun/client/spawnmenu_theme.lua"
+	"lua/autorun/vuo_livebg.lua"
+	"materials/vuo_ui/check.png"
 	"workshop/materials/console/background01.vtf"
 	"workshop/materials/console/background01_widescreen.vtf"
 	"workshop/materials/console/startup_loading.vtf"
@@ -55,6 +61,7 @@ MODE=""
 GMOD=""
 TMP=""
 SILENT=0
+CSS_FAIL=0
 
 usage() {
 	cat << 'EOF'
@@ -116,8 +123,7 @@ update_info() {
 		screen
 		echo
 		echo " Update removes the files of every previous version, then installs"
-		echo " the latest release. Your settings, music, sounds, backgrounds and"
-		echo " fonts are kept."
+		echo " v1.5. Your settings, music, sounds, backgrounds and fonts are kept."
 		echo
 		echo "  1. Continue"
 		echo "  2. Back"
@@ -232,12 +238,13 @@ download() {
 extract() {
 	mkdir -p "$TMP/out" || return 1
 	if command -v unzip > /dev/null 2>&1; then
-		unzip -q -o "$TMP/$ARCHIVE" -d "$TMP/out"
+		unzip -q -o "$TMP/$ARCHIVE" -d "$TMP/out" || return 1
 	elif command -v bsdtar > /dev/null 2>&1; then
-		bsdtar -xf "$TMP/$ARCHIVE" -C "$TMP/out"
+		bsdtar -xf "$TMP/$ARCHIVE" -C "$TMP/out" || return 1
 	else
-		python3 -m zipfile -e "$TMP/$ARCHIVE" "$TMP/out"
+		python3 -m zipfile -e "$TMP/$ARCHIVE" "$TMP/out" || return 1
 	fi
+	[ -n "$(find "$TMP/out" -name VanillaUI.js -print -quit)" ]
 }
 
 install_files() {
@@ -265,6 +272,23 @@ install_files() {
 	fi
 }
 
+restore_css() {
+	local css="$GMOD/html/awesomium_global.css"
+	if [ -f "$css" ] && ! grep -q 'important' "$css"; then
+		return 0
+	fi
+	if command -v curl > /dev/null 2>&1; then
+		curl -fsL --retry 2 -o "$TMP/awesomium_global.css" "$CSS_URL"
+	elif command -v wget > /dev/null 2>&1; then
+		wget -q -O "$TMP/awesomium_global.css" "$CSS_URL"
+	fi
+	if grep -q 'checkbox' "$TMP/awesomium_global.css" 2> /dev/null && cp "$TMP/awesomium_global.css" "$css"; then
+		echo "  Restored html/awesomium_global.css"
+		return 0
+	fi
+	CSS_FAIL=1
+}
+
 remove_files() {
 	local f d
 	for f in "${FILES[@]}"; do
@@ -272,7 +296,10 @@ remove_files() {
 			rm -f "$GMOD/$f" && echo "  Removed $f"
 		fi
 	done
-	for d in "workshop/materials/console" "workshop/materials" "workshop"; do
+	if [ "$1" != "keepdata" ] && [ -f "$GMOD/html/awesomium_global.css" ] && grep -q 'important' "$GMOD/html/awesomium_global.css"; then
+		rm -f "$GMOD/html/awesomium_global.css" && echo "  Removed html/awesomium_global.css"
+	fi
+	for d in "materials/vuo_ui" "workshop/materials/console" "workshop/materials" "workshop"; do
 		rmdir "$GMOD/$d" 2> /dev/null
 	done
 	if [ -d "$GMOD/addons/Vanilla_UI_StartupScreen" ]; then
@@ -365,6 +392,7 @@ run_install() {
 		pause_key
 		return 1
 	fi
+	restore_css
 	cleanup
 
 	screen
@@ -378,6 +406,11 @@ run_install() {
 	fi
 	echo
 	echo " Launch Garry's Mod to see your new menu."
+	if [ "$CSS_FAIL" = 1 ]; then
+		echo
+		echo " One game file couldn't be restored: html/awesomium_global.css"
+		echo " To fix it, verify the game files in Steam, then run Install again."
+	fi
 	if [ "$SILENT" = 0 ]; then
 		echo
 		echo " Press any key to exit."
@@ -484,7 +517,7 @@ main() {
 	while true; do
 		screen
 		echo
-		echo " Vanilla UI+ v1.4"
+		echo " Vanilla UI+ v1.5"
 		echo " github.com/qudeowl/vanilla-ui-overhaul"
 		echo
 		echo "  1. Install"

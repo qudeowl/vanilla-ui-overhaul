@@ -7,10 +7,10 @@
 			#nf_loading {
 				position: fixed;
 				right: 24px;
-				top: calc(28px + (100vh - 56px) * var(--ld-y, 1));
+				top: calc(28px + (var(--vuo-vh, 1vh) * 100 - 56px) * var(--ld-y, 1));
 				transform: translateY(calc(-100% * var(--ld-y, 1)));
 
-				background: rgba(8, 10, 18, 0.70);
+				background: rgba(0, 0, 0, 0.70);
 				border: 1px solid rgba(255, 255, 255, 0.05);
 				border-radius: 10px;
 				padding: 14px 16px 12px 16px;
@@ -59,9 +59,21 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				pointer-events: none;
+				pointer-events: auto;
+				cursor: pointer;
 				user-select: none;
 				-webkit-user-select: none;
+				transition: background 0.15s, border-color 0.15s, color 0.15s;
+			}
+
+			#nf_cancel:hover {
+				background: rgba(255, 255, 255, 0.10);
+				border-color: rgba(255, 255, 255, 0.24);
+				color: #ffffff;
+			}
+
+			#nf_cancel:active {
+				background: rgba(255, 255, 255, 0.16);
 			}
 
 			#nf_track {
@@ -83,7 +95,7 @@
 
 		</style>
 	</head>
-	<body>
+	<body class="vuo-loading">
 
 		<div id="background">
 			<div id="container">
@@ -121,6 +133,11 @@
 				document.body.classList.add('dark');
 			});
 
+			document.getElementById('nf_cancel').addEventListener('click', function() {
+				document.title = 'NF_CANCEL';
+				setTimeout(function() { document.title = 'Loading..'; }, 400);
+			});
+
 			function SetLoadingFraction(f) {
 				var fill = document.getElementById('nf_fill');
 				if (fill) fill.style.width = (Math.max(0, Math.min(1, f)) * 100) + '%';
@@ -137,7 +154,15 @@
 
 				var frame = document.createElement('iframe');
 				frame.id = 'nf_server_frame';
-				frame.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;border:none;z-index:99990;display:block;';
+				frame.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;border:none;z-index:99990;display:block;background:#000;opacity:0;transition:opacity 0.35s ease;';
+				var shown = false;
+				var show = function() {
+					if (shown) return;
+					shown = true;
+					frame.style.opacity = '1';
+				};
+				frame.addEventListener('load', function() { setTimeout(show, 150); });
+				setTimeout(show, 3000);
 				frame.src = url;
 				document.body.appendChild(frame);
 			}

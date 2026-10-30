@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="132" height="146" viewBox="0 0 132 146">
+  <defs>
+    <filter id="shadow" color-interpolation-filters="sRGB" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="7"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.4"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow" color-interpolation-filters="sRGB" x="-30%" y="-30%" width="160%" height="160%">
+      <feComponentTransfer in="SourceAlpha" result="inv"><feFuncA type="table" tableValues="1 0"/></feComponentTransfer>
+      <feGaussianBlur in="inv" stdDeviation="6" result="blur"/>
+      <feFlood flood-color="#fff" flood-opacity="0.5"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in2="SourceAlpha" operator="in" result="edge"/>
+      <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="edge"/></feMerge>
+    </filter>
+    <filter id="tshadow" color-interpolation-filters="sRGB" x="-10%" y="-40%" width="120%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.4"/>
+      <feOffset dy="1"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.7"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)"><rect x="18" y="18" width="96" height="96" rx="8.5" fill="#1194f0" filter="url(#glow)"/></g>
+  <g font-family="Arial, 'Liberation Sans', Helvetica, sans-serif" font-weight="700" fill="#fff">
+    <text x="37.25" y="81.75" font-size="99">g</text>
+    <text x="66" y="134" font-size="17" text-anchor="middle" textLength="101" lengthAdjust="spacing" filter="url(#tshadow)">garry’s mod</text>
+  </g>
+</svg>

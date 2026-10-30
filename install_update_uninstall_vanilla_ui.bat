@@ -5,7 +5,7 @@ title Vanilla UI Overhaul
 :menu
 cls
 echo.
-echo  Vanilla UI+ v1.4
+echo  Vanilla UI+ v1.5
 echo  github.com/qudeowl/vanilla-ui-overhaul
 echo.
 echo   1. Install
@@ -24,8 +24,7 @@ goto menu
 cls
 echo.
 echo  Update removes the files of every previous version, then installs
-echo  the latest release. Your settings, music, sounds, backgrounds and
-echo  fonts are kept.
+echo  v1.5. Your settings, music, sounds, backgrounds and fonts are kept.
 echo.
 echo   1. Continue
 echo   2. Back
@@ -37,8 +36,9 @@ set "action=update"
 goto variant
 
 :variant
-set "archive=Vanilla_UI_Overhaul_v1.4.zip"
+set "archive=Vanilla_UI_Overhaul_v1.5.zip"
 set "mode="
+set "cssfail="
 cls
 echo.
 echo  Choose your installation method:
@@ -88,11 +88,20 @@ echo  Found Garry's Mod at: !gmod!
 echo  Downloading...
 set "tmp=%TEMP%\vuo_%RANDOM%"
 mkdir "!tmp!" 2>nul
-set "url=https://github.com/qudeowl/vanilla-ui-overhaul/releases/download/vuo_v1.4/!archive!"
-curl -L --ssl-no-revoke -o "!tmp!\!archive!" "!url!"
+set "url=https://github.com/qudeowl/vanilla-ui-overhaul/releases/download/vuo_v1.5/!archive!"
+curl -fL --ssl-no-revoke -o "!tmp!\!archive!" "!url!"
 if not exist "!tmp!\!archive!" powershell -Command "[Net.ServicePointManager]::SecurityProtocol='Tls12';(New-Object Net.WebClient).DownloadFile('!url!','!tmp!\!archive!')"
 if not exist "!tmp!\!archive!" (
     echo  Download failed. Check your internet connection and try again.
+    rd /s /q "!tmp!" 2>nul
+    pause
+    goto menu
+)
+
+powershell -Command "Expand-Archive -Path '!tmp!\!archive!' -DestinationPath '!tmp!\out' -Force"
+dir /s /b "!tmp!\out\VanillaUI.js" >nul 2>&1 || (
+    echo  The download couldn't be extracted. Please try again.
+    rd /s /q "!tmp!" 2>nul
     pause
     goto menu
 )
@@ -104,8 +113,8 @@ if "%action%"=="update" (
 )
 
 echo  Installing...
-powershell -Command "Expand-Archive -Path '!tmp!\!archive!' -DestinationPath '!tmp!\out' -Force"
 powershell -NoProfile -Command "$d=Get-ChildItem '!tmp!\out' -Directory | Select-Object -First 1; if($d){$g=Join-Path $d.FullName 'garrysmod'; $src=if(Test-Path $g){$g}else{$d.FullName}; if('!mode!' -eq 'addon'){$dest=Join-Path '!gmod!' 'addons\garrysmod'; New-Item -ItemType Directory -Force -Path $dest | Out-Null; Get-ChildItem $src | Where-Object {'addons','workshop' -notcontains $_.Name} | Copy-Item -Destination $dest -Recurse -Force; foreach($x in 'addons','workshop'){$p=Join-Path $src $x; if(Test-Path $p){$t=Join-Path '!gmod!' $x; New-Item -ItemType Directory -Force -Path $t | Out-Null; Copy-Item (Join-Path $p '*') $t -Recurse -Force}}}else{Copy-Item (Join-Path $src '*') '!gmod!' -Recurse -Force}}"
+call :restorecss
 rd /s /q "!tmp!" 2>nul
 
 cls
@@ -120,6 +129,11 @@ if "!mode!"=="addon" (
 echo.
 echo  Launch Garry's Mod to see your new menu.
 echo.
+if defined cssfail (
+    echo  One game file couldn't be restored: html\awesomium_global.css
+    echo  To fix it, verify the game files in Steam, then run Install again.
+    echo.
+)
 echo  Press any key to exit.
 pause >nul
 exit /b 0
@@ -195,18 +209,37 @@ if not defined gmod (
 exit /b
 
 
+:restorecss
+set "css=!gmod!\html\awesomium_global.css"
+if exist "!css!" (
+    findstr /c:"important" "!css!" >nul || exit /b
+)
+set "cssurl=https://raw.githubusercontent.com/Facepunch/garrysmod/master/garrysmod/html/awesomium_global.css"
+curl -fsL --ssl-no-revoke -o "!tmp!\awesomium_global.css" "!cssurl!"
+if not exist "!tmp!\awesomium_global.css" powershell -Command "[Net.ServicePointManager]::SecurityProtocol='Tls12';(New-Object Net.WebClient).DownloadFile('!cssurl!','!tmp!\awesomium_global.css')" >nul 2>&1
+findstr /c:"checkbox" "!tmp!\awesomium_global.css" >nul 2>&1 && copy /y "!tmp!\awesomium_global.css" "!css!" >nul && (
+    echo   Restored html\awesomium_global.css
+    exit /b
+)
+set "cssfail=1"
+exit /b
+
+
 :removefiles
 for %%F in (
     "html\main.html"
     "html\menu.html"
     "html\loading.html"
     "html\loading.css"
-    "html\awesomium_global.css"
     "html\saves.html"
     "html\dupes.html"
     "html\css\menu\VanillaUI.css"
     "html\css\menu\Custom.css"
+    "html\js\menu\VanillaUI.js"
     "html\img\gradient.png"
+    "html\img\vuo_logo.svg"
+    "html\img\vuo_logo_brave.png"
+    "html\img\vuo_logo_gmod10.svg"
     "html\fonts\Roboto-Regular.ttf"
     "html\fonts\Roboto-Medium.ttf"
     "html\fonts\Roboto-SemiBold.ttf"
@@ -230,12 +263,18 @@ for %%F in (
     "lua\menu\problems\problems_pnl.lua"
     "lua\menu\openurl.lua"
     "lua\autorun\client\spawnmenu_theme.lua"
+    "lua\autorun\vuo_livebg.lua"
+    "materials\vuo_ui\check.png"
     "workshop\materials\console\background01.vtf"
     "workshop\materials\console\background01_widescreen.vtf"
     "workshop\materials\console\startup_loading.vtf"
 ) do if exist "!gmod!\%%~F" (del /f /q "!gmod!\%%~F" & echo   Removed %%~F)
 
-for %%D in ("workshop\materials\console" "workshop\materials" "workshop") do rd "!gmod!\%%~D" 2>nul
+if not "%~1"=="keepdata" if exist "!gmod!\html\awesomium_global.css" (
+    findstr /c:"important" "!gmod!\html\awesomium_global.css" >nul && (del /f /q "!gmod!\html\awesomium_global.css" & echo   Removed html\awesomium_global.css)
+)
+
+for %%D in ("materials\vuo_ui" "workshop\materials\console" "workshop\materials" "workshop") do rd "!gmod!\%%~D" 2>nul
 
 if exist "!gmod!\addons\Vanilla_UI_StartupScreen" (rd /s /q "!gmod!\addons\Vanilla_UI_StartupScreen" & echo   Removed addons\Vanilla_UI_StartupScreen)
 

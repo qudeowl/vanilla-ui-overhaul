@@ -83,15 +83,19 @@ local function uoAccentLine( x, y, w, a, b )
 
 end
 
-local function uoCircle( cx, cy, radius, col )
-	local poly = {}
-	for i = 0, 24 do
-		local a = math.rad( ( i / 24 ) * 360 )
-		poly[ i + 1 ] = { x = cx + math.cos( a ) * radius, y = cy + math.sin( a ) * radius }
+local uoCheckMat = Material( "vuo_ui/check.png", "smooth mips" )
+
+local function uoCheckbox( w, h, checked, onCol )
+	if ( checked ) then
+		draw.RoundedBox( 4, 0, 0, w, h, onCol )
+		local m = math.floor( w / 14 + 0.5 )
+		surface.SetDrawColor( 255, 255, 255, 255 )
+		surface.SetMaterial( uoCheckMat )
+		surface.DrawTexturedRect( m, m, w - m * 2, h - m * 2 )
+	else
+		draw.RoundedBox( 4, 0, 0, w, h, Color( 255, 255, 255, 97 ) )
+		draw.RoundedBox( 4, 1, 1, w - 2, h - 2, Color( 10, 10, 10, 255 ) )
 	end
-	surface.SetDrawColor( col.r, col.g, col.b, col.a )
-	draw.NoTexture()
-	surface.DrawPoly( poly )
 end
 
 local function uoTheme()
@@ -102,8 +106,8 @@ local function uoTheme()
 	local custom = cfg.customSounds != false
 
 	local t = {
-		frame		= Color( 10, 12, 18, 242 ),
-		tooltip		= Color( 18, 21, 30, 250 ),
+		frame		= Color( 0, 0, 0, 220 ),
+		tooltip		= Color( 21, 21, 21, 250 ),
 		border		= Color( 255, 255, 255, 4 ),
 		lineA		= Color( pr, pg, pb ),
 		lineB		= Color( sr, sg, sb ),
@@ -118,7 +122,8 @@ local function uoTheme()
 		dangerDown	= Color( 140, 30, 30, 200 ),
 		buttonText	= Color( 235, 240, 250, 255 ),
 		buttonTextOff = Color( 210, 225, 248, 90 ),
-		accent		= Color( pr, pg, pb, 255 )
+		accent		= Color( pr, pg, pb, 255 ),
+		check		= Color( sr, sg, sb, 255 )
 	}
 
 	t.play = function( kind )
@@ -423,14 +428,7 @@ function PANEL:Init()
 	self.YesPerma:Dock( RIGHT )
 	self.YesPerma:SetVisible( false )
 	self.YesPerma.Button.Paint = function( s, w, h )
-		local cx, cy = w * 0.5, h * 0.5
-		local r = math.min( w, h ) * 0.5
-		if ( s:GetChecked() ) then
-			uoCircle( cx, cy, r, t.accent )
-		else
-			uoCircle( cx, cy, r, Color( 255, 255, 255, 102 ) )
-			uoCircle( cx, cy, r - 1, Color( 14, 14, 18, 255 ) )
-		end
+		uoCheckbox( w, h, s:GetChecked(), t.check )
 	end
 	self.YesPerma.OnChange = function( s, val ) t.play( val and "accept" or "back" ) end
 

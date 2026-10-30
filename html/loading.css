@@ -25,7 +25,7 @@ BODY {
     margin: 0px;
     background-position: center;
     background-size: cover;
-    background-color: #080a12;
+    background-color: #000000;
     font-family: 'Roboto', 'Segoe UI', 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
     letter-spacing: 0.06em;
     -webkit-user-select: none;
@@ -51,10 +51,10 @@ body.dark {
     inset: 0;
     background: linear-gradient(
         to bottom,
-        rgba(8, 10, 18, 0.75) 0%,
-        rgba(8, 10, 18, 0.45) 35%,
-        rgba(8, 10, 18, 0.45) 70%,
-        rgba(8, 10, 18, 0.82) 100%
+        rgba(0, 0, 0, 0.75) 0%,
+        rgba(0, 0, 0, 0.45) 35%,
+        rgba(0, 0, 0, 0.45) 70%,
+        rgba(0, 0, 0, 0.82) 100%
     );
     pointer-events: none;
     z-index: 0;
@@ -100,14 +100,14 @@ body.dark {
 
 .server_info {
     position: absolute;
-    top: calc(16px + (100vh - 32px) * var(--ld-iy, 0));
+    top: calc(16px + (var(--vuo-vh, 1vh) * 100 - 32px) * var(--ld-iy, 0));
     left: 16px;
     display: inline-flex;
     flex-direction: row;
     align-items: center;
     gap: 0;
 
-    background: rgba(8, 10, 18, 0.70);
+    background: rgba(0, 0, 0, 0.70);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 10px;
     padding: 0;
@@ -133,7 +133,7 @@ body.dark {
     border-radius: 0;
     border: none;
     border-right: 1px solid rgba(255, 255, 255, 0.05);
-    background: rgba(8, 10, 18, 0.65);
+    background: rgba(0, 0, 0, 0.65);
     object-fit: cover;
     display: block;
 }

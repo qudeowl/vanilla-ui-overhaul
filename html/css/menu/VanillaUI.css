@@ -34,8 +34,7 @@
     --vuo-green-glow: rgba(var(--vuo-green-rgb), 0.50);
     --vuo-text:       #ffffff;
     --vuo-text-dim:   rgba(220, 235, 255, 0.80);
-    --vuo-panel:      rgba(8, 10, 18, 0.72);
-    --vuo-panel-lite: rgba(12, 14, 22, 0.62);
+    --vuo-panel:      rgba(0, 0, 0, 0.84);
 }
 
 html, body, div[ng-view] {
@@ -112,8 +111,18 @@ div[ng-controller="ControllerMain"] .options ul li {
     from { opacity: 0; transform: translateY(12px); }
     to   { opacity: 1; transform: none; }
 }
+@keyframes vuoMenuRise {
+    from { transform: translateY(14px); }
+    to   { transform: none; }
+}
+@keyframes vuoMenuFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
 div[ng-controller="ControllerMain"] .options ul li {
-    animation: vuoMenuItemIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+    animation:
+        vuoMenuRise 0.75s cubic-bezier(0.25, 0.8, 0.3, 1) backwards,
+        vuoMenuFade 0.55s ease-out backwards;
 }
 div[ng-controller="ControllerMain"] .options ul li:nth-child(1)  { animation-delay: 0.04s; }
 div[ng-controller="ControllerMain"] .options ul li:nth-child(2)  { animation-delay: 0.08s; }
@@ -538,20 +547,20 @@ DIV.innerpage, div.ugc_content {
 .serverlist,
 workshopcontainer,
 .maplist {
-    background-color: rgba(8, 10, 18, 0.55) !important;
+    background-color: rgba(0, 0, 0, 0.55) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
     color: #eee !important;
     border-radius: 6px !important;
 }
 gamesettings {
-    background-color: rgba(8, 10, 18, 0.55) !important;
+    background-color: rgba(0, 0, 0, 0.55) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
     color: #eee !important;
     border-radius: 6px !important;
 }
 
 div.centermessage {
-    background: rgba(8, 10, 18, 0.82) !important;
+    background: var(--vuo-panel) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 8px !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.65) !important;
@@ -565,14 +574,14 @@ div.centermessage li { color: rgba(255, 255, 255, 0.85) !important; }
 div.centermessage select,
 div.centermessage ul.presetlist,
 div.centermessage ul {
-    background: rgba(6, 8, 14, 0.92) !important;
+    background: rgba(0, 0, 0, 0.92) !important;
     color: rgba(255, 255, 255, 0.85) !important;
     border: 1px solid rgba(255, 255, 255, 0.10) !important;
     border-radius: 4px !important;
 }
 div.centermessage select option,
 div.centermessage ul li {
-    background: rgba(6, 8, 14, 0.92) !important;
+    background: rgba(0, 0, 0, 0.92) !important;
     color: rgba(255, 255, 255, 0.85) !important;
 }
 div.centermessage select option:hover,
@@ -602,7 +611,7 @@ div.centermessage input[type="password"] {
     background: rgba(255, 255, 255, 0.08) !important;
 }
 div.centermessage a {
-    background: rgba(20, 22, 30, 0.70) !important;
+    background: rgba(22, 22, 22, 0.70) !important;
     color: #ddd !important;
     border: 1px solid rgba(255, 255, 255, 0.10) !important;
 }
@@ -657,7 +666,7 @@ div.centermessage hr {
 }
 
 .gamemode {
-    background-color: rgba(10, 12, 20, 0.55) !important;
+    background-color: rgba(0, 0, 0, 0.55) !important;
     background-image: none !important;
     border: 1px solid rgba(255, 255, 255, 0.06) !important;
     border-radius: 5px !important;
@@ -672,7 +681,7 @@ div.centermessage hr {
 .gamemode:not(.noplayers) .stats { color: #8ab4cc !important; }
 .gamemode.noplayers {
     opacity: 0.6 !important;
-    background-color: rgba(12, 16, 28, 0.35) !important;
+    background-color: rgba(0, 0, 0, 0.35) !important;
 }
 .gamemode.noplayers:hover { opacity: 1 !important; }
 
@@ -839,13 +848,13 @@ h1.menuheader small, .menuheader small {
 }
 
 .serverlist .server {
-    background-color: rgba(8, 10, 18, 0.52) !important;
+    background-color: rgba(0, 0, 0, 0.52) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
     color: #cdd8ea !important;
     transition: background-color 0.15s ease !important;
 }
 .serverlist .server:nth-child(odd) {
-    background-color: rgba(12, 14, 22, 0.52) !important;
+    background-color: rgba(5, 5, 5, 0.52) !important;
 }
 .serverlist .server:hover {
     background-color: rgba(var(--vuo-blue-rgb), 0.22) !important;
@@ -921,7 +930,7 @@ h1.menuheader small, .menuheader small {
 
 .server_browser input[type="number"],
 .server_browser input[type="text"]:not([class*="search"]) {
-    background: rgba(8, 10, 18, 0.82) !important;
+    background: rgba(0, 0, 0, 0.82) !important;
     border: 1px solid rgba(255, 255, 255, 0.12) !important;
     border-radius: 4px !important;
     color: #d0e0f0 !important;
@@ -958,7 +967,7 @@ button.return:active, a[href*="gamemodes"]:active {
 }
 
 .add_fav_server {
-    background: rgba(8, 10, 18, 0.70) !important;
+    background: rgba(0, 0, 0, 0.70) !important;
     border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 .add_fav_server .header {
@@ -1004,7 +1013,7 @@ DIV.page .add_fav_server .fav_inputs button {
 }
 
 .flags_filter {
-    background: rgba(16, 20, 40, 0.82) !important;
+    background: var(--vuo-panel) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 5px !important;
 }
@@ -1021,7 +1030,7 @@ DIV.page .add_fav_server .fav_inputs button {
     color: #e0eaff !important;
 }
 div.serverinfo, #serverinfo {
-    background-color: rgba(6, 8, 14, 0.60) !important;
+    background-color: rgba(0, 0, 0, 0.60) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 6px !important;
 }
@@ -1031,7 +1040,7 @@ div.serverinfo, #serverinfo {
 }
 .serverinfo subinfo { color: #c0d4f0 !important; }
 .serverinfo players {
-    background-color: rgba(8, 10, 18, 0.50) !important;
+    background-color: rgba(0, 0, 0, 0.50) !important;
     border-radius: 4px !important;
     border: 1px solid rgba(255, 255, 255, 0.06) !important;
 }
@@ -1063,7 +1072,7 @@ div.serverinfo, #serverinfo {
 }
 
 .controls LI.category {
-    background-color: rgba(10, 12, 20, 0.82) !important;
+    background-color: rgba(0, 0, 0, 0.82) !important;
     border: 1px solid rgba(255, 255, 255, 0.07) !important;
     color: #b0c0d8 !important;
     border-radius: 4px !important;
@@ -1215,7 +1224,7 @@ gamesettings select {
     padding: 5px 26px 5px 8px !important;
     background:
         linear-gradient(rgba(var(--vuo-green-rgb), 0.16), rgba(var(--vuo-green-rgb), 0.16)),
-        rgba(6, 8, 14, 0.85) !important;
+        rgba(0, 0, 0, 0.85) !important;
     border: 1px solid rgba(var(--vuo-green-rgb), 0.45) !important;
     color: #e6f2ec !important;
     border-radius: 6px !important;
@@ -1229,13 +1238,13 @@ gamesettings select:focus {
     box-shadow: 0 0 10px rgba(var(--vuo-green-rgb), 0.30) !important;
 }
 gamesettings select option {
-    background: rgba(10, 12, 18, 0.97) !important;
+    background: rgba(0, 0, 0, 0.97) !important;
     color: #e0ecff !important;
 }
 gamesettings input,
 gamesettings input[type="text"],
 gamesettings input[type="number"] {
-    background: rgba(6, 8, 14, 0.80) !important;
+    background: rgba(0, 0, 0, 0.80) !important;
     border: 1px solid rgba(255, 255, 255, 0.10) !important;
     color: #e0ecff !important;
     border-radius: 6px !important;
@@ -1244,13 +1253,13 @@ gamesettings input[type="number"] {
 gamesettings input:focus { border-color: rgba(var(--vuo-blue-rgb), 0.70) !important; }
 
 SELECT {
-    background: rgba(6, 8, 14, 0.80) !important;
+    background: rgba(0, 0, 0, 0.80) !important;
     border: 1px solid rgba(255, 255, 255, 0.10) !important;
     color: #e0ecff !important;
     border-radius: 6px !important;
 }
 INPUT.searchbox, INPUT.gm_search, INPUT[type="text"] {
-    background: rgba(6, 8, 14, 0.72) !important;
+    background: rgba(0, 0, 0, 0.72) !important;
     border: 1px solid rgba(255, 255, 255, 0.10) !important;
     color: #e0ecff !important;
     border-radius: 6px !important;
@@ -1272,7 +1281,7 @@ gamesettings label {
 }
 
 .dropdown .label {
-    background-color: rgba(8, 12, 10, 0.88) !important;
+    background-color: rgba(0, 0, 0, 0.88) !important;
     background-image: linear-gradient(0deg, rgba(var(--vuo-green-rgb), 0.16), rgba(var(--vuo-green-rgb), 0.16)) !important;
     border: 1px solid rgba(var(--vuo-green-rgb), 0.45) !important;
     color: #d9f5e8 !important;
@@ -1289,7 +1298,7 @@ gamesettings label {
     box-shadow: 0 0 10px rgba(var(--vuo-green-rgb), 0.30) !important;
 }
 .dropdown .contents {
-    background-color: rgba(6, 9, 8, 0.95) !important;
+    background-color: rgba(0, 0, 0, 0.95) !important;
     background-image: linear-gradient(0deg, rgba(var(--vuo-green-rgb), 0.12), rgba(var(--vuo-green-rgb), 0.12)) !important;
     border: 1px solid rgba(var(--vuo-green-rgb), 0.35) !important;
     color: #d9f5e8 !important;
@@ -1307,9 +1316,20 @@ gamesettings label {
     box-shadow: none !important;
     backdrop-filter: none !important;
 }
+#NavBar .group.center {
+    -webkit-box-pack: start !important;
+    justify-content: flex-start !important;
+    margin: 0 !important;
+}
+#NavBar .group .button {
+    margin-right: 10px;
+}
+#NavBar .group.right .button:last-child {
+    margin-right: 5px;
+}
 
 #NavBar .button, UL.popup LI {
-    background-color: rgba(8, 10, 18, 0.68) !important;
+    background-color: rgba(0, 0, 0, 0.68) !important;
     background-image: none !important;
     border: 1px solid rgba(255, 255, 255, 0.07) !important;
     border-radius: 10px !important;
@@ -1323,7 +1343,8 @@ gamesettings label {
         border-color 0.18s ease,
         box-shadow 0.18s ease,
         color 0.18s ease,
-        opacity 0.35s ease !important;
+        opacity 0.35s ease,
+        transform 0.22s cubic-bezier(0.25, 0.8, 0.3, 1) !important;
 }
 #NavBar .button:hover, UL.popup LI:hover {
     opacity: 1 !important;
@@ -1348,24 +1369,123 @@ gamesettings label {
     opacity: 0.7 !important;
 }
 
-#NavBar .button SPAN, UL.popup LI SPAN {
+@keyframes vuoNavInTop {
+    from { filter: opacity(0); transform: translate(var(--vuo-nx, 0px), calc(var(--vuo-ny, 0px) - 12px)); }
+}
+@keyframes vuoNavInBottom {
+    from { filter: opacity(0); transform: translate(var(--vuo-nx, 0px), calc(var(--vuo-ny, 0px) + 12px)); }
+}
+#NavBar .button,
+#nf_news_btn,
+#vuo_settings_btn,
+#vuo_music_btn {
+    animation: vuoNavInBottom 0.6s cubic-bezier(0.25, 0.8, 0.3, 1) 0.22s backwards;
+}
+#nf_news_btn,
+#vuo_settings_btn,
+#vuo_music_btn,
+#NavBar .button[ng-click="ToggleLanguage()"],
+#NavBar.vuo-cin-nav .button {
+    animation-name: vuoNavInTop;
+}
+#nf_news_btn,
+#NavBar #BackToMenu,
+#NavBar .button[ng-click="ToggleGamemodes()"] {
+    animation-delay: 0.1s;
+}
+#NavBar .button[ng-click="ToggleLanguage()"],
+#NavBar .button[ng-click="ToggleGames()"] {
+    animation-delay: 0.16s;
+}
+#vuo_music_btn,
+#NavBar .group.center .button {
+    animation-delay: 0.28s;
+}
+
+#NavBar .button SPAN, UL.popup LI SPAN, .nf-corner-btn .vuo-navlabel {
     font-family: var(--vuo-font) !important;
     font-weight: 500 !important;
     font-size: 11px !important;
-    color: rgba(210, 226, 245, 0.90) !important;
+    color: #eeeeee !important;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.90) !important;
     letter-spacing: 0.08em !important;
 }
 
 #NavBar .button[ng-click="ToggleLanguage()"] span {
-    padding-left: 32px !important;
+    padding-left: 35px !important;
 }
 
-#NavBar .group.right .button.bigicon img {
-    width: 22px !important;
-    height: 22px !important;
-    margin-left: 6px !important;
-    margin-top: 2px !important;
+#NavBar .button.bigicon img, #BackToMenu img {
+    width: 16px !important;
+    height: 16px !important;
+    left: 5px !important;
+    top: 5px !important;
+    margin: 7px 0 0 7px !important;
+}
+
+#NavBar .button.bigicon span, #BackToMenu span {
+    padding-left: 0 !important;
+}
+
+#BackToMenu span {
+    margin-left: 0 !important;
+    top: 13px !important;
+}
+
+#NavBar .button.bigicon, #BackToMenu {
+    min-width: 40px !important;
+}
+
+#NavBar .button[ng-click="ToggleGames()"] img, #NavBar .button[ng-click="ToggleProblems()"] img {
+    width: 16px !important;
+    height: 16px !important;
+}
+
+#NavBar .button[ng-click="ToggleGames()"] img {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23eeeeee' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.2 4.8h5.6a3.4 3.4 0 0 1 3.3 4.1l-.5 2.3a1.7 1.7 0 0 1-2.9.8L9.6 10.8H6.4L5.3 12a1.7 1.7 0 0 1-2.9-.8l-.5-2.3a3.4 3.4 0 0 1 3.3-4.1z'/%3E%3Cpath d='M5.3 7v2.2M4.2 8.1h2.2'/%3E%3Cpath d='M10.6 7.4h.01M11.9 8.8h.01' stroke-width='1.9'/%3E%3C/svg%3E") !important;
+}
+
+#NavBar .button[ng-click="ToggleProblems()"] img {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 2.2 14.4 13.3H1.6Z' fill='%23f2c230' stroke='%23f2c230' stroke-width='1.2' stroke-linejoin='round'/%3E%3Cpath d='M8 6.2v3.4' stroke='%231b1b1b' stroke-width='1.6' stroke-linecap='round'/%3E%3Ccircle cx='8' cy='11.5' r='.85' fill='%231b1b1b'/%3E%3C/svg%3E") !important;
+}
+
+#BackToMenu img {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23eeeeee' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 8H3.5M7.4 4.1 3.5 8l3.9 3.9'/%3E%3C/svg%3E") !important;
+}
+
+#NavBar .button[ng-click="BackToGame()"] img {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23eeeeee' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.2 3.4v9.2L12.6 8z'/%3E%3C/svg%3E") !important;
+}
+
+#NavBar .button[ng-click="ToggleServerFavorites( true )"] img {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23eeeeee' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 2.1L9.62 6.28L14.09 6.52L10.62 9.35L11.76 13.68L8 11.25L4.24 13.68L5.38 9.35L1.91 6.52L6.38 6.28Z'/%3E%3C/svg%3E") !important;
+}
+
+#NavBar .button[ng-click="ToggleServerFavorites( false )"] img {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23eeeeee' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 2.1L9.62 6.28L14.09 6.52L10.62 9.35L11.76 13.68L8 11.25L4.24 13.68L5.38 9.35L1.91 6.52L6.38 6.28Z' fill='%23eeeeee'/%3E%3C/svg%3E") !important;
+}
+
+.vuo-navicon {
+    display: inline-flex;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    color: #eeeeee;
+}
+.vuo-navicon svg {
+    width: 100%;
+    height: 100%;
+}
+.nf-corner-btn .vuo-navicon {
+    position: relative;
+    top: 1px;
+}
+.vuo-st-title .vuo-navicon, .vuo-mp-title .vuo-navicon {
+    width: 14px;
+    height: 14px;
+    margin-right: 6px;
+    vertical-align: -2px;
+    color: inherit;
 }
 
 #NavBar number {
@@ -1379,7 +1499,7 @@ gamesettings label {
 
 .nf-corner-btn,
 #NavBar .button.nf-corner-btn {
-    background: rgba(8, 10, 18, 0.68) !important;
+    background: rgba(0, 0, 0, 0.68) !important;
     border: 1px solid rgba(255, 255, 255, 0.07) !important;
     border-radius: 10px !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
@@ -1391,7 +1511,8 @@ gamesettings label {
         border-color 0.18s ease,
         box-shadow 0.18s ease,
         color 0.18s ease,
-        opacity 0.35s ease !important;
+        opacity 0.35s ease,
+        transform 0.22s cubic-bezier(0.25, 0.8, 0.3, 1) !important;
 }
 .nf-corner-btn:hover,
 #NavBar .button.nf-corner-btn:hover {
@@ -1411,6 +1532,153 @@ gamesettings label {
     color: #fff !important;
 }
 
+.nf-corner-btn,
+#NavBar .button {
+    transform: translate(var(--vuo-nx, 0px), calc(var(--vuo-ny, 0px) + var(--vuo-idle-n, 0px)));
+}
+.nf-corner-btn:hover:not(.nf-active),
+#NavBar .button:hover:not(.nf-active) {
+    transform: translate(var(--vuo-nx, 0px), calc(var(--vuo-ny, 0px) - 2px));
+    box-shadow:
+        0 6px 16px rgba(0, 0, 0, 0.40),
+        0 0 14px rgba(var(--vuo-blue-rgb), 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+.nf-corner-btn:hover:active,
+#NavBar .button:hover:active {
+    transform: translate(var(--vuo-nx, 0px), var(--vuo-ny, 0px)) scale(0.96);
+    box-shadow:
+        0 0 14px rgba(var(--vuo-green-rgb), 0.40),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    transition-duration: 0.18s, 0.18s, 0.18s, 0.18s, 0.35s, 0.08s !important;
+}
+.nf-corner-btn:hover:active,
+#NavBar .button.nf-corner-btn:hover:active {
+    background: rgba(var(--vuo-green-rgb), 0.35) !important;
+    border-color: rgba(var(--vuo-green-rgb), 0.80) !important;
+}
+
+@keyframes vuoIcoHop {
+    0%, 55%, 100% { transform: translateY(0); }
+    28% { transform: translateY(-3px); }
+    76% { transform: translateY(-1.2px); }
+}
+@keyframes vuoIcoTilt {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-12deg); }
+    55% { transform: rotate(7deg); }
+    80% { transform: rotate(-3deg); }
+}
+@keyframes vuoIcoShake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-1.5px); }
+    40% { transform: translateX(1.5px); }
+    60% { transform: translateX(-1px); }
+    80% { transform: translateX(1px); }
+}
+@keyframes vuoIcoStar {
+    0%   { transform: rotate(0deg) scale(1); }
+    50%  { transform: rotate(36deg) scale(1.18); }
+    100% { transform: rotate(72deg) scale(1); }
+}
+@keyframes vuoIcoGear {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(90deg); }
+}
+@keyframes vuoIcoPop {
+    0%, 100% { transform: scale(1); }
+    40%      { transform: scale(1.15); }
+}
+#vuo_music_btn:hover .vuo-navicon,
+#vuo_music_btn.vuo-ico-play .vuo-navicon {
+    animation: vuoIcoHop 0.5s ease-out;
+}
+#nf_news_btn:hover .vuo-navicon,
+#nf_news_btn.vuo-ico-play .vuo-navicon,
+#NavBar .button[ng-click="ToggleGames()"]:hover img,
+#NavBar .button[ng-click="ToggleGames()"].vuo-ico-play img {
+    animation: vuoIcoTilt 0.55s ease-out;
+}
+#vuo_settings_btn.vuo-ico-play .vuo-navicon {
+    animation: vuoIcoGear 0.9s cubic-bezier(0.45, 0, 0.25, 1);
+}
+#NavBar .button[ng-click="ToggleLanguage()"].vuo-ico-play img,
+#NavBar .button[ng-click="ToggleGamemodes()"].vuo-ico-play img {
+    animation: vuoIcoPop 0.5s ease-out;
+}
+#NavBar .button[ng-click="ToggleProblems()"]:hover img {
+    animation: vuoIcoShake 0.4s ease-out;
+}
+#NavBar .button[ng-click^="ToggleServerFavorites"]:hover img {
+    animation: vuoIcoStar 0.6s ease-out;
+}
+#vuo_settings_btn .vuo-navicon,
+#BackToMenu img,
+#NavBar .button[ng-click="BackToGame()"] img,
+#NavBar .button[ng-click="ToggleLanguage()"] img,
+#NavBar .button[ng-click="ToggleGamemodes()"] img,
+#NavBar .button[ng-click^="TogglePopup"] img {
+    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.3, 1);
+}
+#vuo_settings_btn:hover .vuo-navicon {
+    transform: rotate(90deg);
+    transition-duration: 0.6s;
+}
+#BackToMenu:hover img {
+    transform: translateX(-2px);
+}
+#NavBar .button[ng-click="BackToGame()"]:hover img {
+    transform: translateX(2px);
+}
+#NavBar .button[ng-click="ToggleLanguage()"]:hover img,
+#NavBar .button[ng-click="ToggleGamemodes()"]:hover img,
+#NavBar .button[ng-click^="TogglePopup"]:hover img {
+    transform: scale(1.12);
+}
+
+@keyframes vuoNavEq {
+    0%, 100% { transform: scaleY(0.3); }
+    50%      { transform: scaleY(1); }
+}
+#vuo_music_btn .vuo-nav-eq {
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 2px;
+    width: 16px;
+    height: 12px;
+    flex-shrink: 0;
+}
+#vuo_music_btn .vuo-nav-eq i {
+    width: 3px;
+    height: 100%;
+    border-radius: 1px;
+    background: rgba(var(--vuo-green-rgb), 0.95);
+    transform-origin: center bottom;
+    animation: vuoNavEq 0.9s ease-in-out infinite;
+}
+#vuo_music_btn .vuo-nav-eq i:nth-child(2) { animation-delay: -0.3s; }
+#vuo_music_btn .vuo-nav-eq i:nth-child(3) { animation-delay: -0.6s; }
+#vuo_music_btn.vuo-playing .vuo-navicon { display: none; }
+#vuo_music_btn.vuo-playing .vuo-nav-eq { display: inline-flex; }
+
+@keyframes vuoBadgePing {
+    0%       { transform: scale(1); opacity: 0.85; }
+    60%, 100% { transform: scale(1.7); opacity: 0; }
+}
+#NavBar number.severity2::after {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    border: 2px solid rgba(255, 64, 0, 0.75);
+    border-radius: 5px;
+    pointer-events: none;
+    animation: vuoBadgePing 2.4s ease-out infinite;
+}
+
 UL.popup LI, UL.popup LI *, UL.popup LI:focus {
     outline: none !important;
 }
@@ -1420,26 +1688,37 @@ UL.popup LI:hover {
 }
 
 UL.language_list, UL.games_list, UL.gamemode_list, .popup {
-    background-color: rgba(8, 10, 18, 0.85) !important;
+    background-color: var(--vuo-panel) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 8px !important;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65) !important;
 }
-UL.gamemode_list LI, UL.language_list LI {
+UL.gamemode_list LI, UL.language_list LI, UL.games_list LI {
     background-color: transparent !important;
-    color: #d8e4f0 !important;
+    border: 1px solid transparent !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+    color: #eeeeee !important;
 }
-UL.gamemode_list LI:hover, UL.language_list LI:hover {
-    background-color: rgba(var(--vuo-blue-rgb), 0.20) !important;
-    border-radius: 4px !important;
-    border: none !important;
+UL.gamemode_list LI:hover, UL.language_list LI:hover, UL.games_list LI:hover {
+    background-color: rgba(var(--vuo-blue-rgb), 0.16) !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
 }
-UL.gamemode_list LI:first-child { border-radius: 7px 7px 0 0 !important; }
-UL.gamemode_list LI:last-child  { border-radius: 0 0 7px 7px !important; }
-UL.language_list LI IMG { border: 1px solid rgba(255, 255, 255, 0.20) !important; }
-UL.games_list LI { border-radius: 3px !important; }
-UL.games_list LI:hover { background-color: rgba(var(--vuo-blue-rgb), 0.15) !important; }
+UL.gamemode_list LI:active, UL.language_list LI:active, UL.games_list LI:active {
+    background-color: rgba(var(--vuo-green-rgb), 0.22) !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+UL.language_list LI.vuo-active, UL.language_list LI.vuo-active:hover {
+    background-color: rgba(var(--vuo-green-rgb), 0.14) !important;
+}
+UL.language_list LI.vuo-active .nf-langname {
+    color: #b6f0d4 !important;
+    font-weight: 600 !important;
+}
 UL.games_list LI SPAN { color: #ddd !important; }
+html.vuo-zoom-int img[src*="localization/"] { image-rendering: pixelated; }
 
 UL.gamemode_list LI, UL.gamemode_list LI *,
 UL.language_list LI, UL.language_list LI *,
@@ -1455,16 +1734,15 @@ UL.games_list LI:focus,    UL.games_list LI:focus-visible,    UL.games_list LI:f
     border-color: transparent !important;
 }
 
-UL.gamemode_list LI:hover, UL.gamemode_list LI:hover *,
-UL.language_list LI:hover, UL.language_list LI:hover *,
-UL.games_list LI:hover,    UL.games_list LI:hover * {
+UL.gamemode_list LI:hover *,
+UL.language_list LI:hover *,
+UL.games_list LI:hover * {
     outline: none !important;
-    border: none !important;
     box-shadow: none !important;
 }
 
 UL.gamemode_list LI, UL.language_list LI, UL.games_list LI {
-    transition: background-color 0.12s ease, color 0.12s ease !important;
+    transition: background-color 0.15s ease, color 0.15s ease !important;
 }
 
 UL.gamemode_list {
@@ -1493,8 +1771,6 @@ UL.language_list LI {
     padding: 5px 7px !important;
     margin: 0 !important;
     vertical-align: top !important;
-    background-color: transparent !important;
-    border-radius: 4px !important;
     white-space: nowrap !important;
     overflow: hidden !important;
 }
@@ -1502,8 +1778,8 @@ UL.language_list LI IMG {
     position: static !important;
     left: auto !important;
     top: auto !important;
-    width: 20px !important;
-    height: auto !important;
+    width: 16px !important;
+    height: 11px !important;
     margin: 0 8px 0 0 !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
     border-radius: 2px !important;
@@ -1516,21 +1792,18 @@ UL.language_list LI .nf-langname {
     font-size: 12px !important;
     font-family: var(--vuo-font) !important;
     font-weight: 500 !important;
-    color: rgba(210, 226, 245, 0.92) !important;
+    color: #eeeeee !important;
     letter-spacing: 0.03em !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
-}
-UL.language_list LI:hover {
-    background-color: rgba(var(--vuo-blue-rgb), 0.20) !important;
 }
 UL.language_list LI:hover .nf-langname { color: #ffffff !important; }
 
 .btn-primary, DIV.installgamemode,
 DIV.page BUTTON:not(.btn-primary-disabled) {
     background-image: none !important;
-    background-color: rgba(8, 10, 18, 0.68) !important;
+    background-color: rgba(0, 0, 0, 0.68) !important;
     border: 1px solid rgba(255, 255, 255, 0.10) !important;
     border-radius: 10px !important;
     color: #fff !important;
@@ -1571,7 +1844,7 @@ DIV.page BUTTON:not(.btn-primary-disabled):active {
 }
 .btn-primary-disabled {
     background-image: none !important;
-    background-color: rgba(8, 10, 18, 0.52) !important;
+    background-color: rgba(0, 0, 0, 0.52) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 10px !important;
     color: #777 !important;
@@ -1609,7 +1882,7 @@ DIV.page BUTTON.btn-primary:active {
 DIV.page BUTTON.btn-primary-disabled,
 DIV.page BUTTON.btn-primary-disabled:hover,
 DIV.page BUTTON.btn-primary-disabled:active {
-    background-color: rgba(8, 10, 18, 0.52) !important;
+    background-color: rgba(0, 0, 0, 0.52) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     color: rgba(200, 210, 225, 0.45) !important;
     text-shadow: none !important;
@@ -1625,7 +1898,7 @@ SPAN.installgamemode {
 SPAN.installgamemode:hover { background-color: rgba(var(--vuo-blue-rgb), 0.90) !important; }
 
 A.bglink {
-    background-color: rgba(8, 10, 18, 0.68) !important;
+    background-color: rgba(0, 0, 0, 0.68) !important;
     border: 1px solid rgba(255, 255, 255, 0.10) !important;
     border-radius: 8px !important;
     color: #fff !important;
@@ -1647,7 +1920,7 @@ workshopicon {
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 5px !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.42) !important;
-    background-color: rgba(8, 10, 18, 0.65) !important;
+    background-color: rgba(0, 0, 0, 0.65) !important;
     -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.42) !important;
 }
 
@@ -1680,15 +1953,15 @@ body:not(.vuo-hover-vanilla) workshopicon:hover preview img {
     transform: scale(1.05) !important;
 }
 workshopicon name {
-    background-color: rgba(6, 8, 14, 0.70) !important;
+    background-color: rgba(0, 0, 0, 0.70) !important;
     color: #d8e8ff !important;
 }
 workshopicon author, workshopicon size {
-    background-color: rgba(6, 8, 14, 0.65) !important;
+    background-color: rgba(0, 0, 0, 0.65) !important;
     color: #8a9bb8 !important;
 }
 workshopicon votes {
-    background-color: rgba(6, 8, 14, 0.65) !important;
+    background-color: rgba(0, 0, 0, 0.65) !important;
     color: #3dcc82 !important;
 }
 workshopicon votes.negative { color: #e05555 !important; }
@@ -1708,7 +1981,7 @@ workshopicon.disabled name,
 workshopicon.disabled author,
 workshopicon.disabled votes,
 workshopicon.disabled size {
-    background: rgba(24, 26, 36, 0.62) !important;
+    background: rgba(26, 26, 26, 0.62) !important;
 }
 workshopicon.invalid {
     border-color: rgba(200, 40, 40, 0.60) !important;
@@ -1721,7 +1994,7 @@ workshopicon.invalid size {
     color: #ffc0c0 !important;
 }
 workshopicon description {
-    background: linear-gradient(rgba(8, 10, 16, 0.90), rgba(8, 10, 16, 0.97)) !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.90), rgba(0, 0, 0, 0.97)) !important;
     color: #c8d8f0 !important;
     font-size: 11px !important;
     line-height: 1.55 !important;
@@ -1731,12 +2004,12 @@ workshopicon description {
 }
 
 .ugc_settings {
-    background: rgba(6, 8, 14, 0.75) !important;
+    background: rgba(0, 0, 0, 0.75) !important;
     border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
 }
 .ugc_settings span { color: #c8d8f0 !important; }
 .ugc_settings a {
-    background: rgba(8, 10, 18, 0.75) !important;
+    background: rgba(0, 0, 0, 0.75) !important;
     color: #ccc !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
@@ -1768,7 +2041,7 @@ workshopicon description {
 .ugc_content.vuo-ugc-personal .vuo-ugc-subonly { display: none !important; }
 
 pagination {
-    background-color: rgba(6, 8, 14, 0.65) !important;
+    background-color: rgba(0, 0, 0, 0.65) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 5px !important;
     box-shadow:
@@ -1825,7 +2098,7 @@ pagination span.pagenum {
 INPUT.searchbox, INPUT.gm_search,
 input[type="text"], input[type="password"],
 input.search_bar, input[type="number"] {
-    background: rgba(6, 8, 14, 0.78) !important;
+    background: rgba(0, 0, 0, 0.78) !important;
     border: 1px solid rgba(255, 255, 255, 0.12) !important;
     color: #e0ecff !important;
     border-radius: 4px !important;
@@ -1837,7 +2110,7 @@ input[type="password"]::placeholder { color: #4a5a78 !important; }
 .servers label, .newgame label { color: #9aabcc !important; }
 
 .topnav {
-    background-color: rgba(8, 10, 18, 0.70) !important;
+    background-color: rgba(0, 0, 0, 0.70) !important;
     border-radius: 4px !important;
 }
 .topnav A {
@@ -1847,7 +2120,7 @@ input[type="password"]::placeholder { color: #4a5a78 !important; }
 }
 
 DIV.gridicon name {
-    background-color: rgba(6, 8, 14, 0.70) !important;
+    background-color: rgba(0, 0, 0, 0.70) !important;
     color: #d8e8ff !important;
 }
 
@@ -2094,7 +2367,7 @@ body[ng-controller="CDupes"] .options UL LI button:hover {
 }
 
 controls control {
-    background-color: rgba(8, 10, 18, 0.80) !important;
+    background-color: rgba(0, 0, 0, 0.80) !important;
     border: 1px solid rgba(255, 255, 255, 0.14) !important;
     border-radius: 4px !important;
     box-shadow: none !important;
@@ -2145,11 +2418,11 @@ controls control[ng-click="Favorite( file, false )"] img {
     position: fixed !important;
     top: 50px !important;
     width: 600px !important;
-    width: min(600px, calc(50vw - 170px)) !important;
-    max-height: 80vh !important;
+    width: min(600px, calc(var(--vuo-vw, 1vw) * 50 - 170px)) !important;
+    max-height: calc(var(--vuo-vh, 1vh) * 80) !important;
     display: flex !important;
     flex-direction: column !important;
-    background: rgba(7, 8, 11, 0.84) !important;
+    background: var(--vuo-panel) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 12px !important;
     box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7) !important;
@@ -2197,11 +2470,14 @@ controls control[ng-click="Favorite( file, false )"] img {
 .vuo-mp-art {
     width: 74px; height: 74px; flex-shrink: 0; border-radius: 12px; cursor: pointer;
     display: flex; align-items: center; justify-content: center; font-size: 30px; color: #cfe0f5;
-    background: linear-gradient(135deg, rgba(var(--vuo-blue-rgb),0.30), rgba(8,10,18,0.6));
+    background: linear-gradient(135deg, rgba(var(--vuo-blue-rgb),0.30), rgba(0,0,0,0.6));
     border: 1px solid rgba(var(--vuo-blue-rgb),0.35);
     background-size: cover; background-position: center; background-repeat: no-repeat;
 }
 .vuo-mp-art.has-art { color: transparent; border-color: rgba(255,255,255,0.14); }
+.vuo-mp-art .vuo-mpi { width: 30px; height: 30px; }
+.vuo-mp-art svg { stroke-width: 1.3; }
+.vuo-mp-art:hover .vuo-mpi svg { animation: vuoIcoHop 0.5s ease-out; }
 .vuo-mp-nowtxt { min-width: 0; flex: 1; }
 .vuo-mp-nowlbl { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(var(--vuo-green-rgb),0.9); margin-bottom: 3px; }
 .vuo-mp-nowname { font-size: 17px; font-weight: 600; color: #eaf2ff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -2219,25 +2495,52 @@ controls control[ng-click="Favorite( file, false )"] img {
 .vuo-mp-seekfill { position: relative; height: 100%; width: 0%; background: linear-gradient(90deg, rgba(var(--vuo-blue-rgb),0.95), rgba(60,170,255,0.95)); box-shadow: 0 0 8px rgba(var(--vuo-blue-rgb),0.5); border-radius: 9999px; }
 .vuo-mp-seekfill::after { content:''; position:absolute; right:-7px; top:50%; transform:translateY(-50%); width:14px; height:14px; border-radius:50%; background:#fff; box-shadow:0 0 0 2px rgba(var(--vuo-blue-rgb),0.95), 0 1px 5px rgba(0,0,0,0.55); }
 
-.vuo-mp-ctrls { display: flex; align-items: center; justify-content: center; gap: 10px; flex-shrink: 0; margin: 0; }
+.vuo-mpi { display: inline-flex; flex-shrink: 0; width: 16px; height: 16px; }
+.vuo-mpi svg { width: 100%; height: 100%; overflow: visible; }
+
+.vuo-mp-ctrls { display: flex; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0; margin: 0; }
 .vuo-mp-btn {
-    position: relative; width: 36px; height: 34px; display: flex; align-items: center; justify-content: center;
-    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 9px;
-    color: #dce8ff; font-size: 14px; cursor: pointer; user-select: none;
-    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    position: relative; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; color: #dce8ff; cursor: pointer; user-select: none;
+    transition: background 0.15s ease, color 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease;
 }
-.vuo-mp-btn:hover { background: rgba(var(--vuo-blue-rgb),0.28); border-color: rgba(var(--vuo-blue-rgb),0.70); }
-.vuo-mp-toggle.vuo-on { background: rgba(var(--vuo-blue-rgb),0.30); border-color: rgba(var(--vuo-blue-rgb),0.85); color: #cfe6ff; }
+.vuo-mp-btn:hover { background: rgba(255,255,255,0.08); color: #ffffff; }
+.vuo-mp-btn:active { transform: scale(0.92); }
+.vuo-mp-btn .vuo-mpi { width: 17px; height: 17px; }
 .vuo-mp-play {
-    width: 50px; height: 50px; font-size: 17px; border-radius: 50%;
-    background: linear-gradient(135deg, rgba(var(--vuo-blue-rgb),0.95), rgba(28,110,210,0.95));
-    border: 1px solid rgba(60,170,255,0.9); color: #fff;
-    box-shadow: 0 4px 14px rgba(var(--vuo-blue-rgb),0.4);
+    width: 50px; height: 50px; color: #ffffff;
+    background: rgb(var(--vuo-blue-rgb));
+    box-shadow: 0 4px 14px rgba(var(--vuo-blue-rgb),0.40), inset 0 1px 0 rgba(255,255,255,0.22);
 }
-.vuo-mp-play:hover { background: linear-gradient(135deg, rgba(60,170,255,1), rgba(var(--vuo-blue-rgb),1)); box-shadow: 0 4px 18px rgba(var(--vuo-blue-rgb),0.6); }
+.vuo-mp-play:hover { background: rgb(var(--vuo-blue-rgb)); filter: brightness(1.12); box-shadow: 0 4px 18px rgba(var(--vuo-blue-rgb),0.60), inset 0 1px 0 rgba(255,255,255,0.22); }
+.vuo-mp-play .vuo-mpi { width: 21px; height: 21px; }
+
+.vuo-mp-play .vuo-mpi, .vuo-np-play .vuo-mpi {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    transition: opacity 0.18s ease, transform 0.28s cubic-bezier(0.3, 0.8, 0.3, 1.3);
+}
+.vuo-mp-play .vuo-mpi-pause, .vuo-np-play .vuo-mpi-pause { opacity: 0; transform: translate(-50%, -50%) scale(0.4) rotate(-90deg); }
+#vuo_music_panel.vuo-playing .vuo-mp-play .vuo-mpi-play, #vuo_np.vuo-playing .vuo-np-play .vuo-mpi-play { opacity: 0; transform: translate(-50%, -50%) scale(0.4) rotate(90deg); }
+#vuo_music_panel.vuo-playing .vuo-mp-play .vuo-mpi-pause, #vuo_np.vuo-playing .vuo-np-play .vuo-mpi-pause { opacity: 1; transform: translate(-50%, -50%); }
+.vuo-mp-play:hover .vuo-mpi svg, .vuo-np-play:hover .vuo-mpi svg { animation: vuoIcoPop 0.5s ease-out; }
+.vuo-skip-prev svg, .vuo-skip-next svg { transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.3, 1); }
+.vuo-skip-prev:hover svg { transform: translateX(-2px); }
+.vuo-skip-next:hover svg { transform: translateX(2px); }
+
+.vuo-volicon { display: inline-flex; flex-shrink: 0; cursor: pointer; transition: color 0.15s ease; }
+.vuo-volicon .vuo-wx { display: none; }
+.vuo-volicon[data-v="0"] .vuo-w1, .vuo-volicon[data-v="0"] .vuo-w2 { display: none; }
+.vuo-volicon[data-v="0"] .vuo-wx { display: inline; }
+.vuo-volicon[data-v="1"] .vuo-w2 { display: none; }
+.vuo-volicon:hover { color: #ffffff; }
+.vuo-volicon:hover .vuo-w1 { animation: vuoVolWave 0.6s ease-out; }
+.vuo-volicon:hover .vuo-w2 { animation: vuoVolWave 0.6s ease-out 0.12s; }
+.vuo-volicon:hover .vuo-wx { animation: vuoIcoShake 0.4s ease-out; }
+@keyframes vuoVolWave { 0%, 100% { opacity: 1; } 45% { opacity: 0.15; } }
+@keyframes vuoIcoSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
 .vuo-mp-volrow { display: flex; align-items: center; gap: 9px; flex-shrink: 0; margin: 0; }
-.vuo-mp-volicon { font-size: 13px; color: rgba(160,185,225,0.85); flex-shrink: 0; }
+.vuo-mp-volicon { color: rgba(160,185,225,0.85); }
 .vuo-mp-vol { position: relative; flex: 1; height: 6px; background: rgba(255,255,255,0.08); border-radius: 9999px; cursor: pointer; }
 .vuo-mp-volfill { position: relative; height: 100%; width: 70%; background: rgba(var(--vuo-blue-rgb),0.85); border-radius: 9999px; }
 .vuo-mp-volfill::after { content: ''; position: absolute; right: -7px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 2px rgba(var(--vuo-blue-rgb),0.95), 0 1px 5px rgba(0,0,0,0.55); }
@@ -2290,19 +2593,21 @@ controls control[ng-click="Favorite( file, false )"] img {
 .vuo-mp-empty { font-size: 11px; color: rgba(160,185,225,0.6); text-align: center; padding: 26px 10px; line-height: 1.7; }
 
 .vuo-mp-nowact { display: flex; flex-direction: column; gap: 6px; align-items: stretch; flex-shrink: 0; }
-.vuo-mp-expand { align-self: flex-end; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; border-radius: 7px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); color: #cfdcf0; font-size: 12px; cursor: pointer; transition: background 0.15s ease, border-color 0.15s ease; }
+.vuo-mp-expand { align-self: flex-end; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; border-radius: 7px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); color: #cfdcf0; cursor: pointer; transition: background 0.15s ease, border-color 0.15s ease; }
 .vuo-mp-expand:hover { background: rgba(var(--vuo-blue-rgb),0.25); border-color: rgba(var(--vuo-blue-rgb),0.7); }
-.vuo-mp-yt { flex-shrink: 0; display: flex; align-items: center; justify-content: center; gap: 4px; font-size: 9px; font-weight: 600; color: #ff6a6a; background: rgba(255,60,60,0.10); border: 1px solid rgba(255,60,60,0.30); border-radius: 7px; padding: 5px 7px; cursor: pointer; white-space: nowrap; transition: background 0.15s ease, color 0.15s ease; }
-.vuo-mp-yt:hover { background: rgba(255,60,60,0.22); color: #ff8a8a; }
+.vuo-mp-expand .vuo-mpi { width: 13px; height: 13px; }
+.vuo-mp-expand:hover .vuo-mpi svg { animation: vuoIcoPop 0.5s ease-out; }
 
-.vuo-np { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 10001; display: flex; align-items: center; justify-content: center; background: rgba(4,5,9,0.55); opacity: 0; pointer-events: none; transition: opacity 0.25s ease; font-family: var(--vuo-font); }
+.vuo-np { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 10001; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.55); opacity: 0; pointer-events: none; transition: opacity 0.25s ease; font-family: var(--vuo-font); }
 .vuo-np.vuo-open { opacity: 1; pointer-events: auto; }
 .vuo-np-bg { position: absolute; top: -60px; left: -60px; right: -60px; bottom: -60px; background-size: cover; background-position: center; filter: blur(46px) brightness(0.4) saturate(1.2); transform: scale(1.15); z-index: 0; }
-.vuo-np-inner { position: relative; z-index: 1; width: 460px; max-width: 92vw; max-height: 94vh; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 34px 34px 28px; background: rgba(9,11,16,0.93); border: 1px solid rgba(255,255,255,0.05); border-radius: 18px; box-shadow: 0 30px 90px rgba(0,0,0,0.78), inset 0 1px 0 rgba(255,255,255,0.05); }
+.vuo-np-inner { position: relative; z-index: 1; width: 460px; max-width: calc(var(--vuo-vw, 1vw) * 92); max-height: calc(var(--vuo-vh, 1vh) * 94); box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 34px 34px 28px; background: rgba(0,0,0,0.93); border: 1px solid rgba(255,255,255,0.05); border-radius: 18px; box-shadow: 0 30px 90px rgba(0,0,0,0.78), inset 0 1px 0 rgba(255,255,255,0.05); }
 .vuo-np-collapse { position: absolute; top: 12px; right: 14px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: rgba(200,215,240,0.8); font-size: 14px; cursor: pointer; transition: background 0.15s ease, color 0.15s ease; }
 .vuo-np-collapse:hover { background: rgba(200,60,60,0.6); color: #fff; }
-.vuo-np-art { width: 230px; height: 230px; flex-shrink: 0; border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 76px; color: #cfe0f5; background-color: #0a0c11; background-image: linear-gradient(135deg, rgba(var(--vuo-blue-rgb),0.35), rgba(8,10,18,0.7)); border: 1px solid rgba(var(--vuo-blue-rgb),0.4); background-size: cover; background-position: center; background-repeat: no-repeat; box-shadow: 0 18px 50px rgba(0,0,0,0.55); }
+.vuo-np-art { width: 230px; height: 230px; flex-shrink: 0; border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 76px; color: #cfe0f5; background-color: #000000; background-image: linear-gradient(135deg, rgba(var(--vuo-blue-rgb),0.35), rgba(0,0,0,0.7)); border: 1px solid rgba(var(--vuo-blue-rgb),0.4); background-size: cover; background-position: center; background-repeat: no-repeat; box-shadow: 0 18px 50px rgba(0,0,0,0.55); }
 .vuo-np-art.has-art { color: transparent; border-color: rgba(255,255,255,0.14); }
+.vuo-np-art .vuo-mpi { width: 76px; height: 76px; }
+.vuo-np-art svg { stroke-width: 0.9; }
 .vuo-np-info { text-align: center; width: 100%; min-width: 0; }
 .vuo-np-title { font-size: 23px; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .vuo-np-artist { font-size: 15px; color: rgba(var(--vuo-green-rgb),0.95); margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -2312,28 +2617,78 @@ controls control[ng-click="Favorite( file, false )"] img {
 .vuo-np-seek:hover { height: 8px; }
 .vuo-np-seekfill { position: relative; height: 100%; width: 0%; background: linear-gradient(90deg, rgba(var(--vuo-blue-rgb),0.95), rgba(60,170,255,0.95)); box-shadow: 0 0 8px rgba(var(--vuo-blue-rgb),0.5); border-radius: 9999px; }
 .vuo-np-seekfill::after { content: ''; position: absolute; right: -7px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 2px rgba(var(--vuo-blue-rgb),0.95), 0 1px 5px rgba(0,0,0,0.55); }
-.vuo-np-ctrls { display: flex; align-items: center; justify-content: center; gap: 16px; }
-.vuo-np-btn { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); color: #eaf2ff; font-size: 17px; cursor: pointer; user-select: none; transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
-.vuo-np-btn:hover { background: rgba(var(--vuo-blue-rgb),0.28); border-color: rgba(var(--vuo-blue-rgb),0.7); }
-.vuo-np-toggle.on { background: rgba(var(--vuo-blue-rgb),0.30); border-color: rgba(var(--vuo-blue-rgb),0.85); color: #cfe6ff; }
-.vuo-np-play { width: 62px; height: 62px; font-size: 22px; background: linear-gradient(135deg, rgba(var(--vuo-blue-rgb),0.95), rgba(28,110,210,0.95)); border: 1px solid rgba(60,170,255,0.9); color: #fff; box-shadow: 0 6px 20px rgba(var(--vuo-blue-rgb),0.45); }
-.vuo-np-play:hover { background: linear-gradient(135deg, rgba(60,170,255,1), rgba(var(--vuo-blue-rgb),1)); }
+.vuo-np-ctrls { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.vuo-np-btn { position: relative; width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: #eaf2ff; cursor: pointer; user-select: none; transition: background 0.15s ease, color 0.15s ease, transform 0.12s ease; }
+.vuo-np-btn:hover { background: rgba(255,255,255,0.08); color: #ffffff; }
+.vuo-np-btn:active { transform: scale(0.92); }
+.vuo-np-btn .vuo-mpi { width: 21px; height: 21px; }
+.vuo-np-toggle { color: rgba(200,215,240,0.55); }
+.vuo-np-toggle .vuo-mpi { width: 18px; height: 18px; }
+.vuo-np-toggle.on { color: #ffffff; background: rgba(var(--vuo-blue-rgb),0.24); }
+.vuo-np-toggle.on:hover { background: rgba(var(--vuo-blue-rgb),0.34); }
+.vuo-np-toggle .vuo-one { display: none; }
+.vuo-np-toggle.vuo-rep-one .vuo-one { display: inline; }
+.vuo-np-toggle:hover .vuo-mpi-shuffle svg { animation: vuoIcoShake 0.4s ease-out; }
+.vuo-np-toggle:hover .vuo-mpi-repeat svg { animation: vuoIcoSpin 0.6s cubic-bezier(0.45, 0, 0.25, 1); }
+.vuo-np-play { width: 64px; height: 64px; color: #ffffff; background: rgb(var(--vuo-blue-rgb)); box-shadow: 0 6px 20px rgba(var(--vuo-blue-rgb),0.45), inset 0 1px 0 rgba(255,255,255,0.22); }
+.vuo-np-play:hover { background: rgb(var(--vuo-blue-rgb)); filter: brightness(1.12); }
+.vuo-np-play .vuo-mpi { width: 26px; height: 26px; }
 .vuo-np-volrow { display: flex; align-items: center; gap: 10px; width: 65%; }
-.vuo-np-volicon { font-size: 14px; color: rgba(160,185,225,0.85); flex-shrink: 0; }
+.vuo-np-volicon { color: rgba(160,185,225,0.85); }
 .vuo-np-vol { position: relative; flex: 1; height: 6px; background: rgba(255,255,255,0.10); border-radius: 9999px; cursor: pointer; }
 .vuo-np-volfill { position: relative; height: 100%; width: 70%; background: rgba(var(--vuo-blue-rgb),0.85); border-radius: 9999px; }
 .vuo-np-volfill::after { content: ''; position: absolute; right: -7px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 2px rgba(var(--vuo-blue-rgb),0.95), 0 1px 5px rgba(0,0,0,0.55); }
 .vuo-np-yt { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #ff6a6a; background: rgba(255,60,60,0.12); border: 1px solid rgba(255,60,60,0.35); border-radius: 9px; padding: 9px 16px; cursor: pointer; transition: background 0.15s ease, color 0.15s ease; }
 .vuo-np-yt:hover { background: rgba(255,60,60,0.24); color: #ff8a8a; }
+.vuo-np-yt .vuo-mpi { width: 15px; height: 15px; }
+.vuo-np-yt:hover .vuo-mpi svg { animation: vuoIcoPop 0.5s ease-out; }
+
+#vuo_toast {
+    position: fixed; top: 50px; right: 5px; width: 300px; box-sizing: border-box; overflow: hidden;
+    display: flex; align-items: center; gap: 11px; padding: 10px 10px 12px 10px;
+    background: var(--vuo-panel); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px;
+    box-shadow: 0 12px 34px rgba(0,0,0,0.66);
+    color: #e0ecff; font-family: var(--vuo-font); z-index: 10000; cursor: pointer;
+    opacity: 0; transform: translateY(-8px); pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.28s cubic-bezier(0.25, 0.8, 0.3, 1);
+}
+#vuo_toast.vuo-open { opacity: 1; transform: none; pointer-events: auto; }
+.vuo-toast-art {
+    width: 44px; height: 44px; flex-shrink: 0; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center; color: #cfe0f5;
+    background: linear-gradient(135deg, rgba(var(--vuo-blue-rgb),0.30), rgba(0,0,0,0.6));
+    border: 1px solid rgba(var(--vuo-blue-rgb),0.35);
+    background-size: cover; background-position: center; background-repeat: no-repeat;
+}
+.vuo-toast-art.has-art { color: transparent; border-color: rgba(255,255,255,0.14); }
+.vuo-toast-art .vuo-mpi { width: 20px; height: 20px; }
+#vuo_toast.vuo-open .vuo-toast-art .vuo-mpi svg { animation: vuoIcoHop 0.5s ease-out 0.15s; }
+.vuo-toast-txt { flex: 1; min-width: 0; }
+.vuo-toast-lbl { display: flex; align-items: center; gap: 6px; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(var(--vuo-green-rgb),0.9); }
+.vuo-toast-eq { display: inline-flex; gap: 2px; align-items: flex-end; height: 9px; }
+.vuo-toast-eq i { width: 2px; height: 3px; border-radius: 1px; background: rgba(var(--vuo-green-rgb),0.95); }
+#vuo_toast.vuo-playing .vuo-toast-eq i { animation: vuoEqS 0.9s ease-in-out infinite; }
+#vuo_toast.vuo-playing .vuo-toast-eq i:nth-child(2) { animation-delay: 0.2s; }
+#vuo_toast.vuo-playing .vuo-toast-eq i:nth-child(3) { animation-delay: 0.4s; }
+@keyframes vuoEqS { 0%, 100% { height: 3px; } 50% { height: 9px; } }
+.vuo-toast-title { margin-top: 3px; font-size: 13px; font-weight: 600; color: #eaf2ff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.vuo-toast-artist { margin-top: 1px; font-size: 11px; color: rgba(150,175,215,0.75); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.vuo-toast-artist:empty { display: none; }
+.vuo-toast-next { width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #dce8ff; transition: background 0.15s ease, color 0.15s ease, transform 0.12s ease; }
+.vuo-toast-next:hover { background: rgba(255,255,255,0.08); color: #ffffff; }
+.vuo-toast-next:active { transform: scale(0.92); }
+.vuo-toast-next .vuo-mpi { width: 15px; height: 15px; }
+.vuo-toast-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: rgba(255,255,255,0.06); }
+.vuo-toast-fill { height: 100%; width: 0%; background: rgba(var(--vuo-blue-rgb),0.9); }
 
 .vuo-mp-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; flex-shrink: 0; margin: 0; }
 .vuo-mp-opt { min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 8px 11px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 9px; cursor: pointer; font-size: 12px; color: #cfdcf0; user-select: none; transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
 .vuo-mp-opt:hover { background: rgba(var(--vuo-blue-rgb),0.16); border-color: rgba(var(--vuo-blue-rgb),0.5); }
 .vuo-mp-opt.on { background: rgba(var(--vuo-green-rgb),0.14); border-color: rgba(var(--vuo-green-rgb),0.7); color: #eaf2ff; }
-.vuo-mp-sw { width: 26px; height: 14px; border-radius: 9999px; background: rgba(255,255,255,0.12); position: relative; flex-shrink: 0; transition: background 0.15s ease; }
-.vuo-mp-sw::after { content: ''; position: absolute; top: 2px; left: 2px; width: 10px; height: 10px; border-radius: 50%; background: rgba(200,210,230,0.9); transition: left 0.15s ease; }
-.vuo-mp-opt.on .vuo-mp-sw { background: rgba(var(--vuo-green-rgb),0.85); }
-.vuo-mp-opt.on .vuo-mp-sw::after { left: 14px; background: #fff; }
+.vuo-mp-sw { width: 26px; height: 14px; border-radius: 9999px; background: rgba(255,255,255,0.10); position: relative; flex-shrink: 0; transition: background 0.18s ease; }
+.vuo-mp-sw::after { content: ''; position: absolute; top: 2px; left: 2px; width: 10px; height: 10px; border-radius: 50%; background: #cfd8e6; transition: left 0.18s ease, background 0.18s ease; }
+.vuo-mp-opt.on .vuo-mp-sw { background: rgba(var(--vuo-green-rgb),0.55); }
+.vuo-mp-opt.on .vuo-mp-sw::after { left: 14px; background: #eafff4; }
 .vuo-mp-repmode { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; color: rgba(150,175,215,0.8); }
 .vuo-mp-opt.on .vuo-mp-repmode { color: rgb(var(--vuo-green-rgb)); }
 
@@ -2349,8 +2704,8 @@ controls control[ng-click="Favorite( file, false )"] img {
 
 #vuo_settings_panel {
     position: fixed !important; top: 50px !important;
-    width: 320px !important; max-height: 82vh !important;
-    background: rgba(7, 8, 11, 0.84) !important;
+    width: 320px !important; max-height: calc(var(--vuo-vh, 1vh) * 82) !important;
+    background: var(--vuo-panel) !important;
     border: 1px solid rgba(255,255,255,0.05) !important;
     border-radius: 10px !important;
     box-shadow: 0 12px 34px rgba(0,0,0,0.66) !important;
@@ -2372,18 +2727,47 @@ controls control[ng-click="Favorite( file, false )"] img {
 .vuo-st-body { padding: 12px 14px 14px; flex: 1 1 auto; min-height: 0; overflow-y: auto; }
 .vuo-st-page { display: none; }
 .vuo-st-page.vuo-on { display: block; }
-.vuo-st-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 0; font-size: 12px; color: #cfe0f5; }
-.vuo-st-select { background: rgba(0,0,0,0.35); color: #e0ecff; border: 1px solid rgba(255,255,255,0.12); border-radius: 7px; padding: 5px 8px; font-size: 12px; font-family: var(--vuo-font); outline: none; max-width: 175px; cursor: pointer; }
+.vuo-st-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 30px; padding: 4px 0; box-sizing: border-box; font-size: 12px; color: #cfe0f5; }
+.vuo-st-select { background: rgba(0,0,0,0.35); color: #e0ecff; border: 1px solid rgba(255,255,255,0.12); border-radius: 7px; padding: 5px 8px; font-size: 12px; font-family: var(--vuo-font); outline: none; width: 150px; max-width: 150px; cursor: pointer; }
 .vuo-st-select:hover { border-color: rgba(var(--vuo-blue-rgb),0.6); }
+.vuo-dd { position: relative; flex-shrink: 0; width: 150px; }
+.vuo-dd > select { display: none !important; }
+.vuo-dd-btn { display: flex; align-items: center; justify-content: space-between; gap: 8px; box-sizing: border-box; width: 100%; height: 28px; padding: 0 9px 0 10px; border-radius: 7px; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.12); color: #e0ecff; font-size: 12px; cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease; }
+.vuo-dd-btn:hover { border-color: rgba(var(--vuo-blue-rgb),0.6); background: rgba(var(--vuo-blue-rgb),0.08); }
+.vuo-dd.vuo-open .vuo-dd-btn { border-color: rgba(var(--vuo-blue-rgb),0.75); background: rgba(var(--vuo-blue-rgb),0.12); }
+.vuo-dd-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vuo-dd-chev { flex-shrink: 0; width: 10px; height: 10px; opacity: 0.7; transition: transform 0.15s ease, opacity 0.15s ease; }
+.vuo-dd-btn:hover .vuo-dd-chev { opacity: 1; }
+.vuo-dd.vuo-open .vuo-dd-chev { transform: rotate(180deg); opacity: 1; }
+@keyframes vuoDdIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: none; }
+}
+.vuo-dd-list { position: fixed; z-index: 10003; box-sizing: border-box; max-width: 260px; max-height: 236px; overflow-y: auto; padding: 4px; background: rgba(0,0,0,0.97); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; box-shadow: 0 10px 28px rgba(0,0,0,0.6); font-family: var(--vuo-font); animation: vuoDdIn 0.15s ease; }
+.vuo-dd-opt { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 6px 8px 6px 9px; border-radius: 6px; font-size: 12px; color: #eeeeee; cursor: pointer; white-space: nowrap; transition: background 0.15s ease, color 0.15s ease; }
+.vuo-dd-opt:hover { background: rgba(var(--vuo-blue-rgb),0.16); }
+.vuo-dd-opt:active { background: rgba(var(--vuo-green-rgb),0.22); }
+.vuo-dd-opt.vuo-sel { background: rgba(var(--vuo-green-rgb),0.14); color: #b6f0d4; font-weight: 600; }
+.vuo-dd-opt.vuo-sel::after { content: ''; flex-shrink: 0; width: 12px; height: 12px; background: rgb(var(--vuo-green-rgb)); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.6 8.4l2.9 2.9 5.9-6.6'/%3E%3C/svg%3E") center / contain no-repeat; }
+.vuo-dd-opt.vuo-dd-off { color: rgba(238,238,238,0.32); cursor: default; }
+.vuo-dd-opt.vuo-dd-off:hover, .vuo-dd-opt.vuo-dd-off:active { background: none; }
+.vuo-st-livenote { display: flex; align-items: flex-start; gap: 6px; }
+.vuo-st-livenote::before { content: ''; flex-shrink: 0; width: 11px; height: 11px; margin-top: 2px; background: rgba(160,185,225,0.6); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='7' width='9' height='6.5' rx='1.5'/%3E%3Cpath d='M5.5 7V5a2.5 2.5 0 0 1 5 0v2'/%3E%3C/svg%3E") center / contain no-repeat; }
+.vuo-dd-opt.vuo-dd-off::after { content: ''; flex-shrink: 0; width: 12px; height: 12px; background: rgba(238,238,238,0.32); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='7' width='9' height='6.5' rx='1.5'/%3E%3Cpath d='M5.5 7V5a2.5 2.5 0 0 1 5 0v2'/%3E%3C/svg%3E") center / contain no-repeat; }
 .vuo-st-slider { position: relative; width: 150px; height: 6px; background: rgba(255,255,255,0.08); border-radius: 9999px; cursor: pointer; }
 .vuo-st-sfill { position: relative; height: 100%; width: 50%; background: rgba(var(--vuo-blue-rgb),0.95); box-shadow: 0 0 6px rgba(var(--vuo-blue-rgb),0.5); border-radius: 9999px; }
 .vuo-st-row.vuo-st-off > span:first-child { opacity: 0.45; }
 .vuo-st-row.vuo-st-off .vuo-st-slider,
 .vuo-st-row.vuo-st-off .vuo-st-toggle,
-.vuo-st-row.vuo-st-off .vuo-st-seg { opacity: 0.3; pointer-events: none; cursor: default; }
+.vuo-st-row.vuo-st-off .vuo-st-seg,
+.vuo-st-row.vuo-st-off .vuo-dd { opacity: 0.3; pointer-events: none; cursor: default; }
+.vuo-st-bglist.vuo-st-off { opacity: 0.35; pointer-events: none; }
+body.vuo-live-on #vuo_bg,
+body.vuo-live-on #vuo_bg2,
+body.vuo-live-on #vuo_bg_overlay { opacity: 0 !important; transition: opacity 1.2s ease !important; }
 .vuo-st-sfill::after { content: ''; position: absolute; right: -7px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 2px rgba(var(--vuo-blue-rgb),0.95), 0 1px 5px rgba(0,0,0,0.55); }
 .vuo-st-seg { display: flex; border: 1px solid rgba(255,255,255,0.10); border-radius: 7px; overflow: hidden; }
-.vuo-st-segbtn { font-size: 11px; padding: 5px 12px; cursor: pointer; color: rgba(190,205,230,0.8); background: rgba(8,10,18,0.5); transition: background 0.15s ease, color 0.15s ease; }
+.vuo-st-segbtn { font-size: 11px; padding: 5px 12px; cursor: pointer; color: rgba(190,205,230,0.8); background: rgba(0,0,0,0.5); transition: background 0.15s ease, color 0.15s ease; }
 .vuo-st-segbtn:hover { color: rgb(var(--vuo-blue-rgb)); }
 #vuo_st_acc_blue.vuo-sel  { background: rgba(var(--vuo-blue-rgb),0.30); color: #fff; }
 #vuo_st_acc_green.vuo-sel { background: rgba(var(--vuo-green-rgb),0.28); color: #fff; }
@@ -2391,7 +2775,7 @@ controls control[ng-click="Favorite( file, false )"] img {
 .vuo-st-toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #cfd8e6; transition: left 0.18s ease, background 0.18s ease; }
 .vuo-st-toggle.vuo-on { background: rgba(var(--vuo-green-rgb),0.55); }
 .vuo-st-toggle.vuo-on::after { left: 21px; background: #eafff4; }
-.vuo-st-bglist { max-height: 56vh; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding: 2px; }
+.vuo-st-bglist { max-height: calc(var(--vuo-vh, 1vh) * 56); overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding: 2px; }
 
 .vuo-st-foldbody { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .vuo-st-foldbody:not(.open) { display: none; }
@@ -2409,31 +2793,58 @@ controls control[ng-click="Favorite( file, false )"] img {
 }
 .vuo-st-bg:hover { border-color: rgba(var(--vuo-blue-rgb),0.7); transform: translateY(-1px); }
 .vuo-st-bg.vuo-sel { border-color: rgba(var(--vuo-green-rgb),0.9); box-shadow: 0 0 0 1px rgba(var(--vuo-green-rgb),0.6); }
-.vuo-st-bgdefault { background: linear-gradient(135deg, rgba(var(--vuo-blue-rgb),0.25), rgba(8,10,18,0.7)); display: flex; align-items: center; justify-content: center; }
+.vuo-st-bgdefault { background: linear-gradient(135deg, rgba(var(--vuo-blue-rgb),0.25), rgba(0,0,0,0.7)); display: flex; align-items: center; justify-content: center; }
 .vuo-st-bgname { position: absolute; left: 0; right: 0; bottom: 0; padding: 9px 7px 4px; font-size: 10px; color: #eaf2ff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background: linear-gradient(to top, rgba(0,0,0,0.80), rgba(0,0,0,0)); }
 .vuo-st-bgdefault .vuo-st-bgname { position: static; padding: 0; background: none; text-align: center; font-size: 11px; font-weight: 600; }
 .vuo-st-bgempty { grid-column: 1 / -1; font-size: 11px; color: rgba(160,185,225,0.6); text-align: center; padding: 14px 6px 4px; line-height: 1.6; }
 
 .vuo-st-bgcat { grid-column: 1 / -1; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(150,175,215,0.75); padding: 8px 2px 2px; }
-.vuo-st-bgcheck { position: absolute; top: 5px; right: 5px; width: 17px; height: 17px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #eafff4; background: rgba(8,10,18,0.65); border: 1px solid rgba(255,255,255,0.18); opacity: 0; transition: opacity 0.12s ease; }
-.vuo-st-bgcheck.on { opacity: 1; background: rgba(var(--vuo-green-rgb),0.85); border-color: rgba(var(--vuo-green-rgb),0.95); }
+.vuo-st-bgcheck { position: absolute; top: 5px; right: 5px; width: 16px; height: 16px; box-sizing: border-box; border-radius: 4px; background-color: rgba(0,0,0,0.55); border: 1.5px solid rgba(255,255,255,0.38); background-repeat: no-repeat; background-position: center; background-size: 12px 12px; opacity: 0; transition: opacity 0.12s ease; }
+.vuo-st-bgcheck.on { opacity: 1; background-color: rgb(var(--vuo-green-rgb)); border-color: rgb(var(--vuo-green-rgb)); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.6 8.4l2.9 2.9 5.9-6.6'/%3E%3C/svg%3E"); }
 
 .vuo-st-hint { font-size: 10.5px; color: rgba(160,185,225,0.6); line-height: 1.5; margin: 4px 2px 2px; }
-.vuo-st-cap { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(var(--vuo-green-rgb),0.85); margin: 12px 0 2px; }
-.vuo-st-cap:first-child { margin-top: 2px; }
+.vuo-st-cap { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(var(--vuo-green-rgb),0.85); margin: 14px 0 4px; }
+.vuo-st-page > .vuo-st-cap:first-child { margin-top: 2px; }
+.vuo-st-caprow { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.vuo-st-capreset { flex-shrink: 0; font-size: 11px; letter-spacing: normal; text-transform: none; }
 .vuo-st-subcap { font-size: 10.5px; font-weight: 600; color: rgba(160,185,225,0.75); margin: 8px 0 0; padding-left: 7px; border-left: 2px solid rgba(var(--vuo-green-rgb),0.45); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 .vuo-st-abouthead { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 11px; }
 .vuo-st-abouttitle { font-size: 13px; font-weight: 700; color: #eaf2ff; }
-.vuo-st-steam { display: inline-flex; align-items: center; gap: 5px; flex-shrink: 0; font-size: 11px; color: #cfe6ff; cursor: pointer; padding: 4px 10px; border-radius: 7px; background: rgba(var(--vuo-blue-rgb),0.16); border: 1px solid rgba(var(--vuo-blue-rgb),0.4); transition: background 0.15s ease, border-color 0.15s ease; }
-.vuo-st-steam:hover { background: rgba(var(--vuo-blue-rgb),0.30); border-color: rgba(var(--vuo-blue-rgb),0.75); }
 .vuo-st-by { font-size: 11px; color: rgba(160,185,225,0.85); flex-shrink: 0; }
 .vuo-st-by b { color: #cfe6ff; font-weight: 700; }
-.vuo-st-aboutlinks { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; }
+.vuo-st-aboutlinks { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; font-size: 12px; }
 .vuo-st-about { font-size: 12px; color: #cfe0f5; line-height: 1.5; }
 .vuo-st-link { color: rgba(190,205,230,0.85); cursor: pointer; font-weight: 500; }
 .vuo-st-link:hover { color: rgb(var(--vuo-blue-rgb)); text-decoration: underline; }
 .vuo-st-link:active { color: rgb(var(--vuo-green-rgb)); }
+.vuo-st-updrow { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 14px; padding: 8px 10px; font-size: 11px; border-radius: 7px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); }
+.vuo-st-updstate { color: rgba(160,185,225,0.75); }
+.vuo-st-updstate[data-s="ok"] { color: rgba(var(--vuo-green-rgb),0.9); }
+.vuo-st-updstate[data-s="new"] { color: rgb(var(--vuo-blue-rgb)); cursor: pointer; }
+.vuo-st-updstate[data-s="new"]:hover { text-decoration: underline; }
+.vuo-st-updstate[data-s="fail"] { color: rgba(235,120,120,0.9); }
+#vuo_st_updcheck { flex-shrink: 0; }
+#vuo_st_updcheck.vuo-busy { opacity: 0.45; pointer-events: none; }
+
+#vuo_update {
+    position: fixed; top: 50px; right: 5px; width: 240px; padding: 11px 13px 13px;
+    background: var(--vuo-panel); border: 1px solid rgba(255,255,255,0.05); border-radius: 10px;
+    box-shadow: 0 12px 34px rgba(0,0,0,0.66);
+    color: #e0ecff; font-family: var(--vuo-font); z-index: 10000; box-sizing: border-box;
+    opacity: 0; transform: translateY(-8px); pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+#vuo_update.vuo-open { opacity: 1; transform: none; pointer-events: auto; }
+.vuo-upd-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.vuo-upd-cap { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(var(--vuo-green-rgb),0.85); }
+.vuo-upd-title { font-size: 13px; font-weight: 700; color: #eaf2ff; margin-top: 5px; }
+.vuo-upd-sub { font-size: 11px; color: rgba(160,185,225,0.75); margin-top: 2px; }
+.vuo-upd-actions { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 12px; font-size: 11px; }
+.vuo-upd-get { display: inline-flex; align-items: center; flex-shrink: 0; color: #cfe6ff; cursor: pointer; padding: 4px 10px; border-radius: 7px; background: rgba(var(--vuo-blue-rgb),0.16); border: 1px solid rgba(var(--vuo-blue-rgb),0.4); transition: background 0.15s ease, border-color 0.15s ease; }
+.vuo-upd-get:hover { background: rgba(var(--vuo-blue-rgb),0.30); border-color: rgba(var(--vuo-blue-rgb),0.75); }
+.vuo-upd-actions .vuo-st-link { margin-left: auto; }
+#vuo_update:not(.vuo-upd-ok) .vuo-upd-cur, #vuo_update.vuo-upd-ok .vuo-upd-new { display: none; }
 
 @keyframes vuoBgZoom  { 0%{transform:scale(1)}      50%{transform:scale(1.08)}            100%{transform:scale(1)} }
 @keyframes vuoBgPan   { 0%{transform:scale(1.09) translate(-1.2%,-1.2%)} 50%{transform:scale(1.09) translate(1.2%,1.2%)} 100%{transform:scale(1.09) translate(-1.2%,-1.2%)} }
@@ -2594,7 +3005,10 @@ body.vuo-layout-vanillaright #NavBar .group.left {
 }
 body.vuo-layout-vanillaright #NavBar .group .button:not([ng-click="ToggleLanguage()"]) {
     margin-right: 0 !important;
-    margin-left: 3px !important;
+    margin-left: 10px !important;
+}
+body.vuo-layout-vanillaright #NavBar .group.right .button:last-child {
+    margin-left: 5px !important;
 }
 body.vuo-layout-vanillaright #NavBar number {
     left: auto !important;
@@ -2603,9 +3017,6 @@ body.vuo-layout-vanillaright #NavBar number {
 
 body.vuo-nav-icons .vuo-navlabel,
 body.vuo-nav-icons #NavBar .button span { display: none !important; }
-body.vuo-nav-icons #nf_news_btn,
-body.vuo-nav-icons #vuo_music_btn,
-body.vuo-nav-icons #vuo_settings_btn { padding-left: 8px !important; padding-right: 8px !important; }
 
 .vuo-st-sfill, .vuo-mp-seekfill, .vuo-mp-volfill, .vuo-np-seekfill, .vuo-np-volfill {
     background: rgba(255, 255, 255, 0.30) !important;
@@ -2645,6 +3056,372 @@ body.vuo-nav-icons #vuo_settings_btn { padding-left: 8px !important; padding-rig
     box-shadow: 0 0 0 2px rgba(var(--vuo-green-rgb), 0.95), 0 1px 5px rgba(0,0,0,0.55) !important;
 }
 
+body.vuo-layout-gmod10 div[ng-controller="ControllerMain"] {
+    display: block !important;
+}
+body.vuo-layout-gmod10 div[ng-controller="ControllerMain"] .options {
+    position: absolute !important;
+    left: 0 !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: 0 !important;
+    transform: none !important;
+    width: auto !important;
+    padding: 0 0 calc(var(--vuo-vh, 1vh) * 9) calc(var(--vuo-vw, 1vw) * 11 - 28px) !important;
+}
+body.vuo-layout-gmod10 div[ng-controller="ControllerMain"] .options ul li:first-child {
+    display: none !important;
+}
+body.vuo-layout-gmod10 div[ng-controller="ControllerMain"] .options ul li {
+    font-size: var(--vuo-menu-fontsize, 24px) !important;
+    line-height: 1.4 !important;
+}
+body.vuo-layout-gmod10 div[ng-controller="ControllerMain"] .options a {
+    line-height: 1.4 !important;
+}
+@keyframes vuoG10In {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+#vuo_g10logo {
+    position: fixed;
+    top: 60px;
+    right: calc(var(--vuo-vw, 1vw) * 7);
+    transform-origin: top right;
+    pointer-events: none;
+    animation: vuoG10In 0.45s ease backwards;
+}
+#vuo_g10logo.vuo-g10-stacked {
+    top: calc(60px - var(--vuo-vh, 1vh) * 4.9);
+    right: calc(var(--vuo-vw, 1vw) * 7 - var(--vuo-vh, 1vh) * 4.9);
+    height: calc(var(--vuo-vh, 1vh) * 40);
+}
+
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"] {
+    display: block !important;
+}
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"]::before {
+    content: '';
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: calc(var(--vuo-vh, 1vh) * 32);
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+    pointer-events: none;
+}
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"] .options {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    bottom: 0 !important;
+    width: auto !important;
+    padding: 0 60px calc(var(--vuo-vh, 1vh) * 6) !important;
+    display: flex !important;
+    justify-content: center !important;
+    transform: scale(var(--vuo-cin-fit, 1)) !important;
+    transform-origin: center bottom !important;
+    pointer-events: none !important;
+}
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"] .options ul {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    position: relative !important;
+    padding: 0 !important;
+    pointer-events: auto !important;
+}
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"] .options ul li,
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"] .options ul li[ng-show]:not(.ng-hide) {
+    margin: 0 !important;
+    padding: 0 !important;
+    white-space: nowrap !important;
+}
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"] .options ul li.ng-hide,
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"] .options ul li.vuo-cin-sp {
+    display: none !important;
+}
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"] .options ul li.vuo-cin-sep {
+    display: flex !important;
+    align-items: center !important;
+}
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"] .options ul li.vuo-cin-sep::before {
+    content: '';
+    flex-shrink: 0;
+    width: 1px;
+    height: 1em;
+    margin: 0 10px;
+    font-size: var(--vuo-menu-fontsize, 24px);
+    background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(var(--vuo-blue-rgb), 0.65) 30%,
+        rgba(var(--vuo-green-rgb), 0.55) 70%,
+        transparent 100%);
+    box-shadow: 0 0 8px rgba(var(--vuo-blue-rgb), 0.30);
+}
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"] .options ul li:first-child {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 100% !important;
+    margin: 0 0 calc(var(--vuo-vh, 1vh) * 3) !important;
+    padding: 0 !important;
+}
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"] .options ul li:first-child img {
+    transform-origin: center bottom !important;
+}
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"] .options a,
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"] .options a:hover,
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"] .options a:active,
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"] .options a.active {
+    padding: 0 14px !important;
+    letter-spacing: var(--vuo-menu-spacing, 0.04em) !important;
+    margin-right: 0 !important;
+    line-height: 1.6 !important;
+}
+body.vuo-layout-cinematic:not(.vuo-hover-vanilla) div[ng-controller="ControllerMain"] .options a {
+    transition: color 0.18s ease, text-shadow 0.18s ease, transform 0.18s ease !important;
+}
+body.vuo-layout-cinematic:not(.vuo-hover-vanilla) div[ng-controller="ControllerMain"] .options a:hover {
+    transform: translateY(-0.12em) !important;
+}
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"] .options a::before {
+    left: 14px !important;
+    right: 14px !important;
+    top: auto !important;
+    bottom: -2px !important;
+    width: auto !important;
+    height: 3px !important;
+    transform: scaleX(0.4) !important;
+    transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.22s ease !important;
+}
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"] .options a:hover::before,
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"] .options a:active::before,
+body.vuo-layout-cinematic div[ng-controller="ControllerMain"] .options a.active::before {
+    transform: scaleX(1) !important;
+}
+#NavBar.vuo-cin-nav {
+    pointer-events: none !important;
+}
+#NavBar.vuo-cin-nav number {
+    top: auto !important;
+    bottom: -10px !important;
+}
+#NavBar.vuo-cin-nav .button {
+    pointer-events: auto !important;
+}
+
+body.vuo-layout-modern div[ng-controller="ControllerMain"] {
+    display: block !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"]::before {
+    content: '';
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: calc(var(--vuo-vh, 1vh) * 55);
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75));
+    pointer-events: none;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options {
+    position: absolute !important;
+    left: calc(var(--vuo-vw, 1vw) * 7) !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: calc(var(--vuo-vh, 1vh) * 11) !important;
+    transform: none !important;
+    width: auto !important;
+    padding: 0 !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options ul {
+    width: max-content !important;
+    max-width: calc(var(--vuo-vw, 1vw) * 86) !important;
+    padding: 0 !important;
+    font-size: 0 !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options ul li,
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options ul li[ng-show]:not(.ng-hide) {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: var(--vuo-menu-fontsize, 24px) !important;
+    white-space: nowrap !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options ul li.ng-hide,
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options ul li:not(:first-child):not(.vuo-mn-cta):not(.vuo-mn-link):not(.vuo-mn-sys):not(.vuo-mn-br) {
+    display: none !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options ul li.vuo-mn-cta:not(.ng-hide),
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options ul li.vuo-mn-link:not(.ng-hide),
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options ul li.vuo-mn-sys:not(.ng-hide) {
+    display: inline-flex !important;
+    vertical-align: middle !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options ul li:first-child {
+    line-height: 0 !important;
+    margin: 0 0 1.15em !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options ul li:first-child img {
+    vertical-align: top !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options ul li.vuo-mn-br {
+    display: block !important;
+    height: 1.05em !important;
+    overflow: hidden !important;
+    color: transparent !important;
+    pointer-events: none !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options ul li.vuo-mn-br.vuo-mn-rule {
+    height: 1px !important;
+    margin: 1em 0 0.7em !important;
+    overflow: visible !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options ul li.vuo-mn-rule::before {
+    content: '';
+    display: block;
+    width: min(21em, 100%);
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(var(--vuo-blue-rgb), 0.65) 30%,
+        rgba(var(--vuo-green-rgb), 0.55) 70%,
+        transparent 100%);
+    box-shadow: 0 0 8px rgba(var(--vuo-blue-rgb), 0.30);
+}
+body.vuo-layout-modern.vuo-malign-center div[ng-controller="ControllerMain"] .options ul li.vuo-mn-rule::before {
+    margin: 0 auto;
+}
+body.vuo-layout-modern.vuo-malign-right div[ng-controller="ControllerMain"] .options ul li.vuo-mn-rule::before {
+    margin-left: auto;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options a::before {
+    display: none !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options a,
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options a:hover,
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options a:active,
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options a.active {
+    display: flex !important;
+    align-items: center !important;
+    letter-spacing: var(--vuo-menu-spacing, 0.04em) !important;
+    margin-right: 0 !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options a::after {
+    content: '';
+    order: -1;
+    flex-shrink: 0;
+    width: 1em;
+    height: 1em;
+    background: currentColor;
+    -webkit-mask: var(--vuo-mn-ico) center / contain no-repeat;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options li.vuo-mn-cta a {
+    gap: 0.55em !important;
+    font-size: calc(var(--vuo-menu-fontsize, 24px) * 0.92) !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    padding: 0.68em 1.3em !important;
+    margin: 0 0.6em 0 0 !important;
+    border-radius: 12px !important;
+    color: #ffffff !important;
+    background: rgba(0, 0, 0, 0.55) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    text-shadow: none !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options li.vuo-mn-cta a:hover {
+    background: rgba(var(--vuo-blue-rgb), 0.22) !important;
+    border-color: rgba(var(--vuo-blue-rgb), 0.65) !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options li.vuo-mn-pri a {
+    background: rgba(var(--vuo-blue-rgb), 0.92) !important;
+    border-color: transparent !important;
+    box-shadow: 0 8px 24px rgba(var(--vuo-blue-rgb), 0.35) !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options li.vuo-mn-pri a:hover {
+    background: rgb(var(--vuo-blue-rgb)) !important;
+    border-color: transparent !important;
+    box-shadow: 0 10px 30px rgba(var(--vuo-blue-rgb), 0.55) !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options li.vuo-mn-cta a:active,
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options li.vuo-mn-pri a:active {
+    background: rgba(var(--vuo-green-rgb), 0.85) !important;
+    border-color: transparent !important;
+    box-shadow: 0 8px 24px rgba(var(--vuo-green-rgb), 0.35) !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options li.vuo-mn-link a {
+    gap: 0.45em !important;
+    font-size: calc(var(--vuo-menu-fontsize, 24px) * 0.83) !important;
+    line-height: 1.5 !important;
+    padding: 0 !important;
+    margin: 0 1.6em 0 0 !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options li.vuo-mn-link a:not(:hover):not(:active) {
+    color: rgba(230, 236, 245, 0.95) !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options li.vuo-mn-link a::after {
+    opacity: 0.85;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options li.vuo-mn-sys a {
+    gap: 0.45em !important;
+    font-size: calc(var(--vuo-menu-fontsize, 24px) * 0.67) !important;
+    line-height: 1.5 !important;
+    padding: 0 !important;
+    margin: 0 1.6em 0 0 !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options li.vuo-mn-sys a:not(:hover):not(:active) {
+    color: rgba(220, 230, 245, 0.72) !important;
+}
+body.vuo-layout-modern.vuo-malign-center div[ng-controller="ControllerMain"] .options li a,
+body.vuo-layout-modern.vuo-malign-right div[ng-controller="ControllerMain"] .options li a {
+    margin-left: 0.3em !important;
+    margin-right: 0.3em !important;
+}
+body.vuo-layout-modern.vuo-malign-center div[ng-controller="ControllerMain"] .options li.vuo-mn-link a,
+body.vuo-layout-modern.vuo-malign-center div[ng-controller="ControllerMain"] .options li.vuo-mn-sys a,
+body.vuo-layout-modern.vuo-malign-right div[ng-controller="ControllerMain"] .options li.vuo-mn-link a,
+body.vuo-layout-modern.vuo-malign-right div[ng-controller="ControllerMain"] .options li.vuo-mn-sys a {
+    margin-left: 0.8em !important;
+    margin-right: 0.8em !important;
+}
+body.vuo-layout-modern:not(.vuo-hover-vanilla) div[ng-controller="ControllerMain"] .options a {
+    transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease, text-shadow 0.18s ease !important;
+}
+body.vuo-layout-modern:not(.vuo-hover-vanilla) div[ng-controller="ControllerMain"] .options li.vuo-mn-cta a:hover {
+    transform: translateY(-2px) !important;
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options a[ng-click="BackToGame()"],
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options li.vuo-mn-pri a {
+    --vuo-mn-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5.5v13l10.5-6.5z'/%3E%3C/svg%3E");
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options li:not(.vuo-mn-pri) a[ng-href="#/newgame/"] {
+    --vuo-mn-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Cpath d='M3 6.5l6-2.5 6 2.5 6-2.5v13.5l-6 2.5-6-2.5-6 2.5z'/%3E%3Cpath d='M9 4v13.5M15 6.5V20'/%3E%3C/svg%3E");
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options li:not(.vuo-mn-pri) a[ng-href="#/servers/"] {
+    --vuo-mn-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z'/%3E%3C/svg%3E");
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options a[ng-href="#/addons/"] {
+    --vuo-mn-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Cpath d='M12 3l8 4.5v9L12 21l-8-4.5v-9z'/%3E%3Cpath d='M4 7.5l8 4.5 8-4.5M12 12v9'/%3E%3C/svg%3E");
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options a[ng-href="#/dupes/"] {
+    --vuo-mn-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Crect x='8' y='8' width='12' height='12' rx='2'/%3E%3Cpath d='M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2'/%3E%3C/svg%3E");
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options a[ng-href="#/saves/"] {
+    --vuo-mn-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Cpath d='M5 4h11l3 3v13H5z'/%3E%3Cpath d='M8 4v5h7V4M8 20v-6h8v6'/%3E%3C/svg%3E");
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options a[ng-href="#/demos/"] {
+    --vuo-mn-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='14' rx='2'/%3E%3Cpath d='M10 9.5v5l4.5-2.5z' fill='%23000'/%3E%3C/svg%3E");
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options a[ng-click*="OpenOptionsDialog"] {
+    --vuo-mn-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M4 7h10M18 7h2M4 17h4M12 17h8'/%3E%3Ccircle cx='16' cy='7' r='2'/%3E%3Ccircle cx='10' cy='17' r='2'/%3E%3C/svg%3E");
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options a[ng-click*="Disconnect"] {
+    --vuo-mn-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 20H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3'/%3E%3Cpath d='M16 16l4-4-4-4M20 12H9'/%3E%3C/svg%3E");
+}
+body.vuo-layout-modern div[ng-controller="ControllerMain"] .options a[ng-click*="Quit"] {
+    --vuo-mn-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M12 3v8'/%3E%3Cpath d='M6.3 6.8a8 8 0 1 0 11.4 0'/%3E%3C/svg%3E");
+}
+
 body.vuo-malign-left   div[ng-controller="ControllerMain"] .options ul,
 body.vuo-malign-left   div[ng-controller="ControllerMain"] .options ul li { text-align: left !important; }
 body.vuo-malign-center div[ng-controller="ControllerMain"] .options ul,
@@ -2653,11 +3430,11 @@ body.vuo-malign-right  div[ng-controller="ControllerMain"] .options ul,
 body.vuo-malign-right  div[ng-controller="ControllerMain"] .options ul li { text-align: right !important; }
 
 #vuo_ld_preview {
-    position: fixed !important; top: calc(28px + (100vh - 56px) * var(--ld-y, 1)) !important; bottom: auto !important; right: 24px !important; left: auto !important;
+    position: fixed !important; top: calc(28px + (var(--vuo-vh, 1vh) * 100 - 56px) * var(--ld-y, 1)) !important; bottom: auto !important; right: 24px !important; left: auto !important;
     z-index: 10000 !important; box-sizing: border-box !important;
     display: flex !important; flex-direction: row !important; align-items: center !important; gap: 12px !important;
     padding: 14px 16px 12px 16px !important;
-    background: rgba(8, 10, 18, 0.70) !important;
+    background: rgba(0, 0, 0, 0.70) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 10px !important;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.60), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
@@ -2684,10 +3461,10 @@ body.vuo-malign-right  div[ng-controller="ControllerMain"] .options ul li { text
 }
 
 #vuo_ldi_preview {
-    position: fixed !important; top: calc(16px + (100vh - 32px) * var(--ld-iy, 0)) !important; left: 16px !important; right: auto !important;
+    position: fixed !important; top: calc(16px + (var(--vuo-vh, 1vh) * 100 - 32px) * var(--ld-iy, 0)) !important; left: 16px !important; right: auto !important;
     z-index: 10000 !important; box-sizing: border-box !important;
     display: inline-flex !important; flex-direction: row !important; align-items: center !important;
-    background: rgba(8, 10, 18, 0.70) !important;
+    background: rgba(0, 0, 0, 0.70) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 10px !important; overflow: hidden !important; white-space: nowrap !important;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.60), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
@@ -2702,10 +3479,84 @@ body.vuo-malign-right  div[ng-controller="ControllerMain"] .options ul li { text
 .vuo-ldi-map {
     width: 72px; height: 72px; flex-shrink: 0;
     border-right: 1px solid rgba(255, 255, 255, 0.05);
-    background: url('asset://mapimage/gm_construct') center / cover no-repeat, rgba(8, 10, 18, 0.65);
+    background: url('asset://mapimage/gm_construct') center / cover no-repeat, rgba(0, 0, 0, 0.65);
 }
 .vuo-ldi-text { display: flex; flex-direction: column; justify-content: center; padding: 12px 18px; gap: 3px; }
 .vuo-ldi-name { font-size: 14px; font-weight: 500; color: rgba(225, 238, 255, 0.95); letter-spacing: 0.05em; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.90); }
 .vuo-ldi-mapname { font-size: 12px; color: rgba(160, 190, 230, 0.75); letter-spacing: 0.05em; }
 .vuo-ldi-gm { font-size: 11px; font-weight: 500; color: rgba(var(--vuo-blue-rgb), 0.85); letter-spacing: 0.08em; text-transform: uppercase; }
 
+
+input[type="checkbox"] {
+    -webkit-appearance: none !important;
+    box-sizing: border-box !important;
+    background-color: rgba(0, 0, 0, 0.55) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.38) !important;
+    border-radius: 4px !important;
+    width: 14px !important;
+    height: 14px !important;
+    margin: 3px 3px 0px 4px !important;
+    cursor: pointer !important;
+    vertical-align: middle !important;
+    background-image: none !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 0 0 !important;
+    position: relative !important;
+    transition: background-color 0.15s ease, border-color 0.15s ease, background-size 0.15s ease !important;
+}
+input[type="checkbox"]:hover {
+    border-color: rgba(var(--vuo-blue-rgb, 35, 135, 237), 0.90) !important;
+    background-color: rgba(var(--vuo-blue-rgb, 35, 135, 237), 0.12) !important;
+}
+input[type="checkbox"]:checked {
+    background-color: rgb(var(--vuo-green-rgb, 60, 200, 140)) !important;
+    border-color: rgb(var(--vuo-green-rgb, 60, 200, 140)) !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.6 8.4l2.9 2.9 5.9-6.6'/%3E%3C/svg%3E") !important;
+    background-size: 12px 12px !important;
+}
+input[type="checkbox"]:checked:hover {
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.6 8.4l2.9 2.9 5.9-6.6'/%3E%3C/svg%3E"),
+        linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.18)) !important;
+    background-size: 12px 12px, 100% 100% !important;
+}
+input[type="checkbox"]:disabled {
+    cursor: default !important;
+    opacity: 0.45 !important;
+}
+
+input[type="radio"] {
+    -webkit-appearance: none !important;
+    box-sizing: border-box !important;
+    background-color: rgba(0, 0, 0, 0.55) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.38) !important;
+    border-radius: 50% !important;
+    width: 14px !important;
+    height: 14px !important;
+    margin: 3px 3px 0px 5px !important;
+    cursor: pointer !important;
+    vertical-align: middle !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 100% !important;
+    transition: background-color 0.15s ease, border-color 0.15s ease !important;
+}
+input[type="radio"]:hover {
+    border-color: rgba(var(--vuo-blue-rgb, 35, 135, 237), 0.90) !important;
+    background-color: rgba(var(--vuo-blue-rgb, 35, 135, 237), 0.12) !important;
+}
+input[type="radio"]:checked {
+    border-color: rgb(var(--vuo-green-rgb, 60, 200, 140)) !important;
+    background-color: rgba(0, 0, 0, 0.55) !important;
+    background-image: radial-gradient(circle, rgb(var(--vuo-green-rgb, 60, 200, 140)) 0 3.2px, transparent 3.8px) !important;
+}
+input[type="radio"]:checked:hover {
+    background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.30) 0 3.2px, transparent 3.8px),
+        radial-gradient(circle, rgb(var(--vuo-green-rgb, 60, 200, 140)) 0 3.2px, transparent 3.8px) !important;
+}
+input[type="radio"]:disabled {
+    cursor: default !important;
+    opacity: 0.45 !important;
+}
