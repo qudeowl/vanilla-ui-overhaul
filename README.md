@@ -64,6 +64,7 @@ If your Garry's Mod folder isn't found automatically, set `GMOD_DIR` to it, for 
 1. Verify game files on Steam
 2. Delete `...\garrysmod\addons\Vanilla_UI_StartupScreen` and `...\garrysmod\workshop\materials\console`
 3. If you installed v1.0, also delete `spawnmenu_theme.lua` from `...\garrysmod\lua\autorun\client` if it exists
+4. Delete `vuo_livebg.lua` from `...\garrysmod\lua\autorun`
 
 **Manual (Alternative)**
 
