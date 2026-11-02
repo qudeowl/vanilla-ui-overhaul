@@ -17,6 +17,8 @@ A redesigned main menu. Choose your own fonts, backgrounds, music and layout.
 
 > Make sure the game is closed before running the installer.
 
+> Already installed? Run the installer again and pick **2. Update**. Your settings and files stay.
+
 **Linux**
 
 Linux support is still experimental. If the menu doesn't load properly (for example, the top bar buttons have no labels), this setup has worked for our testers:
@@ -56,7 +58,7 @@ If your Garry's Mod folder isn't found automatically, set `GMOD_DIR` to it, for 
 **Automatic (Recommended)**
 
 1. Run the .bat (or the .sh on Linux)
-2. Select > 3. Uninstall (Reset To Default)
+2. Select **3. Uninstall (Reset To Default)**
 3. Verify game files on Steam
 
 **Manual**
