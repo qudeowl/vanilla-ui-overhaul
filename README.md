@@ -51,8 +51,6 @@ If your Garry's Mod folder isn't found automatically, set `GMOD_DIR` to it, for 
 3. For the startup screen, move `addons\garrysmod\addons\Vanilla_UI_StartupScreen` to `...\garrysmod\addons` and `addons\garrysmod\workshop` to `...\garrysmod`
 > The alternative installation method avoids modifying game files and reduces issues caused by official updates. However, some interface elements may be unavailable or may not work as expected, as they may be ignored by the game.
 
----
-
 ## Uninstall
 
 **Automatic (Recommended)**
@@ -74,8 +72,6 @@ If your Garry's Mod folder isn't found automatically, set `GMOD_DIR` to it, for 
 2. Delete the `garrysmod` and `Vanilla_UI_StartupScreen` folders
 3. Delete `...\garrysmod\workshop\materials\console`
 > Follow alternative steps only if you installed the mod using the alternative installation method.
-
----
 
 ## Support
 **Vanilla UI+** is free and always will be. If you enjoy it, you can [support me here](https://buymeacoffee.com/qudeowl). Thank you!
