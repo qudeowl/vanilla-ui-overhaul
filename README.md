@@ -19,6 +19,8 @@ A redesigned main menu. Choose your own fonts, backgrounds, music and layout.
 
 > Already installed? Run the installer again and pick **2. Update**. Your settings and files stay.
 
+> Menu not responding with Live Background on? Open the console and type `vuo_livebg_off`. If the console doesn't open, add `-console` to the game's launch options in Steam.
+
 **Linux**
 
 Linux support is still experimental. If the menu doesn't load properly (for example, the top bar buttons have no labels), this setup has worked for our testers:
