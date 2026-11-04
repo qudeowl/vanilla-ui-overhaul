@@ -5,6 +5,10 @@ local function nfSettingsRaw()
 	if ( ok and isstring( legacy ) and legacy ~= "" ) then return legacy end
 end
 
+local function nfSettingsJS( raw )
+	return "JSON.parse(\"" .. string.JavascriptSafe( raw ) .. "\")"
+end
+
 local function nfReadSettings()
 	local raw = nfSettingsRaw()
 	local cfg = raw and util.JSONToTable( raw ) or nil
@@ -621,7 +625,7 @@ do
 		pcall( function()
 			pnlMainMenu:Call( "if(window.vuoSetBackgrounds){vuoSetBackgrounds([" .. table.concat( parts, "," ) .. "]);}" )
 			pnlMainMenu:Call( "if(window.vuoSetDefaultBackgrounds){vuoSetDefaultBackgrounds([" .. table.concat( dparts, "," ) .. "]);}" )
-			pnlMainMenu:Call( "if(window.vuoApplySettings){vuoApplySettings(" .. raw .. ");}" )
+			pnlMainMenu:Call( "if(window.vuoApplySettings){vuoApplySettings(" .. nfSettingsJS( raw ) .. ");}" )
 		end )
 	end
 
@@ -1009,6 +1013,21 @@ do
 		vuoLiveEnd()
 		return false
 	end
+
+	concommand.Add( "vuo_livebg_off", function()
+		st.enabled = false
+		local raw = nfSettingsRaw()
+		if ( raw ) then
+			raw = string.gsub( raw, "\"liveBg\"%s*:%s*true", "\"liveBg\":false" )
+			cookie.Set( "vuo_settings", raw )
+			vuoLiveJS( "if(window.vuoApplySettings){vuoApplySettings(" .. nfSettingsJS( raw ) .. ");}" )
+		end
+		if ( st.on ) then
+			vuoLiveStop()
+			RunConsoleCommand( "disconnect" )
+		end
+		print( "Live background is now off." )
+	end )
 
 	hook.Add( "StartGame", "VUO_LiveBG", vuoLiveEnd )
 	hook.Add( "GameContentChanged", "VUO_LiveBG", function()
