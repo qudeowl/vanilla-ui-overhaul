@@ -82,7 +82,7 @@ hook.Add( "DrawOverlay", "MenuDrawLuaErrors", function()
 		if ( v.y == nil ) then v.y = idealy end
 		if ( v.w == nil ) then v.w = surface.GetTextSize( v.text ) + 48 end
 
-		draw.RoundedBox( 8, v.x, v.y, v.w, height, Color( 0, 0, 0, 220 ) )
+		draw.RoundedBox( 2, v.x, v.y, v.w, height, Color( 0, 0, 0, 220 ) )
 
 		if ( v.last > Recent ) then
 			local alpha = ( v.last - Recent ) * 180

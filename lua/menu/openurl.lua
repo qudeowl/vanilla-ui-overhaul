@@ -26,7 +26,7 @@ local uoSounds = {
 	back	= { "vuo_sounds/menu_back.wav", "garrysmod/ui_return.wav" }
 }
 
-local cornerRadius = 8
+local cornerRadius = 4
 local cornerPixels = {}
 
 for py = 0, cornerRadius - 1 do
@@ -57,44 +57,18 @@ local function uoOutline( x, y, w, h, col )
 
 end
 
-local function uoAccentLine( x, y, w, a, b )
-
-	for i = 0, w - 1, 2 do
-		local f = ( i + 1 ) / w
-		local r, g, bl, al
-		if ( f < 0.3 ) then
-			r, g, bl, al = a.r, a.g, a.b, 0.65 * f / 0.3
-		elseif ( f < 0.7 ) then
-			local k = ( f - 0.3 ) / 0.4
-			r, g, bl, al = Lerp( k, a.r, b.r ), Lerp( k, a.g, b.g ), Lerp( k, a.b, b.b ), Lerp( k, 0.65, 0.55 )
-		else
-			r, g, bl, al = b.r, b.g, b.b, 0.55 * ( 1 - f ) / 0.3
-		end
-		local sw = math.min( 2, w - i )
-		surface.SetDrawColor( r, g, bl, al * 255 )
-		surface.DrawRect( x + i, y, sw, 1 )
-		surface.SetDrawColor( a.r, a.g, a.b, al * 40 )
-		surface.DrawRect( x + i, y - 1, sw, 1 )
-		surface.DrawRect( x + i, y + 1, sw, 1 )
-		surface.SetDrawColor( a.r, a.g, a.b, al * 16 )
-		surface.DrawRect( x + i, y - 2, sw, 1 )
-		surface.DrawRect( x + i, y + 2, sw, 1 )
-	end
-
-end
-
 local uoCheckMat = Material( "vuo_ui/check.png", "smooth mips" )
 
 local function uoCheckbox( w, h, checked, onCol )
 	if ( checked ) then
-		draw.RoundedBox( 4, 0, 0, w, h, onCol )
+		draw.RoundedBox( 3, 0, 0, w, h, onCol )
 		local m = math.floor( w / 14 + 0.5 )
 		surface.SetDrawColor( 255, 255, 255, 255 )
 		surface.SetMaterial( uoCheckMat )
 		surface.DrawTexturedRect( m, m, w - m * 2, h - m * 2 )
 	else
-		draw.RoundedBox( 4, 0, 0, w, h, Color( 255, 255, 255, 97 ) )
-		draw.RoundedBox( 4, 1, 1, w - 2, h - 2, Color( 10, 10, 10, 255 ) )
+		draw.RoundedBox( 3, 0, 0, w, h, Color( 255, 255, 255, 97 ) )
+		draw.RoundedBox( 3, 1, 1, w - 2, h - 2, Color( 10, 10, 10, 255 ) )
 	end
 end
 
@@ -109,8 +83,6 @@ local function uoTheme()
 		frame		= Color( 0, 0, 0, 220 ),
 		tooltip		= Color( 21, 21, 21, 250 ),
 		border		= Color( 255, 255, 255, 4 ),
-		lineA		= Color( pr, pg, pb ),
-		lineB		= Color( sr, sg, sb ),
 		title		= Color( 225, 238, 255, 235 ),
 		text		= Color( 200, 212, 230, 220 ),
 		field		= Color( 255, 255, 255, 10 ),
@@ -150,7 +122,7 @@ local function uoSkinFrame( frame, t )
 	frame.btnMinim:SetVisible( false )
 
 	frame.btnClose.Paint = function( s, w, h )
-		if ( s:IsHovered() ) then draw.RoundedBox( 5, 0, 0, w, h, t.danger ) end
+		if ( s:IsHovered() ) then draw.RoundedBox( 3, 0, 0, w, h, t.danger ) end
 		local c = s:IsHovered() and t.buttonText or t.text
 		surface.SetDrawColor( c.r, c.g, c.b, c.a )
 		local p = 7
@@ -169,7 +141,6 @@ local function uoSkinFrame( frame, t )
 	frame.Paint = function( s, w, h )
 		draw.RoundedBox( cornerRadius, 0, 0, w, h, t.frame )
 		uoOutline( 0, 0, w, h, t.border )
-		uoAccentLine( 1, 32, w - 2, t.lineA, t.lineB )
 		return true
 	end
 
@@ -196,7 +167,7 @@ local function uoSkinButton( btn, t, hover, down )
 		elseif ( s:IsHovered() ) then
 			col = hover
 		end
-		draw.RoundedBox( 6, 0, 0, w, h, col )
+		draw.RoundedBox( 4, 0, 0, w, h, col )
 	end
 
 	btn.UpdateColours = function( s, skin )
@@ -358,7 +329,7 @@ function PANEL:Init()
 	self.URL:SetHeight( 28 )
 	self.URL:Dock( TOP )
 	self.URL.Paint = function( s, w, h )
-		draw.RoundedBox( 6, 0, 0, w, h, t.field )
+		draw.RoundedBox( 3, 0, 0, w, h, t.field )
 		s:DrawTextEntryText( t.title, t.accent, t.title )
 	end
 
@@ -381,7 +352,7 @@ function PANEL:Init()
 	self.CustomPanel.Color = Color( 0, 0, 0, 0 )
 	self.CustomPanel.Paint = function( s, w, h )
 		if ( s.Color.a == 0 ) then return end
-		draw.RoundedBox( 6, 0, 0, w, h, Color( s.Color.r, s.Color.g, s.Color.b, 40 ) )
+		draw.RoundedBox( 3, 0, 0, w, h, Color( s.Color.r, s.Color.g, s.Color.b, 40 ) )
 	end
 
 	local sizeToContents = self.CustomPanel.SizeToContents

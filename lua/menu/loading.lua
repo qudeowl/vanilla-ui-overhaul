@@ -647,7 +647,19 @@ function VUO_FetchLatest()
 			if ( code ~= 200 or not isstring( body ) or not IsValid( pnlMainMenu ) ) then return end
 			local tag = string.match( body, "\"tag_name\"%s*:%s*\"([^\"]*)\"" )
 			local v = tag and string.match( tag, "%d+%.[%d%.]*%d" )
-			if ( v ) then pnlMainMenu:Call( "if(window.vuoSetLatest){vuoSetLatest('" .. v .. "');}" ) end
+			if ( not v ) then return end
+			local function done( b )
+				if ( not IsValid( pnlMainMenu ) ) then return end
+				local bv, bn = string.match( b or "", "^%s*(%d+%.[%d%.]*%d)%s+(%d%d%d%d%d%d%d%d)" )
+				if ( bv ) then pnlMainMenu:Call( "if(window.vuoSetBuild){vuoSetBuild('" .. bv .. " " .. bn .. "');}" ) end
+				pnlMainMenu:Call( "if(window.vuoSetLatest){vuoSetLatest('" .. v .. "');}" )
+			end
+			HTTP( {
+				url = "https://raw.githubusercontent.com/qudeowl/vanilla-ui-overhaul/main/build.txt",
+				method = "GET",
+				success = function( c, b ) done( c == 200 and b or nil ) end,
+				failed = function() done() end,
+			} )
 		end,
 	} )
 end
@@ -896,7 +908,7 @@ do
 
 		local loading = IsInLoading()
 		local ingame = IsInGame()
-		if ( VUO_LiveBGActive() ) then loading, ingame = false, false end
+		if ( VUO_LiveBGActive() or VUO_LiveBGLeaving() ) then loading, ingame = false, false end
 
 		local state = tostring( loading ) .. "|" .. tostring( ingame )
 		if ( state == last ) then return end
@@ -972,6 +984,12 @@ do
 		if ( IsValid( pnlMainMenu ) ) then pnlMainMenu.IsInGame = nil end
 	end
 
+	local function vuoLiveLeave()
+		vuoLiveStop()
+		st.leaveUntil = SysTime() + 5
+		RunConsoleCommand( "disconnect" )
+	end
+
 	local function vuoLiveStart()
 		vuoLiveRead()
 		if ( not st.enabled ) then return end
@@ -991,6 +1009,10 @@ do
 
 	function VUO_LiveBGActive()
 		return st.on
+	end
+
+	function VUO_LiveBGLeaving()
+		return st.leaveUntil ~= nil
 	end
 
 	function VUO_LiveBGEnabled()
@@ -1022,10 +1044,7 @@ do
 			cookie.Set( "vuo_settings", raw )
 			vuoLiveJS( "if(window.vuoApplySettings){vuoApplySettings(" .. nfSettingsJS( raw ) .. ");}" )
 		end
-		if ( st.on ) then
-			vuoLiveStop()
-			RunConsoleCommand( "disconnect" )
-		end
+		if ( st.on ) then vuoLiveLeave() end
 		print( "Live background is now off." )
 	end )
 
@@ -1053,8 +1072,7 @@ do
 	function VUO_LiveBGRefresh()
 		vuoLiveRead()
 		if ( st.on and ( not st.enabled or ( st.want ~= "random" and st.want ~= st.map ) ) ) then
-			vuoLiveStop()
-			RunConsoleCommand( "disconnect" )
+			vuoLiveLeave()
 		end
 		st.idleSince = SysTime() - 1
 	end
@@ -1087,7 +1105,7 @@ do
 			pnlMainMenu._vuoLiveWrap = true
 			local call = pnlMainMenu.Call
 			pnlMainMenu.Call = function( self, js )
-				if ( st.on and js == "SetInGame( true )" ) then js = "SetInGame( false )" end
+				if ( ( st.on or st.leaveUntil ) and js == "SetInGame( true )" ) then js = "SetInGame( false )" end
 				return call( self, js )
 			end
 			st.pushes, st.pushAt = 0, SysTime() + 1
@@ -1102,6 +1120,11 @@ do
 
 		local loading = IsInLoading()
 		local ingame = IsInGame()
+
+		if ( st.leaveUntil and ( not ( ingame or loading ) or SysTime() > st.leaveUntil ) ) then
+			st.leaveUntil = nil
+			pnlMainMenu.IsInGame = nil
+		end
 
 		if ( st.on and IsHostingGame() ) then
 			local hm = string.lower( string.StripExtension( GetConVarString( "host_map" ) or "" ) )
