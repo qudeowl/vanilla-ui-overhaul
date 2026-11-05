@@ -373,6 +373,28 @@ DIV.page:not([ng-controller="ControllerMain"]) DIV.options LI UL LI {
     margin: 0 0 2px 0 !important;
     line-height: 1.5 !important;
 }
+DIV.page[ng-controller="ControllerAddons"] DIV.options,
+DIV.page[ng-controller="ControllerDupes"] DIV.options,
+DIV.page[ng-controller="ControllerSaves"] DIV.options,
+DIV.page[ng-controller="ControllerDemos"] DIV.options {
+    box-sizing: border-box !important;
+    width: 320px !important;
+}
+DIV.page[ng-controller="ControllerAddons"] DIV.options A,
+DIV.page[ng-controller="ControllerDupes"] DIV.options A,
+DIV.page[ng-controller="ControllerSaves"] DIV.options A,
+DIV.page[ng-controller="ControllerDemos"] DIV.options A {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+@media screen and (max-width: 1024px) {
+    DIV.page[ng-controller="ControllerAddons"] DIV.options,
+    DIV.page[ng-controller="ControllerDupes"] DIV.options,
+    DIV.page[ng-controller="ControllerSaves"] DIV.options,
+    DIV.page[ng-controller="ControllerDemos"] DIV.options {
+        width: 200px !important;
+    }
+}
 
 .news {
     top: 50px !important;
@@ -550,7 +572,7 @@ workshopcontainer,
     background-color: rgba(0, 0, 0, 0.55) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
     color: #eee !important;
-    border-radius: 6px !important;
+    border-radius: 5px !important;
 }
 .server_gamemodes_inner {
     top: 4px !important;
@@ -561,13 +583,13 @@ gamesettings {
     background-color: rgba(0, 0, 0, 0.55) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
     color: #eee !important;
-    border-radius: 6px !important;
+    border-radius: 5px !important;
 }
 
 div.centermessage {
     background: var(--vuo-panel) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    border-radius: 8px !important;
+    border-radius: 5px !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.65) !important;
     color: rgba(255, 255, 255, 0.85) !important;
 }
@@ -641,12 +663,7 @@ div.centermessage hr {
     border: none !important;
     height: 1px !important;
     margin: 10px 0 !important;
-    background: linear-gradient(90deg,
-        transparent 0%,
-        rgba(var(--vuo-blue-rgb), 0.65) 30%,
-        rgba(var(--vuo-green-rgb), 0.55) 70%,
-        transparent 100%) !important;
-    box-shadow: 0 0 8px rgba(var(--vuo-blue-rgb), 0.30) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
 }
 
 .server_gamemodes button,
@@ -674,7 +691,7 @@ div.centermessage hr {
     background-color: rgba(0, 0, 0, 0.55) !important;
     background-image: none !important;
     border: 1px solid rgba(255, 255, 255, 0.06) !important;
-    border-radius: 5px !important;
+    border-radius: 3px !important;
 }
 .gamemode:hover {
     background-color: rgba(var(--vuo-blue-rgb), 0.18) !important;
@@ -691,7 +708,7 @@ div.centermessage hr {
 .gamemode.noplayers:hover { opacity: 1 !important; }
 
 .gamemode .name tag {
-    border-radius: 10px !important;
+    border-radius: 3px !important;
     padding: 1px 9px !important;
     font-size: 10px !important;
     font-weight: 600 !important;
@@ -822,7 +839,7 @@ h1.menuheader small, .menuheader small {
 .serverlist .header {
     background: rgba(var(--vuo-blue-rgb), 0.12) !important;
     border-bottom: 1px solid rgba(var(--vuo-blue-rgb), 0.25) !important;
-    border-radius: 5px 5px 0 0 !important;
+    border-radius: 4px 4px 0 0 !important;
 }
 .serverlist .header ping,
 .serverlist .header maxplayers,
@@ -956,7 +973,7 @@ A.bglink img {
 .server_browser input[type="text"]:not([class*="search"]) {
     background: rgba(0, 0, 0, 0.82) !important;
     border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    border-radius: 4px !important;
+    border-radius: 3px !important;
     color: #d0e0f0 !important;
     padding: 2px 4px !important;
 }
@@ -971,7 +988,7 @@ A.bglink img {
 button.return, a[href*="gamemodes"] {
     background: rgba(255, 255, 255, 0.04) !important;
     border: 1px solid rgba(255, 255, 255, 0.10) !important;
-    border-radius: 5px !important;
+    border-radius: 4px !important;
     color: rgba(200, 216, 240, 0.85) !important;
     transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease !important;
 }
@@ -1026,7 +1043,7 @@ button.return:active, a[href*="gamemodes"]:active {
     background: rgba(0, 0, 0, 0.50) !important;
     border: 1px solid rgba(255, 255, 255, 0.12) !important;
     color: #fff !important;
-    border-radius: 5px !important;
+    border-radius: 3px !important;
     width: 200px !important;
     height: 26px !important;
     padding: 0 8px !important;
@@ -1046,7 +1063,7 @@ DIV.page .add_fav_server .fav_inputs button {
     background: rgba(var(--vuo-blue-rgb), 0.60) !important;
     background-image: none !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    border-radius: 5px !important;
+    border-radius: 4px !important;
     color: #fff !important;
     font-weight: 600 !important;
     box-shadow: none !important;
@@ -1063,7 +1080,7 @@ DIV.page .add_fav_server .fav_inputs button:active {
 .flags_filter {
     background: var(--vuo-panel) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    border-radius: 5px !important;
+    border-radius: 4px !important;
 }
 .flags_filter .flag {
     background: rgba(36, 44, 70, 0.82) !important;
@@ -1080,7 +1097,7 @@ DIV.page .add_fav_server .fav_inputs button:active {
 div.serverinfo, #serverinfo {
     background-color: rgba(0, 0, 0, 0.60) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    border-radius: 6px !important;
+    border-radius: 4px !important;
 }
 .serverinfo name {
     color: #ffffff !important;
@@ -1107,7 +1124,7 @@ div.serverinfo, #serverinfo {
     color: #fff !important;
     padding: 8px 16px !important;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.50) !important;
-    border-radius: 5px !important;
+    border-radius: 4px !important;
     cursor: pointer !important;
     font-family: var(--vuo-font) !important;
     font-size: 20px !important;
@@ -1123,7 +1140,7 @@ div.serverinfo, #serverinfo {
     background-color: rgba(0, 0, 0, 0.82) !important;
     border: 1px solid rgba(255, 255, 255, 0.07) !important;
     color: #b0c0d8 !important;
-    border-radius: 4px !important;
+    border-radius: 3px !important;
 }
 .controls LI.category:hover {
     background-color: rgba(var(--vuo-blue-rgb), 0.20) !important;
@@ -1196,7 +1213,7 @@ body:not(.vuo-hover-vanilla) .maplist .controls LI.category:active {
 
 UL.category LI.mapicon.selected {
     background-color: rgba(var(--vuo-green-rgb), 0.25) !important;
-    border-radius: 4px !important;
+    border-radius: 3px !important;
     border: 1px solid rgba(var(--vuo-green-rgb), 0.60) !important;
     box-shadow: 0 0 8px rgba(var(--vuo-green-rgb), 0.30) !important;
 }
@@ -1215,7 +1232,7 @@ UL.category LI.mapicon span {
 }
 UL.category LI.mapicon:hover {
     background-color: rgba(var(--vuo-blue-rgb), 0.15) !important;
-    border-radius: 4px !important;
+    border-radius: 3px !important;
 }
 UL.category LI.mapicon IMG.favtoggle { z-index: 3 !important; }
 body:not(.vuo-hover-vanilla) UL.category LI.mapicon {
@@ -1275,7 +1292,7 @@ gamesettings select {
         rgba(0, 0, 0, 0.85) !important;
     border: 1px solid rgba(var(--vuo-green-rgb), 0.45) !important;
     color: #e6f2ec !important;
-    border-radius: 6px !important;
+    border-radius: 3px !important;
     font-family: var(--vuo-font) !important;
     letter-spacing: 0.04em !important;
     transition: border-color 0.18s ease, box-shadow 0.18s ease !important;
@@ -1295,7 +1312,7 @@ gamesettings input[type="number"] {
     background: rgba(0, 0, 0, 0.80) !important;
     border: 1px solid rgba(255, 255, 255, 0.10) !important;
     color: #e0ecff !important;
-    border-radius: 6px !important;
+    border-radius: 3px !important;
     transition: border-color 0.18s ease !important;
 }
 gamesettings input:focus { border-color: rgba(var(--vuo-blue-rgb), 0.70) !important; }
@@ -1304,13 +1321,13 @@ SELECT {
     background: rgba(0, 0, 0, 0.80) !important;
     border: 1px solid rgba(255, 255, 255, 0.10) !important;
     color: #e0ecff !important;
-    border-radius: 6px !important;
+    border-radius: 3px !important;
 }
 INPUT.searchbox, INPUT.gm_search, INPUT[type="text"] {
     background: rgba(0, 0, 0, 0.72) !important;
     border: 1px solid rgba(255, 255, 255, 0.10) !important;
     color: #e0ecff !important;
-    border-radius: 6px !important;
+    border-radius: 3px !important;
     padding: 5px 9px !important;
     font-size: 12px !important;
     box-sizing: border-box !important;
@@ -1333,7 +1350,7 @@ gamesettings label {
     background-image: linear-gradient(0deg, rgba(var(--vuo-green-rgb), 0.16), rgba(var(--vuo-green-rgb), 0.16)) !important;
     border: 1px solid rgba(var(--vuo-green-rgb), 0.45) !important;
     color: #d9f5e8 !important;
-    border-radius: 6px !important;
+    border-radius: 3px !important;
     transition:
         border-color 0.18s ease,
         box-shadow 0.18s ease,
@@ -1350,7 +1367,7 @@ gamesettings label {
     background-image: linear-gradient(0deg, rgba(var(--vuo-green-rgb), 0.12), rgba(var(--vuo-green-rgb), 0.12)) !important;
     border: 1px solid rgba(var(--vuo-green-rgb), 0.35) !important;
     color: #d9f5e8 !important;
-    border-radius: 6px !important;
+    border-radius: 4px !important;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55) !important;
 }
 .dropdown .contents div:hover {
@@ -1380,7 +1397,7 @@ gamesettings label {
     background-color: rgba(0, 0, 0, 0.68) !important;
     background-image: none !important;
     border: 1px solid rgba(255, 255, 255, 0.07) !important;
-    border-radius: 10px !important;
+    border-radius: 4px !important;
     color: #eee !important;
     margin-bottom: 2px !important;
     box-shadow:
@@ -1549,7 +1566,7 @@ gamesettings label {
 #NavBar .button.nf-corner-btn {
     background: rgba(0, 0, 0, 0.68) !important;
     border: 1px solid rgba(255, 255, 255, 0.07) !important;
-    border-radius: 10px !important;
+    border-radius: 4px !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
     color: #eee !important;
     height: 40px !important;
@@ -1738,13 +1755,13 @@ UL.popup LI:hover {
 UL.language_list, UL.games_list, UL.gamemode_list, .popup {
     background-color: var(--vuo-panel) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    border-radius: 8px !important;
+    border-radius: 3px !important;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65) !important;
 }
 UL.gamemode_list LI, UL.language_list LI, UL.games_list LI {
     background-color: transparent !important;
     border: 1px solid transparent !important;
-    border-radius: 6px !important;
+    border-radius: 3px !important;
     box-shadow: none !important;
     color: #eeeeee !important;
 }
@@ -1853,7 +1870,7 @@ DIV.page BUTTON:not(.btn-primary-disabled) {
     background-image: none !important;
     background-color: rgba(0, 0, 0, 0.68) !important;
     border: 1px solid rgba(255, 255, 255, 0.10) !important;
-    border-radius: 10px !important;
+    border-radius: 6px !important;
     color: #fff !important;
     font-family: var(--vuo-font) !important;
     font-weight: 500 !important;
@@ -1894,7 +1911,7 @@ DIV.page BUTTON:not(.btn-primary-disabled):active {
     background-image: none !important;
     background-color: rgba(0, 0, 0, 0.52) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    border-radius: 10px !important;
+    border-radius: 6px !important;
     color: #777 !important;
     text-align: center !important;
 }
@@ -1948,7 +1965,7 @@ SPAN.installgamemode:hover { background-color: rgba(var(--vuo-blue-rgb), 0.90) !
 A.bglink {
     background-color: rgba(0, 0, 0, 0.68) !important;
     border: 1px solid rgba(255, 255, 255, 0.10) !important;
-    border-radius: 8px !important;
+    border-radius: 3px !important;
     color: #fff !important;
     letter-spacing: 0.05em !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
@@ -1966,7 +1983,7 @@ A.bglink:hover {
 workshopicon {
     position: relative !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    border-radius: 5px !important;
+    border-radius: 3px !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.42) !important;
     background-color: rgba(0, 0, 0, 0.65) !important;
     -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.42) !important;
@@ -1980,8 +1997,8 @@ workshopicon input[type="checkbox"].checkbox {
     margin: 0 !important;
 }
 workshopicon:hover {
-    border-color: rgba(var(--vuo-blue-rgb), 0.50) !important;
-    box-shadow: 0 4px 16px rgba(var(--vuo-blue-rgb), 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.22) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
 }
 workshopicon name label { padding-left: 8px !important; }
 workshopicon.disabled preview img { -webkit-filter: grayscale(1) !important; filter: grayscale(1) !important; }
@@ -1993,8 +2010,8 @@ body:not(.vuo-hover-vanilla) workshopicon preview img {
 }
 body:not(.vuo-hover-vanilla) workshopicon:hover {
     transform: translateY(-3px) !important;
-    border-color: rgba(var(--vuo-blue-rgb), 0.55) !important;
-    box-shadow: 0 0 0 1px rgba(var(--vuo-blue-rgb), 0.55), 0 8px 18px rgba(0, 0, 0, 0.45), 0 0 14px rgba(var(--vuo-blue-rgb), 0.25) !important;
+    border-color: rgba(255, 255, 255, 0.22) !important;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45) !important;
     z-index: 2 !important;
 }
 body:not(.vuo-hover-vanilla) workshopicon:hover preview img {
@@ -2008,19 +2025,14 @@ workshopicon author, workshopicon size {
     background-color: rgba(0, 0, 0, 0.65) !important;
     color: #8a9bb8 !important;
 }
+workshopicon author { max-width: 68% !important; }
 workshopicon votes {
     background-color: rgba(0, 0, 0, 0.65) !important;
     color: #3dcc82 !important;
 }
 workshopicon votes.negative { color: #e05555 !important; }
 workshopicon.installed {
-    border: 1px solid rgba(var(--vuo-blue-rgb), 0.35) !important;
-}
-workshopicon.installed name,
-workshopicon.installed author,
-workshopicon.installed votes,
-workshopicon.installed size {
-    background: rgba(16, 52, 96, 0.68) !important;
+    border: 1px solid rgba(var(--vuo-green-rgb), 0.30) !important;
 }
 workshopicon.disabled {
     border-color: rgba(255, 255, 255, 0.12) !important;
@@ -2042,8 +2054,11 @@ workshopicon.invalid size {
     color: #ffc0c0 !important;
 }
 workshopicon description {
-    background: linear-gradient(rgba(0, 0, 0, 0.90), rgba(0, 0, 0, 0.97)) !important;
-    color: #c8d8f0 !important;
+    background: linear-gradient(rgba(8, 10, 14, 0.58), rgba(8, 10, 14, 0.80)) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    backdrop-filter: blur(8px) !important;
+    color: #e2ebfa !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85) !important;
     font-size: 11px !important;
     line-height: 1.55 !important;
     padding: 30px 12px 42px !important;
@@ -2068,7 +2083,7 @@ workshopicon description {
 .ugc_settings_button {
     background: rgba(var(--vuo-blue-rgb), 0.60) !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    border-radius: 5px !important;
+    border-radius: 4px !important;
 }
 .ugc_settings_button:hover { background: rgba(var(--vuo-blue-rgb), 0.90) !important; }
 .ugc_settings_button:active {
@@ -2091,7 +2106,7 @@ workshopicon description {
 pagination {
     background-color: rgba(0, 0, 0, 0.65) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    border-radius: 5px !important;
+    border-radius: 4px !important;
     box-shadow:
         0 2px 12px rgba(0, 0, 0, 0.35),
         inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
@@ -2134,7 +2149,7 @@ pagination span.pagenum {
 }
 ::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.18) !important;
-    border-radius: 4px !important;
+    border-radius: 2px !important;
 }
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(var(--vuo-blue-rgb), 0.70) !important;
@@ -2149,7 +2164,7 @@ input.search_bar, input[type="number"] {
     background: rgba(0, 0, 0, 0.78) !important;
     border: 1px solid rgba(255, 255, 255, 0.12) !important;
     color: #e0ecff !important;
-    border-radius: 4px !important;
+    border-radius: 3px !important;
     outline-color: rgba(var(--vuo-blue-rgb), 0.60) !important;
 }
 input[type="text"]::placeholder,
@@ -2159,12 +2174,12 @@ input[type="password"]::placeholder { color: #4a5a78 !important; }
 
 .topnav {
     background-color: rgba(0, 0, 0, 0.70) !important;
-    border-radius: 4px !important;
+    border-radius: 3px !important;
 }
 .topnav A {
     background-color: rgba(var(--vuo-blue-rgb), 0.50) !important;
     color: #fff !important;
-    border-radius: 3px !important;
+    border-radius: 2px !important;
 }
 
 DIV.gridicon name {
@@ -2417,7 +2432,7 @@ body[ng-controller="CDupes"] .options UL LI button:hover {
 controls control {
     background-color: rgba(0, 0, 0, 0.80) !important;
     border: 1px solid rgba(255, 255, 255, 0.14) !important;
-    border-radius: 4px !important;
+    border-radius: 2px !important;
     box-shadow: none !important;
     -webkit-box-shadow: none !important;
     color: #ffffff !important;
@@ -2472,7 +2487,7 @@ controls control[ng-click="Favorite( file, false )"] img {
     flex-direction: column !important;
     background: var(--vuo-panel) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    border-radius: 12px !important;
+    border-radius: 5px !important;
     box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7) !important;
     color: #e0ecff !important;
     font-family: var(--vuo-font) !important;
@@ -2506,17 +2521,17 @@ controls control[ng-click="Favorite( file, false )"] img {
 }
 .vuo-mp-title { font-size: 14px; font-weight: 700; letter-spacing: 0.04em; color: #eaf2ff; }
 .vuo-mp-count { font-size: 10px; color: rgba(150,175,215,0.7); margin-left: auto; white-space: nowrap; }
-.vuo-mp-close { cursor: pointer; font-size: 12px; color: rgba(180,200,230,0.7); width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; border-radius: 6px; transition: background 0.15s ease, color 0.15s ease; }
+.vuo-mp-close { cursor: pointer; font-size: 12px; color: rgba(180,200,230,0.7); width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; border-radius: 4px; transition: background 0.15s ease, color 0.15s ease; }
 .vuo-mp-close:hover { color: #fff; background: rgba(200, 60, 60, 0.6); }
 
 .vuo-mp-now {
     display: flex; align-items: center; gap: 13px; flex: 1; min-width: 0;
     margin: 0; padding: 12px 14px;
     background: rgba(255,255,255,0.035);
-    border: 1px solid rgba(255,255,255,0.07); border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.07); border-radius: 4px;
 }
 .vuo-mp-art {
-    width: 74px; height: 74px; flex-shrink: 0; border-radius: 12px; cursor: pointer;
+    width: 74px; height: 74px; flex-shrink: 0; border-radius: 3px; cursor: pointer;
     display: flex; align-items: center; justify-content: center; font-size: 30px; color: #cfe0f5;
     background: linear-gradient(135deg, rgba(var(--vuo-blue-rgb),0.30), rgba(0,0,0,0.6));
     border: 1px solid rgba(var(--vuo-blue-rgb),0.35);
@@ -2595,7 +2610,7 @@ controls control[ng-click="Favorite( file, false )"] img {
 
 .vuo-mp-search {
     flex-shrink: 0; margin: 13px 14px 0; padding: 8px 11px;
-    background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px;
+    background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 3px;
     color: #e0ecff; font-size: 12px; font-family: var(--vuo-font); outline: none;
     transition: border-color 0.15s ease;
 }
@@ -2610,10 +2625,10 @@ controls control[ng-click="Favorite( file, false )"] img {
 .vuo-mp-listcount { font-size: 10px; color: rgba(150,175,215,0.75); background: rgba(255,255,255,0.06); border-radius: 9999px; padding: 1px 8px; }
 .vuo-mp-right.vuo-list-collapsed #vuo_mp_list { display: none; }
 .vuo-mp-list { flex: 1; min-height: 0; overflow-y: auto; margin: 8px 6px 4px 8px; padding-right: 4px; }
-.vuo-mp-item { display: flex; align-items: center; gap: 11px; padding: 9px 10px; border-radius: 8px; cursor: pointer; transition: background 0.12s ease, color 0.12s ease; }
+.vuo-mp-item { display: flex; align-items: center; gap: 11px; padding: 9px 10px; border-radius: 3px; cursor: pointer; transition: background 0.12s ease, color 0.12s ease; }
 .vuo-mp-item:hover { background: rgba(var(--vuo-blue-rgb),0.16); }
 .vuo-mp-num {
-    position: relative; width: 24px; height: 24px; flex-shrink: 0; border-radius: 7px;
+    position: relative; width: 24px; height: 24px; flex-shrink: 0; border-radius: 3px;
     display: flex; align-items: center; justify-content: center; font-size: 11px; color: rgba(150,175,215,0.8);
     background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06);
 }
@@ -2641,7 +2656,7 @@ controls control[ng-click="Favorite( file, false )"] img {
 .vuo-mp-empty { font-size: 11px; color: rgba(160,185,225,0.6); text-align: center; padding: 26px 10px; line-height: 1.7; }
 
 .vuo-mp-nowact { display: flex; flex-direction: column; gap: 6px; align-items: stretch; flex-shrink: 0; }
-.vuo-mp-expand { align-self: flex-end; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; border-radius: 7px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); color: #cfdcf0; cursor: pointer; transition: background 0.15s ease, border-color 0.15s ease; }
+.vuo-mp-expand { align-self: flex-end; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; border-radius: 4px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); color: #cfdcf0; cursor: pointer; transition: background 0.15s ease, border-color 0.15s ease; }
 .vuo-mp-expand:hover { background: rgba(var(--vuo-blue-rgb),0.25); border-color: rgba(var(--vuo-blue-rgb),0.7); }
 .vuo-mp-expand .vuo-mpi { width: 13px; height: 13px; }
 .vuo-mp-expand:hover .vuo-mpi svg { animation: vuoIcoPop 0.5s ease-out; }
@@ -2649,10 +2664,10 @@ controls control[ng-click="Favorite( file, false )"] img {
 .vuo-np { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 10001; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.55); opacity: 0; pointer-events: none; transition: opacity 0.25s ease; font-family: var(--vuo-font); }
 .vuo-np.vuo-open { opacity: 1; pointer-events: auto; }
 .vuo-np-bg { position: absolute; top: -60px; left: -60px; right: -60px; bottom: -60px; background-size: cover; background-position: center; filter: blur(46px) brightness(0.4) saturate(1.2); transform: scale(1.15); z-index: 0; }
-.vuo-np-inner { position: relative; z-index: 1; width: 460px; max-width: calc(var(--vuo-vw, 1vw) * 92); max-height: calc(var(--vuo-vh, 1vh) * 94); box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 34px 34px 28px; background: rgba(0,0,0,0.93); border: 1px solid rgba(255,255,255,0.05); border-radius: 18px; box-shadow: 0 30px 90px rgba(0,0,0,0.78), inset 0 1px 0 rgba(255,255,255,0.05); }
-.vuo-np-collapse { position: absolute; top: 12px; right: 14px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: rgba(200,215,240,0.8); font-size: 14px; cursor: pointer; transition: background 0.15s ease, color 0.15s ease; }
+.vuo-np-inner { position: relative; z-index: 1; width: 460px; max-width: calc(var(--vuo-vw, 1vw) * 92); max-height: calc(var(--vuo-vh, 1vh) * 94); box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 34px 34px 28px; background: rgba(0,0,0,0.93); border: 1px solid rgba(255,255,255,0.05); border-radius: 5px; box-shadow: 0 30px 90px rgba(0,0,0,0.78), inset 0 1px 0 rgba(255,255,255,0.05); }
+.vuo-np-collapse { position: absolute; top: 12px; right: 14px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 4px; color: rgba(200,215,240,0.8); font-size: 14px; cursor: pointer; transition: background 0.15s ease, color 0.15s ease; }
 .vuo-np-collapse:hover { background: rgba(200,60,60,0.6); color: #fff; }
-.vuo-np-art { width: 230px; height: 230px; flex-shrink: 0; border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 76px; color: #cfe0f5; background-color: #000000; background-image: linear-gradient(135deg, rgba(var(--vuo-blue-rgb),0.35), rgba(0,0,0,0.7)); border: 1px solid rgba(var(--vuo-blue-rgb),0.4); background-size: cover; background-position: center; background-repeat: no-repeat; box-shadow: 0 18px 50px rgba(0,0,0,0.55); }
+.vuo-np-art { width: 230px; height: 230px; flex-shrink: 0; border-radius: 3px; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 76px; color: #cfe0f5; background-color: #000000; background-image: linear-gradient(135deg, rgba(var(--vuo-blue-rgb),0.35), rgba(0,0,0,0.7)); border: 1px solid rgba(var(--vuo-blue-rgb),0.4); background-size: cover; background-position: center; background-repeat: no-repeat; box-shadow: 0 18px 50px rgba(0,0,0,0.55); }
 .vuo-np-art.has-art { color: transparent; border-color: rgba(255,255,255,0.14); }
 .vuo-np-art .vuo-mpi { width: 76px; height: 76px; }
 .vuo-np-art svg { stroke-width: 0.9; }
@@ -2686,7 +2701,7 @@ controls control[ng-click="Favorite( file, false )"] img {
 .vuo-np-vol { position: relative; flex: 1; height: 6px; background: rgba(255,255,255,0.10); border-radius: 9999px; cursor: pointer; }
 .vuo-np-volfill { position: relative; height: 100%; width: 70%; background: rgba(var(--vuo-blue-rgb),0.85); border-radius: 9999px; }
 .vuo-np-volfill::after { content: ''; position: absolute; right: -7px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 2px rgba(var(--vuo-blue-rgb),0.95), 0 1px 5px rgba(0,0,0,0.55); }
-.vuo-np-yt { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #ff6a6a; background: rgba(255,60,60,0.12); border: 1px solid rgba(255,60,60,0.35); border-radius: 9px; padding: 9px 16px; cursor: pointer; transition: background 0.15s ease, color 0.15s ease; }
+.vuo-np-yt { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #ff6a6a; background: rgba(255,60,60,0.12); border: 1px solid rgba(255,60,60,0.35); border-radius: 4px; padding: 9px 16px; cursor: pointer; transition: background 0.15s ease, color 0.15s ease; }
 .vuo-np-yt:hover { background: rgba(255,60,60,0.24); color: #ff8a8a; }
 .vuo-np-yt .vuo-mpi { width: 15px; height: 15px; }
 .vuo-np-yt:hover .vuo-mpi svg { animation: vuoIcoPop 0.5s ease-out; }
@@ -2694,7 +2709,7 @@ controls control[ng-click="Favorite( file, false )"] img {
 #vuo_toast {
     position: fixed; top: 50px; right: 5px; width: 300px; box-sizing: border-box; overflow: hidden;
     display: flex; align-items: center; gap: 11px; padding: 10px 10px 12px 10px;
-    background: var(--vuo-panel); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px;
+    background: var(--vuo-panel); border: 1px solid rgba(255,255,255,0.05); border-radius: 5px;
     box-shadow: 0 12px 34px rgba(0,0,0,0.66);
     color: #e0ecff; font-family: var(--vuo-font); z-index: 10000; cursor: pointer;
     opacity: 0; transform: translateY(-8px); pointer-events: none;
@@ -2702,7 +2717,7 @@ controls control[ng-click="Favorite( file, false )"] img {
 }
 #vuo_toast.vuo-open { opacity: 1; transform: none; pointer-events: auto; }
 .vuo-toast-art {
-    width: 44px; height: 44px; flex-shrink: 0; border-radius: 9px;
+    width: 44px; height: 44px; flex-shrink: 0; border-radius: 3px;
     display: flex; align-items: center; justify-content: center; color: #cfe0f5;
     background: linear-gradient(135deg, rgba(var(--vuo-blue-rgb),0.30), rgba(0,0,0,0.6));
     border: 1px solid rgba(var(--vuo-blue-rgb),0.35);
@@ -2730,7 +2745,7 @@ controls control[ng-click="Favorite( file, false )"] img {
 .vuo-toast-fill { height: 100%; width: 0%; background: rgba(var(--vuo-blue-rgb),0.9); }
 
 .vuo-mp-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; flex-shrink: 0; margin: 0; }
-.vuo-mp-opt { min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 8px 11px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 9px; cursor: pointer; font-size: 12px; color: #cfdcf0; user-select: none; transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+.vuo-mp-opt { min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 8px 11px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; cursor: pointer; font-size: 12px; color: #cfdcf0; user-select: none; transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
 .vuo-mp-opt:hover { background: rgba(var(--vuo-blue-rgb),0.16); border-color: rgba(var(--vuo-blue-rgb),0.5); }
 .vuo-mp-opt.on { background: rgba(var(--vuo-green-rgb),0.14); border-color: rgba(var(--vuo-green-rgb),0.7); color: #eaf2ff; }
 .vuo-mp-sw { width: 26px; height: 14px; border-radius: 9999px; background: rgba(255,255,255,0.10); position: relative; flex-shrink: 0; transition: background 0.18s ease; }
@@ -2755,7 +2770,7 @@ controls control[ng-click="Favorite( file, false )"] img {
     width: 320px !important; max-height: calc(var(--vuo-vh, 1vh) * 82) !important;
     background: var(--vuo-panel) !important;
     border: 1px solid rgba(255,255,255,0.05) !important;
-    border-radius: 10px !important;
+    border-radius: 5px !important;
     box-shadow: 0 12px 34px rgba(0,0,0,0.66) !important;
     color: #e0ecff !important; font-family: var(--vuo-font) !important;
     z-index: 10001 !important; box-sizing: border-box !important;
@@ -2776,11 +2791,11 @@ controls control[ng-click="Favorite( file, false )"] img {
 .vuo-st-page { display: none; }
 .vuo-st-page.vuo-on { display: block; }
 .vuo-st-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 30px; padding: 4px 0; box-sizing: border-box; font-size: 12px; color: #cfe0f5; }
-.vuo-st-select { background: rgba(0,0,0,0.35); color: #e0ecff; border: 1px solid rgba(255,255,255,0.12); border-radius: 7px; padding: 5px 8px; font-size: 12px; font-family: var(--vuo-font); outline: none; width: 150px; max-width: 150px; cursor: pointer; }
+.vuo-st-select { background: rgba(0,0,0,0.35); color: #e0ecff; border: 1px solid rgba(255,255,255,0.12); border-radius: 3px; padding: 5px 8px; font-size: 12px; font-family: var(--vuo-font); outline: none; width: 150px; max-width: 150px; cursor: pointer; }
 .vuo-st-select:hover { border-color: rgba(var(--vuo-blue-rgb),0.6); }
 .vuo-dd { position: relative; flex-shrink: 0; width: 150px; }
 .vuo-dd > select { display: none !important; }
-.vuo-dd-btn { display: flex; align-items: center; justify-content: space-between; gap: 8px; box-sizing: border-box; width: 100%; height: 28px; padding: 0 9px 0 10px; border-radius: 7px; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.12); color: #e0ecff; font-size: 12px; cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease; }
+.vuo-dd-btn { display: flex; align-items: center; justify-content: space-between; gap: 8px; box-sizing: border-box; width: 100%; height: 28px; padding: 0 9px 0 10px; border-radius: 3px; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.12); color: #e0ecff; font-size: 12px; cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease; }
 .vuo-dd-btn:hover { border-color: rgba(var(--vuo-blue-rgb),0.6); background: rgba(var(--vuo-blue-rgb),0.08); }
 .vuo-dd.vuo-open .vuo-dd-btn { border-color: rgba(var(--vuo-blue-rgb),0.75); background: rgba(var(--vuo-blue-rgb),0.12); }
 .vuo-dd-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -2791,8 +2806,8 @@ controls control[ng-click="Favorite( file, false )"] img {
     from { opacity: 0; transform: translateY(-4px); }
     to   { opacity: 1; transform: none; }
 }
-.vuo-dd-list { position: fixed; z-index: 10003; box-sizing: border-box; max-width: 260px; max-height: 236px; overflow-y: auto; padding: 4px; background: rgba(0,0,0,0.97); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; box-shadow: 0 10px 28px rgba(0,0,0,0.6); font-family: var(--vuo-font); animation: vuoDdIn 0.15s ease; }
-.vuo-dd-opt { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 6px 8px 6px 9px; border-radius: 6px; font-size: 12px; color: #eeeeee; cursor: pointer; white-space: nowrap; transition: background 0.15s ease, color 0.15s ease; }
+.vuo-dd-list { position: fixed; z-index: 10003; box-sizing: border-box; max-width: 260px; max-height: 236px; overflow-y: auto; padding: 4px; background: rgba(0,0,0,0.97); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; box-shadow: 0 10px 28px rgba(0,0,0,0.6); font-family: var(--vuo-font); animation: vuoDdIn 0.15s ease; }
+.vuo-dd-opt { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 6px 8px 6px 9px; border-radius: 3px; font-size: 12px; color: #eeeeee; cursor: pointer; white-space: nowrap; transition: background 0.15s ease, color 0.15s ease; }
 .vuo-dd-opt:hover { background: rgba(var(--vuo-blue-rgb),0.16); }
 .vuo-dd-opt:active { background: rgba(var(--vuo-green-rgb),0.22); }
 .vuo-dd-opt.vuo-sel { background: rgba(var(--vuo-green-rgb),0.14); color: #b6f0d4; font-weight: 600; }
@@ -2814,7 +2829,7 @@ body.vuo-live-on #vuo_bg,
 body.vuo-live-on #vuo_bg2,
 body.vuo-live-on #vuo_bg_overlay { opacity: 0 !important; transition: opacity 1.2s ease !important; }
 .vuo-st-sfill::after { content: ''; position: absolute; right: -7px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 2px rgba(var(--vuo-blue-rgb),0.95), 0 1px 5px rgba(0,0,0,0.55); }
-.vuo-st-seg { display: flex; border: 1px solid rgba(255,255,255,0.10); border-radius: 7px; overflow: hidden; }
+.vuo-st-seg { display: flex; border: 1px solid rgba(255,255,255,0.10); border-radius: 4px; overflow: hidden; }
 .vuo-st-segbtn { font-size: 11px; padding: 5px 12px; cursor: pointer; color: rgba(190,205,230,0.8); background: rgba(0,0,0,0.5); transition: background 0.15s ease, color 0.15s ease; }
 .vuo-st-segbtn:hover { color: rgb(var(--vuo-blue-rgb)); }
 #vuo_st_acc_blue.vuo-sel  { background: rgba(var(--vuo-blue-rgb),0.30); color: #fff; }
@@ -2827,7 +2842,7 @@ body.vuo-live-on #vuo_bg_overlay { opacity: 0 !important; transition: opacity 1.
 
 .vuo-st-foldbody { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .vuo-st-foldbody:not(.open) { display: none; }
-.vuo-st-folder { display: flex; align-items: center; gap: 9px; padding: 9px 11px; cursor: pointer; border-radius: 8px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); user-select: none; transition: background 0.15s ease, border-color 0.15s ease; }
+.vuo-st-folder { display: flex; align-items: center; gap: 9px; padding: 9px 11px; cursor: pointer; border-radius: 4px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); user-select: none; transition: background 0.15s ease, border-color 0.15s ease; }
 .vuo-st-folder:hover { background: rgba(var(--vuo-blue-rgb),0.16); border-color: rgba(var(--vuo-blue-rgb),0.5); }
 .vuo-st-foldchev { font-size: 10px; color: rgba(150,175,215,0.85); transition: transform 0.15s ease; }
 .vuo-st-folder.open .vuo-st-foldchev { transform: rotate(90deg); }
@@ -2835,7 +2850,7 @@ body.vuo-live-on #vuo_bg_overlay { opacity: 0 !important; transition: opacity 1.
 .vuo-st-foldsel { font-size: 10px; font-weight: 700; color: rgba(var(--vuo-green-rgb),0.95); }
 .vuo-st-foldcount { font-size: 10px; color: rgba(150,175,215,0.8); background: rgba(255,255,255,0.06); border-radius: 9999px; padding: 1px 8px; }
 .vuo-st-bg {
-    position: relative; height: 62px; border-radius: 8px; cursor: pointer; overflow: hidden;
+    position: relative; height: 62px; border-radius: 3px; cursor: pointer; overflow: hidden;
     background-size: cover; background-position: center; background-repeat: no-repeat; background-clip: padding-box;
     border: 1px solid rgba(255,255,255,0.05); transition: border-color 0.12s ease, transform 0.12s ease;
 }
@@ -2847,7 +2862,7 @@ body.vuo-live-on #vuo_bg_overlay { opacity: 0 !important; transition: opacity 1.
 .vuo-st-bgempty { grid-column: 1 / -1; font-size: 11px; color: rgba(160,185,225,0.6); text-align: center; padding: 14px 6px 4px; line-height: 1.6; }
 
 .vuo-st-bgcat { grid-column: 1 / -1; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(150,175,215,0.75); padding: 8px 2px 2px; }
-.vuo-st-bgcheck { position: absolute; top: 5px; right: 5px; width: 16px; height: 16px; box-sizing: border-box; border-radius: 4px; background-color: rgba(0,0,0,0.55); border: 1.5px solid rgba(255,255,255,0.38); background-repeat: no-repeat; background-position: center; background-size: 12px 12px; opacity: 0; transition: opacity 0.12s ease; }
+.vuo-st-bgcheck { position: absolute; top: 5px; right: 5px; width: 16px; height: 16px; box-sizing: border-box; border-radius: 3px; background-color: rgba(0,0,0,0.55); border: 1.5px solid rgba(255,255,255,0.38); background-repeat: no-repeat; background-position: center; background-size: 12px 12px; opacity: 0; transition: opacity 0.12s ease; }
 .vuo-st-bgcheck.on { opacity: 1; background-color: rgb(var(--vuo-green-rgb)); border-color: rgb(var(--vuo-green-rgb)); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.6 8.4l2.9 2.9 5.9-6.6'/%3E%3C/svg%3E"); }
 
 .vuo-st-hint { font-size: 10.5px; color: rgba(160,185,225,0.6); line-height: 1.5; margin: 4px 2px 2px; }
@@ -2866,7 +2881,7 @@ body.vuo-live-on #vuo_bg_overlay { opacity: 0 !important; transition: opacity 1.
 .vuo-st-link { color: rgba(190,205,230,0.85); cursor: pointer; font-weight: 500; }
 .vuo-st-link:hover { color: rgb(var(--vuo-blue-rgb)); text-decoration: underline; }
 .vuo-st-link:active { color: rgb(var(--vuo-green-rgb)); }
-.vuo-st-updrow { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 14px; padding: 8px 10px; font-size: 11px; border-radius: 7px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); }
+.vuo-st-updrow { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 14px; padding: 8px 10px; font-size: 11px; border-radius: 4px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); }
 .vuo-st-updstate { color: rgba(160,185,225,0.75); }
 .vuo-st-updstate[data-s="ok"] { color: rgba(var(--vuo-green-rgb),0.9); }
 .vuo-st-updstate[data-s="new"] { color: rgb(var(--vuo-blue-rgb)); cursor: pointer; }
@@ -2877,7 +2892,7 @@ body.vuo-live-on #vuo_bg_overlay { opacity: 0 !important; transition: opacity 1.
 
 #vuo_update {
     position: fixed; top: 50px; right: 5px; width: 240px; padding: 11px 13px 13px;
-    background: var(--vuo-panel); border: 1px solid rgba(255,255,255,0.05); border-radius: 10px;
+    background: var(--vuo-panel); border: 1px solid rgba(255,255,255,0.05); border-radius: 5px;
     box-shadow: 0 12px 34px rgba(0,0,0,0.66);
     color: #e0ecff; font-family: var(--vuo-font); z-index: 10000; box-sizing: border-box;
     opacity: 0; transform: translateY(-8px); pointer-events: none;
@@ -2889,10 +2904,12 @@ body.vuo-live-on #vuo_bg_overlay { opacity: 0 !important; transition: opacity 1.
 .vuo-upd-title { font-size: 13px; font-weight: 700; color: #eaf2ff; margin-top: 5px; }
 .vuo-upd-sub { font-size: 11px; color: rgba(160,185,225,0.75); margin-top: 2px; }
 .vuo-upd-actions { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 12px; font-size: 11px; }
-.vuo-upd-get { display: inline-flex; align-items: center; flex-shrink: 0; color: #cfe6ff; cursor: pointer; padding: 4px 10px; border-radius: 7px; background: rgba(var(--vuo-blue-rgb),0.16); border: 1px solid rgba(var(--vuo-blue-rgb),0.4); transition: background 0.15s ease, border-color 0.15s ease; }
+.vuo-upd-get { display: inline-flex; align-items: center; flex-shrink: 0; color: #cfe6ff; cursor: pointer; padding: 4px 10px; border-radius: 4px; background: rgba(var(--vuo-blue-rgb),0.16); border: 1px solid rgba(var(--vuo-blue-rgb),0.4); transition: background 0.15s ease, border-color 0.15s ease; }
 .vuo-upd-get:hover { background: rgba(var(--vuo-blue-rgb),0.30); border-color: rgba(var(--vuo-blue-rgb),0.75); }
 .vuo-upd-actions .vuo-st-link { margin-left: auto; }
 #vuo_update:not(.vuo-upd-ok) .vuo-upd-cur, #vuo_update.vuo-upd-ok .vuo-upd-new { display: none; }
+#vuo_update:not(.vuo-upd-lua) .vuo-upd-luax, #vuo_update.vuo-upd-lua .vuo-upd-new, #vuo_update.vuo-upd-lua .vuo-upd-cur, #vuo_update.vuo-upd-lua #vuo_upd_notes { display: none; }
+#vuo_update .vuo-upd-cap.vuo-upd-luax { color: rgba(255, 176, 64, 0.90); }
 
 @keyframes vuoBgZoom  { 0%{transform:scale(1)}      50%{transform:scale(1.08)}            100%{transform:scale(1)} }
 @keyframes vuoBgPan   { 0%{transform:scale(1.09) translate(-1.2%,-1.2%)} 50%{transform:scale(1.09) translate(1.2%,1.2%)} 100%{transform:scale(1.09) translate(-1.2%,-1.2%)} }
@@ -3343,7 +3360,7 @@ body.vuo-layout-modern div[ng-controller="ControllerMain"] .options li.vuo-mn-ct
     line-height: 1.2 !important;
     padding: 0.68em 1.3em !important;
     margin: 0 0.6em 0 0 !important;
-    border-radius: 12px !important;
+    border-radius: 6px !important;
     color: #ffffff !important;
     background: rgba(0, 0, 0, 0.55) !important;
     border: 1px solid rgba(255, 255, 255, 0.14) !important;
@@ -3456,7 +3473,7 @@ body.vuo-malign-right  div[ng-controller="ControllerMain"] .options ul li { text
     padding: 14px 16px 12px 16px !important;
     background: rgba(0, 0, 0, 0.70) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    border-radius: 10px !important;
+    border-radius: 5px !important;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.60), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
     font-family: var(--vuo-font) !important; letter-spacing: 0.06em !important;
     pointer-events: none !important;
@@ -3486,7 +3503,7 @@ body.vuo-malign-right  div[ng-controller="ControllerMain"] .options ul li { text
     display: inline-flex !important; flex-direction: row !important; align-items: center !important;
     background: rgba(0, 0, 0, 0.70) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    border-radius: 10px !important; overflow: hidden !important; white-space: nowrap !important;
+    border-radius: 5px !important; overflow: hidden !important; white-space: nowrap !important;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.60), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
     font-family: var(--vuo-font) !important;
     pointer-events: none !important; opacity: 0 !important;
@@ -3512,7 +3529,7 @@ input[type="checkbox"] {
     box-sizing: border-box !important;
     background-color: rgba(0, 0, 0, 0.55) !important;
     border: 1.5px solid rgba(255, 255, 255, 0.38) !important;
-    border-radius: 4px !important;
+    border-radius: 3px !important;
     width: 14px !important;
     height: 14px !important;
     margin: 3px 3px 0px 4px !important;
