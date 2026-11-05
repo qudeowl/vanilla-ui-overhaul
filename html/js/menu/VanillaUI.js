@@ -688,6 +688,8 @@
         if (sb) { var bd = vuoBuildDate(VUO_BUILD); if (sb.textContent !== bd) sb.textContent = bd; }
         var sh = vuoEl('vuo_st_sndhint');
         if (sh) sh.innerHTML = vuoT('sounds_default') + '<br>' + vuoT('sounds_hint').replace('{snd}', '<b>hover</b> / <b>click</b> / <b>back</b>') + '<br><b>garrysmod/sound/vuo_sounds/</b>';
+        var fh = vuoEl('vuo_st_fonthint');
+        if (fh) fh.innerHTML = vuoT('drop_audio').replace('{fmt}', '<b>.ttf / .otf</b>') + '<br><b>garrysmod/materials/vuo_fonts/</b>';
     }
     var _vuoLocLang = '';
     function vuoNavRefreshLabels() {
@@ -799,7 +801,7 @@
               '<div id="vuo_mp_list" class="vuo-mp-list"></div>'+
             '</div>'+
           '</div>'+
-          '<div class="vuo-mp-foot"><span id="vuo_mp_folder" class="vuo-mp-folder" title="Click to copy the path from your Steam folder"><span data-l="add_music">Add more music to</span><br><b>garrysmod/sound/vuo_music/</b></span><span id="vuo_mp_msg" class="vuo-mp-msg"></span></div>';
+          '<div class="vuo-mp-foot"><span id="vuo_mp_folder" class="vuo-mp-folder" title="Click to copy the path from your Steam folder"><span data-l="add_music">Add more music to</span><br><b>garrysmod/sound/vuo_music/</b></span><span class="vuo-mp-fmt">.mp3 / .ogg / .wav / .flac</span><span id="vuo_mp_msg" class="vuo-mp-msg"></span></div>';
         document.body.appendChild(p); vuoMusic.panel = p;
         vuoEl('vuo_mp_title_txt').textContent = vuoNavLabel('music');
         vuoNpBuild();
@@ -1129,14 +1131,70 @@
         function step(){
             while(i<vuoMusic.tracks.length && vuoMusic.durations[vuoMusic.tracks[i].url]!==undefined) i++;
             if(i>=vuoMusic.tracks.length){ vuoMusic.durScanning=false; return; }
-            var t=vuoMusic.tracks[i], a=new Audio(), done=false;
-            function fin(d){ if(done)return; done=true; vuoMusic.durations[t.url]=(isFinite(d)&&d>0)?d:0; vuoUpdateDurCell(t.url); try{a.src='';}catch(e){} i++; setTimeout(step,40); }
+            var t=vuoMusic.tracks[i];
+            function save(d){ vuoMusic.durations[t.url]=(isFinite(d)&&d>0)?d:0; vuoUpdateDurCell(t.url); i++; setTimeout(step,40); }
+            if(/\.(ogg|oga|opus)$/i.test(t.url)){ vuoOggDurationUrl(t.url, save); return; }
+            var a=new Audio(), done=false;
+            function fin(d){ if(done)return; done=true; try{a.src='';}catch(e){} if(isFinite(d)&&d>0) save(d); else vuoBlobDuration(t.url, save); }
             a.preload='metadata';
             a.addEventListener('loadedmetadata', function(){ fin(a.duration); });
             a.addEventListener('error', function(){ fin(0); });
+            setTimeout(function(){ fin(0); }, 6000);
             try { a.src=t.url; } catch(e){ fin(0); }
         }
         step();
+    }
+    function vuoBlobMeasure(blob, cb){
+        var fired=false; function end(d){ if(fired) return; fired=true; cb((isFinite(d)&&d>0)?d:0); }
+        try {
+            var u=URL.createObjectURL(blob), a=new Audio();
+            function done(d){ try{a.src='';}catch(e){} try{URL.revokeObjectURL(u);}catch(e){} end(d); }
+            function check(){ if(isFinite(a.duration) && a.duration>0) done(a.duration); }
+            a.preload='metadata';
+            a.addEventListener('loadedmetadata', check);
+            a.addEventListener('durationchange', check);
+            a.addEventListener('error', function(){ done(0); });
+            setTimeout(function(){ done(a.duration); }, 15000);
+            a.src=u;
+        } catch(e){ end(0); }
+    }
+    function vuoBlobDuration(url, cb){
+        try {
+            var xhr=new XMLHttpRequest(); xhr.open('GET', url, true); xhr.responseType='blob';
+            xhr.onload=function(){
+                if(!(xhr.status===200||xhr.status===0) || !xhr.response || !xhr.response.size){ cb(0); return; }
+                vuoBlobMeasure(xhr.response, cb);
+            };
+            xhr.onerror=function(){ cb(0); };
+            xhr.send();
+        } catch(e){ cb(0); }
+    }
+    function vuoOggDuration(b){
+        if(!b || b.length<64 || !(b[0]===0x4F&&b[1]===0x67&&b[2]===0x67&&b[3]===0x53)) return 0;
+        var p=27+b[26], rate=0, skip=0;
+        if(b[p]===0x01 && vuoIndexOfAscii(b.subarray(p+1,p+7),'vorbis',0)===0) rate=(b[p+12]|(b[p+13]<<8)|(b[p+14]<<16)|(b[p+15]<<24))>>>0;
+        else if(vuoIndexOfAscii(b.subarray(p,p+8),'OpusHead',0)===0){ rate=48000; skip=b[p+10]|(b[p+11]<<8); }
+        if(!rate) return 0;
+        for(var i=b.length-27; i>=0; i--){
+            if(b[i]!==0x4F || b[i+1]!==0x67 || b[i+2]!==0x67 || b[i+3]!==0x53 || b[i+4]!==0) continue;
+            var lo=(b[i+6]|(b[i+7]<<8)|(b[i+8]<<16)|(b[i+9]<<24))>>>0, hi=(b[i+10]|(b[i+11]<<8)|(b[i+12]<<16)|(b[i+13]<<24))>>>0;
+            if(lo===0xFFFFFFFF && hi===0xFFFFFFFF) continue;
+            var g=hi*4294967296+lo-skip;
+            return g>0 ? g/rate : 0;
+        }
+        return 0;
+    }
+    function vuoOggDurationUrl(url, cb){
+        try {
+            var xhr=new XMLHttpRequest(); xhr.open('GET', url, true); xhr.responseType='arraybuffer';
+            xhr.onload=function(){
+                if(!(xhr.status===200||xhr.status===0) || !xhr.response || !xhr.response.byteLength){ cb(0); return; }
+                var d=0; try{ d=vuoOggDuration(new Uint8Array(xhr.response)); }catch(e){ d=0; }
+                if(d>0) cb(d); else vuoBlobMeasure(new Blob([xhr.response]), cb);
+            };
+            xhr.onerror=function(){ cb(0); };
+            xhr.send();
+        } catch(e){ cb(0); }
     }
     function vuoUpdateDurCell(url){
         var list=vuoEl('vuo_mp_list'); if(!list) return;
@@ -2442,6 +2500,7 @@
               '<div class="vuo-st-row"><span data-l="accent2">Secondary accent</span><div id="vuo_st_hue_g" class="vuo-st-hue"><div id="vuo_st_hue_g_k" class="vuo-st-hueknob"></div></div></div>'+
               '<div class="vuo-st-cap vuo-st-caprow"><span data-l="cap_text">Text</span><span id="vuo_st_txtreset" class="vuo-st-link vuo-st-capreset" data-l="reset">Reset</span></div>'+
               '<div class="vuo-st-row"><span data-l="font">Font</span><select id="vuo_st_font" class="vuo-st-select"></select></div>'+
+              '<div class="vuo-st-hint" id="vuo_st_fonthint">Drop <b>.ttf / .otf</b> files into<br><b>garrysmod/materials/vuo_fonts/</b></div>'+
               '<div class="vuo-st-row"><span data-l="font_size">Font size</span><div id="vuo_st_fsize" class="vuo-st-slider"><div id="vuo_st_fsizefill" class="vuo-st-sfill"></div></div></div>'+
               '<div class="vuo-st-row"><span data-l="letter_spacing">Letter spacing</span><div id="vuo_st_fspace" class="vuo-st-slider"><div id="vuo_st_fspacefill" class="vuo-st-sfill"></div></div></div>'+
               '<div class="vuo-st-row"><span data-l="hover_effect">Hover effect</span><div id="vuo_st_hover" class="vuo-st-seg"><div class="vuo-st-segbtn" data-hv="vuo">Vanilla UI+</div><div class="vuo-st-segbtn" data-hv="vanilla" data-l="lo_vanilla">Vanilla</div></div></div>'+
