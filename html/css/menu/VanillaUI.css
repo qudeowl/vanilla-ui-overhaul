@@ -2758,6 +2758,7 @@ controls control[ng-click="Favorite( file, false )"] img {
 .vuo-mp-foot { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; flex-shrink: 0; padding: 14px 6px 4px; }
 .vuo-mp-folder { font-size: 11px; color: rgba(160,185,225,0.6); cursor: pointer; text-align: center; line-height: 1.6; transition: color 0.15s ease; }
 .vuo-mp-folder:hover { color: rgb(var(--vuo-blue-rgb)); }
+.vuo-mp-fmt { font-size: 10px; color: rgba(160,185,225,0.42); letter-spacing: 0.03em; }
 .vuo-mp-msg { font-size: 10px; color: rgba(var(--vuo-green-rgb),0.95); white-space: nowrap; }
 
 .vuo-bg-layer { position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; width: 100% !important; height: 100% !important; background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; z-index: -1 !important; pointer-events: none !important; }
