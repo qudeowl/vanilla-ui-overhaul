@@ -662,6 +662,8 @@
         upd_check:     {'en':'Check for updates','bg':'Провери за актуализации','cs':'Zkontrolovat aktualizace','da':'Søg efter opdateringer','de':'Nach Updates suchen','el':'Έλεγχος για ενημερώσεις','es-es':'Buscar actualizaciones','et':'Otsi uuendusi','fi':'Tarkista päivitykset','fr':'Rechercher des mises à jour','he':'בדיקת עדכונים','hr':'Provjeri ažuriranja','hu':'Frissítések keresése','it':'Controlla aggiornamenti','ja':'アップデートを確認','ko':'업데이트 확인','lt':'Ieškoti naujinių','nl':'Controleren op updates','no':'Se etter oppdateringer','pl':'Sprawdź aktualizacje','pt-br':'Verificar atualizações','pt-pt':'Procurar atualizações','ru':'Проверить обновления','sk':'Skontrolovať aktualizácie','sv-se':'Sök efter uppdateringar','th':'ตรวจหาอัปเดต','tr':'Güncellemeleri denetle','uk':'Перевірити оновлення','vi':'Kiểm tra cập nhật','zh-cn':'检查更新','zh-tw':'檢查更新'},
         upd_checking:  {'en':'Checking…','bg':'Проверка…','cs':'Kontroluji…','da':'Søger…','de':'Suche…','el':'Έλεγχος…','es-es':'Buscando…','et':'Kontrollin…','fi':'Tarkistetaan…','fr':'Recherche…','he':'בבדיקה…','hr':'Provjera…','hu':'Keresés…','it':'Controllo…','ja':'確認中…','ko':'확인 중…','lt':'Tikrinama…','nl':'Controleren…','no':'Søker…','pl':'Sprawdzanie…','pt-br':'Verificando…','pt-pt':'A procurar…','ru':'Проверка…','sk':'Kontroluje sa…','sv-se':'Söker…','th':'กำลังตรวจสอบ…','tr':'Denetleniyor…','uk':'Перевірка…','vi':'Đang kiểm tra…','zh-cn':'正在检查…','zh-tw':'正在檢查…'},
         upd_failed:    {'en':'Couldn’t check','bg':'Неуспешна проверка','cs':'Nelze zkontrolovat','da':'Kunne ikke søge','de':'Prüfung fehlgeschlagen','el':'Αποτυχία ελέγχου','es-es':'No se pudo comprobar','et':'Kontrollimine ebaõnnestus','fi':'Tarkistus epäonnistui','fr':'Échec de la vérification','he':'הבדיקה נכשלה','hr':'Provjera nije uspjela','hu':'Nem sikerült ellenőrizni','it':'Controllo non riuscito','ja':'確認できませんでした','ko':'확인할 수 없음','lt':'Nepavyko patikrinti','nl':'Controle mislukt','no':'Kunne ikke sjekke','pl':'Nie udało się sprawdzić','pt-br':'Não foi possível verificar','pt-pt':'Não foi possível verificar','ru':'Не удалось проверить','sk':'Nepodarilo sa skontrolovať','sv-se':'Kunde inte kontrollera','th':'ตรวจสอบไม่สำเร็จ','tr':'Denetlenemedi','uk':'Не вдалося перевірити','vi':'Không thể kiểm tra','zh-cn':'检查失败','zh-tw':'檢查失敗'},
+        lua_missing_cap: {'en':'Not fully loaded','bg':'Не е заредено напълно','cs':'Nenačteno celé','da':'Ikke helt indlæst','de':'Nicht vollständig geladen','el':'Δεν φορτώθηκε πλήρως','es-es':'No se cargó del todo','et':'Pole täielikult laaditud','fi':'Ei latautunut kokonaan','fr':'Pas entièrement chargé','he':'לא נטען במלואו','hr':'Nije potpuno učitano','hu':'Nem töltődött be teljesen','it':'Non caricato del tutto','ja':'一部が読み込まれていません','ko':'일부가 로드되지 않았습니다','lt':'Įkelta ne visiškai','nl':'Niet volledig geladen','no':'Ikke fullstendig lastet','pl':'Nie wczytano w całości','pt-br':'Não carregou por completo','pt-pt':'Não carregou por completo','ru':'Загружено не полностью','sk':'Nenačítané úplne','sv-se':'Inte helt inläst','th':'โหลดไม่ครบ','tr':'Tam yüklenmedi','uk':'Завантажено не повністю','vi':'Chưa tải đầy đủ','zh-cn':'未完全加载','zh-tw':'未完全載入'},
+        lua_missing:   {'en':'Run the installer again and pick 2. Update.','bg':'Пусни инсталатора отново и избери 2. Update.','cs':'Spusť instalátor znovu a vyber 2. Update.','da':'Kør installationsprogrammet igen og vælg 2. Update.','de':'Starte das Installationsprogramm erneut und wähle 2. Update.','el':'Τρέξε ξανά το πρόγραμμα εγκατάστασης και διάλεξε 2. Update.','es-es':'Vuelve a ejecutar el instalador y elige 2. Update.','et':'Käivita paigaldaja uuesti ja vali 2. Update.','fi':'Suorita asennusohjelma uudelleen ja valitse 2. Update.','fr':'Relance l’installateur et choisis 2. Update.','he':'הפעל שוב את תוכנית ההתקנה ובחר 2. Update.','hr':'Ponovno pokreni instalacijski program i odaberi 2. Update.','hu':'Futtasd újra a telepítőt, és válaszd a 2. Update lehetőséget.','it':'Avvia di nuovo l’installer e scegli 2. Update.','ja':'インストーラーをもう一度実行し、2. Update を選んでください。','ko':'설치 프로그램을 다시 실행하고 2. Update를 선택하세요.','lt':'Paleisk diegimo programą iš naujo ir pasirink 2. Update.','nl':'Start het installatieprogramma opnieuw en kies 2. Update.','no':'Kjør installasjonsprogrammet på nytt og velg 2. Update.','pl':'Uruchom instalator ponownie i wybierz 2. Update.','pt-br':'Execute o instalador novamente e escolha 2. Update.','pt-pt':'Executa o instalador novamente e escolhe 2. Update.','ru':'Запусти установщик снова и выбери 2. Update.','sk':'Spusti inštalátor znova a vyber 2. Update.','sv-se':'Kör installationsprogrammet igen och välj 2. Update.','th':'เปิดตัวติดตั้งอีกครั้งแล้วเลือก 2. Update','tr':'Kurulum dosyasını yeniden çalıştır ve 2. Update’i seç.','uk':'Запусти інсталятор знову й вибери 2. Update.','vi':'Hãy chạy lại trình cài đặt và chọn 2. Update.','zh-cn':'请重新运行安装程序并选择 2. Update。','zh-tw':'請重新執行安裝程式並選擇 2. Update。'},
         font_default:  {'en':'Default','bg':'Стандартен','cs':'Výchozí','da':'Standard','de':'Standard','el':'Προεπιλογή','es-es':'Por defecto','et':'Vaikimisi','fi':'Oletus','fr':'Par défaut','he':'ברירת מחדל','hr':'Zadani','hu':'Alapértelmezett','it':'Predefinito','ja':'デフォルト','ko':'기본','lt':'Numatytasis','nl':'Standaard','no':'Standard','pl':'Domyślna','pt-br':'Padrão','pt-pt':'Padrão','ru':'По умолчанию','sk':'Predvolené','sv-se':'Standard','th':'ค่าเริ่มต้น','tr':'Varsayılan','uk':'Типовий','vi':'Mặc định','zh-cn':'默认','zh-tw':'預設'},
         ld_status_sample: {'en':'Starting Lua...','bg':'Стартиране на Lua...','cs':'Spouštění Lua...','da':'Starter Lua...','de':'Lua wird gestartet...','el':'Εκκίνηση Lua...','en-pt':'Firin’ up the Lua...','es-es':'Iniciando Lua...','et':'Lua käivitamine...','fi':'Käynnistetään Luaa...','fr':'Démarrage de Lua...','he':'מפעיל את Lua...','hr':'Pokretanje Lua...','hu':'Lua indítása...','it':'Avvio di Lua...','ja':'Lua を起動中...','ko':'Lua 시작 중...','lt':'Paleidžiama Lua...','nl':'Lua wordt gestart...','no':'Starter Lua...','pl':'Uruchamianie Lua...','pt-br':'Iniciando Lua...','pt-pt':'A iniciar Lua...','ru':'Запуск Lua...','sk':'Spúšťanie Lua...','sv-se':'Startar Lua...','th':'กำลังเริ่ม Lua...','tr':'Lua başlatılıyor...','uk':'Запуск Lua...','vi':'Đang khởi động Lua...','zh-cn':'正在启动 Lua...','zh-tw':'正在啟動 Lua...'},
         ld_cancel:     {'en':'Cancel','bg':'Отказ','cs':'Zrušit','da':'Annullér','de':'Abbrechen','el':'Ακύρωση','en-pt':'Abort','es-es':'Cancelar','et':'Loobu','fi':'Peruuta','fr':'Annuler','he':'ביטול','hr':'Otkaži','hu':'Mégse','it':'Annulla','ja':'キャンセル','ko':'취소','lt':'Atšaukti','nl':'Annuleren','no':'Avbryt','pl':'Anuluj','pt-br':'Cancelar','pt-pt':'Cancelar','ru':'Отмена','sk':'Zrušiť','sv-se':'Avbryt','th':'ยกเลิก','tr':'İptal Et','uk':'Скасувати','vi':'Hủy','zh-cn':'取消','zh-tw':'取消'}
@@ -682,6 +684,8 @@
         }
         var se = vuoEl('vuo_mp_search');
         if (se) { var pt = vuoT('search_tracks'); if (se.placeholder !== pt) se.placeholder = pt; }
+        var sb = vuoEl('vuo_st_build');
+        if (sb) { var bd = vuoBuildDate(VUO_BUILD); if (sb.textContent !== bd) sb.textContent = bd; }
         var sh = vuoEl('vuo_st_sndhint');
         if (sh) sh.innerHTML = vuoT('sounds_default') + '<br>' + vuoT('sounds_hint').replace('{snd}', '<b>hover</b> / <b>click</b> / <b>back</b>') + '<br><b>garrysmod/sound/vuo_sounds/</b>';
     }
@@ -1240,6 +1244,7 @@
     }
     function vuoMusicLoad(i, play){
         if(i<0||i>=vuoMusic.tracks.length) return;
+        vuoMusicFadeStop();
         vuoCancelCrossfade();
         vuoMusic.idx=i;
         vuoSetNowText(vuoMusic.tracks[i].name);
@@ -1449,7 +1454,8 @@
     function vuoParseVorbisTags(buf,out){
         if(!buf || buf.length<8) return;
         var start=0, vi=vuoIndexOfAscii(buf,'vorbis',0);
-        if(vi>=1 && buf[vi-1]===0x03) start=vi+6;
+        while(vi>=1 && buf[vi-1]!==0x03) vi=vuoIndexOfAscii(buf,'vorbis',vi+1);
+        if(vi>=1) start=vi+6;
         else { var oi=vuoIndexOfAscii(buf,'OpusTags',0); if(oi>=0) start=oi+8; }
         var p=start, n=buf.length;
         function u32(){ if(p+4>n) return -1; var v=(buf[p]|(buf[p+1]<<8)|(buf[p+2]<<16)|(buf[p+3]<<24))>>>0; p+=4; return v; }
@@ -1467,7 +1473,7 @@
             else if((k==='DATE'||k==='YEAR')&&!out.year){ var ym=v.match(/\d{4}/); out.year=ym?ym[0]:v; }
         }
     }
-    function vuoMusicPlayPause(){ if(vuoMusic.idx<0&&vuoMusic.tracks.length){ vuoMusicLoad(0,true); return; } if(vuoMusic.audio.paused)vuoMusic.audio.play(); else vuoMusic.audio.pause(); }
+    function vuoMusicPlayPause(){ vuoMusic.resumeAfter=false; vuoMusicFadeStop(); if(vuoMusic.idx<0&&vuoMusic.tracks.length){ vuoMusicLoad(0,true); return; } if(vuoMusic.audio.paused)vuoMusic.audio.play(); else vuoMusic.audio.pause(); }
     function vuoMusicPrev(){
         var n=vuoMusic.tracks.length; if(!n || vuoEnabledCount()===0) return;
         var p=vuoMusic.idx, g=0; do { p=p-1; if(p<0)p=n-1; g++; } while(vuoIsDisabled(p) && g<=n);
@@ -1590,9 +1596,28 @@
         vuoUiPlay(vuoCfg.crossfade>0 ? 'accept' : 'back');
     }
 
+    function vuoMusicFadeStop(){
+        if(!vuoMusic.fadeTimer) return;
+        clearInterval(vuoMusic.fadeTimer); vuoMusic.fadeTimer=null;
+        if(!vuoMusic.xfActive){ try{ vuoMusic.audio.volume=vuoMusic.vol; }catch(e){} }
+    }
+    function vuoMusicFadeIn(a){
+        vuoMusicFadeStop();
+        try{ a.volume=0; }catch(e){}
+        var step=0, steps=40, wait=0;
+        vuoMusic.fadeTimer=setInterval(function(){
+            if(a!==vuoMusic.audio || vuoMusic.xfActive){ clearInterval(vuoMusic.fadeTimer); vuoMusic.fadeTimer=null; return; }
+            if(a.paused){ if(++wait>200) vuoMusicFadeStop(); return; }
+            step++; var t=step/steps;
+            try{ a.volume=vuoMusic.vol*t*t*(3-2*t); }catch(e){}
+            if(step>=steps) vuoMusicFadeStop();
+        }, 50);
+    }
+
     function vuoStopForGame(){
         if(!vuoCfg.stopOnJoin) return;
         for(var p=0;p<vuoMusic.players.length;p++){ if(!vuoMusic.players[p].paused){ vuoMusic.resumeAfter=true; break; } }
+        vuoMusicFadeStop();
         vuoCancelCrossfade();
         for(var i=0;i<vuoMusic.players.length;i++){ try{ vuoMusic.players[i].pause(); }catch(e){} }
     }
@@ -1602,12 +1627,12 @@
         vuoUpd.ingame = !!(loading || ingame);
         if(loading || ingame){
             vuoStopForGame();
-            if(ingame) vuoMusic.resumeAfter=false;
             return;
         }
         if(!vuoMusic.resumeAfter) return;
         vuoMusic.resumeAfter=false;
         if(!vuoCfg.music || !vuoMusic.audio || !vuoMusic.audio.src) return;
+        vuoMusicFadeIn(vuoMusic.audio);
         try{ var pr=vuoMusic.audio.play(); if(pr&&pr.catch) pr.catch(function(){}); }catch(e){}
     }
     window.vuoGameState = vuoGameState;
@@ -1628,9 +1653,11 @@
                     navNwX:0, navNwY:0, navStX:0, navStY:0, navMuX:0, navMuY:0,
                     ldWidth:280, ldBar:7, ldText:13, ldPos:'right', ldY:0, ldInfoScale:1, ldInfoPos:'left', ldInfoY:100, updSeen:'', updOk:'' };
     var vuoSt  = { built:false, open:false, panel:null, btn:null, bgs:[], defbgs:[], defOpen:false, cusOpen:false, navTarget:'all' };
-    var VUO_VERSION = '1.5';
+    var VUO_VERSION = '1.5.1';
+    var VUO_BUILD = 20261105;
     var VUO_RELEASES = 'https://github.com/qudeowl/vanilla-ui-overhaul/releases/latest';
-    var vuoUpd = { latest:'', state:'', cfg:false, ingame:false, el:null, okHide:false, okTimer:0, failTimer:0 };
+    var VUO_BUILD_URL = 'https://raw.githubusercontent.com/qudeowl/vanilla-ui-overhaul/main/build.txt';
+    var vuoUpd = { latest:'', build:0, lua:null, state:'', cfg:false, ingame:false, el:null, okHide:false, okTimer:0, failTimer:0 };
     vuoApplyScale();
     window.addEventListener('resize', vuoApplyScale);
 
@@ -1643,9 +1670,21 @@
         for(var i=0;i<Math.max(x.length, y.length);i++){ var p=+x[i]||0, q=+y[i]||0; if(p!==q) return p<q; }
         return false;
     }
+    function vuoUpdNewer(){ return vuoVerOlder(VUO_VERSION, vuoUpd.latest) || vuoUpd.build>VUO_BUILD; }
+    function vuoUpdKey(){ return vuoVerOlder(VUO_VERSION, vuoUpd.latest) ? vuoUpd.latest : VUO_VERSION+'@'+vuoUpd.build; }
+    function vuoBuildDate(b){
+        var d=new Date(Math.floor(b/10000), Math.floor(b/100)%100-1, b%100), l=vuoNavLang();
+        try { return d.toLocaleDateString(l==='en-pt' ? 'en' : l, { day:'numeric', month:'short' }); }
+        catch(e){ return String(b).replace(/^(\d{4})(\d\d)(\d\d)$/, '$1-$2-$3'); }
+    }
+    function vuoUpdLabel(){ return vuoVerOlder(VUO_VERSION, vuoUpd.latest) ? 'v'+vuoUpd.latest : 'v'+VUO_VERSION+' · '+vuoBuildDate(vuoUpd.build); }
+    window.vuoSetBuild = function(t){
+        var p=String(t||'').trim().split(/\s+/);
+        if(p[0]===VUO_VERSION && /^\d{8}$/.test(p[1]||'')) vuoUpd.build=+p[1];
+    };
     window.vuoSetLatest = function(v){
         v=String(v||''); if(!/^\d+(\.\d+)*$/.test(v)) return;
-        vuoUpd.latest=v; vuoUpd.state=vuoVerOlder(VUO_VERSION, v) ? 'new' : 'ok';
+        vuoUpd.latest=v; vuoUpd.state=vuoUpdNewer() ? 'new' : 'ok';
         clearTimeout(vuoUpd.failTimer);
     };
     function vuoUpdCheck(){
@@ -1657,7 +1696,13 @@
         if(typeof fetch!=='function') return fallback();
         fetch('https://api.github.com/repos/qudeowl/vanilla-ui-overhaul/releases/latest', { cache:'no-store' })
             .then(function(r){ if(!r.ok) throw r.status; return r.json(); })
-            .then(function(j){ var m=String((j && j.tag_name) || '').match(/\d+(?:\.\d+)+/); if(m) vuoSetLatest(m[0]); else fallback(); })
+            .then(function(j){
+                var m=String((j && j.tag_name) || '').match(/\d+(?:\.\d+)+/); if(!m) return fallback();
+                return fetch(VUO_BUILD_URL, { cache:'no-store' })
+                    .then(function(r){ return r.ok ? r.text() : ''; })
+                    .catch(function(){ return ''; })
+                    .then(function(t){ vuoSetBuild(t); vuoSetLatest(m[0]); });
+            })
             .catch(fallback);
     }
     setTimeout(vuoUpdCheck, 2000);
@@ -1665,19 +1710,22 @@
         if(vuoUpd.el) return vuoUpd.el;
         var d=document.createElement('div'); d.id='vuo_update';
         d.innerHTML =
-          '<div class="vuo-upd-head"><span class="vuo-upd-cap vuo-upd-new" data-l="upd_available">Update available</span><span class="vuo-upd-cap vuo-upd-cur" data-l="upd_uptodate">Up to date</span><span id="vuo_upd_close" class="vuo-st-close">&#10005;</span></div>'+
-          '<div class="vuo-upd-title">Vanilla UI+ v<span id="vuo_upd_ver"></span></div>'+
-          '<div class="vuo-upd-sub vuo-upd-new"><span data-l="upd_installed">Installed</span>: v'+VUO_VERSION+'</div>'+
+          '<div class="vuo-upd-head"><span class="vuo-upd-cap vuo-upd-new" data-l="upd_available">Update available</span><span class="vuo-upd-cap vuo-upd-cur" data-l="upd_uptodate">Up to date</span><span class="vuo-upd-cap vuo-upd-luax" data-l="lua_missing_cap">Not fully loaded</span><span id="vuo_upd_close" class="vuo-st-close">&#10005;</span></div>'+
+          '<div class="vuo-upd-title">Vanilla UI+ <span id="vuo_upd_ver"></span></div>'+
+          '<div class="vuo-upd-sub vuo-upd-new"><span data-l="upd_installed">Installed</span>: <span id="vuo_upd_inst"></span></div>'+
           '<div class="vuo-upd-sub vuo-upd-cur" data-l="upd_latest_msg">You’re using the latest version.</div>'+
-          '<div class="vuo-upd-actions"><span id="vuo_upd_get" class="vuo-upd-get vuo-upd-new" data-l="upd_download">Download</span><span id="vuo_upd_notes" class="vuo-st-link" data-l="upd_whatsnew">What’s new</span></div>';
+          '<div class="vuo-upd-sub vuo-upd-luax" data-l="lua_missing">Run the installer again and pick 2. Update.</div>'+
+          '<div class="vuo-upd-actions"><span id="vuo_upd_get" class="vuo-upd-get vuo-upd-new" data-l="upd_download">Download</span><span id="vuo_upd_fix" class="vuo-upd-get vuo-upd-luax" data-l="upd_download">Download</span><span id="vuo_upd_notes" class="vuo-st-link" data-l="upd_whatsnew">What’s new</span></div>';
         document.body.appendChild(d); vuoUpd.el=d;
         vuoPanelSounds(d, '.vuo-upd-get,.vuo-st-link,.vuo-st-close', '.vuo-upd-get,.vuo-st-link');
         vuoEl('vuo_upd_close').addEventListener('click', function(){
             vuoUiPlay('back');
-            if(vuoVerOlder(VUO_VERSION, vuoUpd.latest)) vuoCfg.updSeen=vuoUpd.latest; else vuoCfg.updOk=VUO_VERSION;
+            if(d.classList.contains('vuo-upd-lua')) vuoCfg.luaSeen=VUO_VERSION+'@'+VUO_BUILD;
+            else if(vuoUpdNewer()) vuoCfg.updSeen=vuoUpdKey(); else vuoCfg.updOk=VUO_VERSION+'@'+VUO_BUILD;
             vuoSaveCfg();
         });
         vuoEl('vuo_upd_get').addEventListener('click', function(){ vuoOpenURL(VUO_RELEASES); });
+        vuoEl('vuo_upd_fix').addEventListener('click', function(){ vuoOpenURL(VUO_RELEASES); });
         vuoEl('vuo_upd_notes').addEventListener('click', function(){ vuoOpenURL('https://steamcommunity.com/sharedfiles/filedetails/changelog/3737107792'); });
         vuoLocApply();
         return d;
@@ -1686,23 +1734,27 @@
         var s=vuoEl('vuo_st_updstate'); if(!s) return;
         var st=vuoUpd.state;
         var t = st==='checking' ? vuoT('upd_checking') : st==='ok' ? vuoT('upd_uptodate') :
-                st==='new' ? vuoT('upd_available')+' · v'+vuoUpd.latest : st==='fail' ? vuoT('upd_failed') : '';
+                st==='new' ? vuoT('upd_available')+' · '+vuoUpdLabel() : st==='fail' ? vuoT('upd_failed') : '';
         if(s.textContent!==t) s.textContent=t;
         if(s.getAttribute('data-s')!==st) s.setAttribute('data-s', st);
         var b=vuoEl('vuo_st_updcheck'); if(b) b.classList.toggle('vuo-busy', st==='checking');
     }
     function vuoUpdTick(onMain){
         vuoUpdStatus();
-        var u=vuoUpd, newer=u.latest!=='' && vuoVerOlder(VUO_VERSION, u.latest);
-        var shown = newer ? (u.latest!==vuoCfg.updSeen) : (u.latest!=='' && !u.okHide && VUO_VERSION!==vuoCfg.updOk);
+        var u=vuoUpd, lost=u.lua===false && vuoCfg.luaSeen!==VUO_VERSION+'@'+VUO_BUILD, newer=!lost && u.latest!=='' && vuoUpdNewer();
+        var shown = lost || (newer ? (vuoUpdKey()!==vuoCfg.updSeen) : (u.latest!=='' && !u.okHide && VUO_VERSION+'@'+VUO_BUILD!==vuoCfg.updOk));
         var on = onMain && u.cfg && !u.ingame && !vuoSt.open && !vuoMusic.open && shown;
         if(!on && !u.el) return;
         var d=vuoUpdBuild();
         if(on){
-            var ver=newer ? u.latest : VUO_VERSION, v=vuoEl('vuo_upd_ver');
+            var bld=newer && !vuoVerOlder(VUO_VERSION, u.latest);
+            var ver=newer ? vuoUpdLabel() : 'v'+VUO_VERSION, v=vuoEl('vuo_upd_ver');
             if(v.textContent!==ver) v.textContent=ver;
-            d.classList.toggle('vuo-upd-ok', !newer);
-            if(!newer && !u.okTimer) u.okTimer=setTimeout(function(){ u.okHide=true; }, 8000);
+            var inst='v'+VUO_VERSION+(bld ? ' · '+vuoBuildDate(VUO_BUILD) : ''), iv=vuoEl('vuo_upd_inst');
+            if(iv.textContent!==inst) iv.textContent=inst;
+            d.classList.toggle('vuo-upd-lua', lost);
+            d.classList.toggle('vuo-upd-ok', !lost && !newer);
+            if(!lost && !newer && !u.okTimer) u.okTimer=setTimeout(function(){ u.okHide=true; }, 8000);
             vuoPositionPanel(d, vuoSt.btn);
         }
         d.classList.toggle('vuo-open', on);
@@ -2166,6 +2218,14 @@
     }
     setTimeout(vuoRequestCfg, 3000);
     setTimeout(vuoRequestCfg, 7000);
+    window.vuoLuaOk = function(){ vuoUpd.lua=true; };
+    function vuoLuaCheck(){
+        if(vuoUpd.lua || typeof lua==='undefined' || !lua.Run) return;
+        try { lua.Run("if VUO_LiveBGRefresh and IsValid(pnlMainMenu) then pnlMainMenu:Call('if(window.vuoLuaOk){vuoLuaOk();}') end"); } catch(e){}
+    }
+    setTimeout(vuoLuaCheck, 3000);
+    setTimeout(vuoLuaCheck, 8000);
+    setTimeout(function(){ if(!vuoUpd.lua && typeof lua!=='undefined' && lua.Run) vuoUpd.lua=false; }, 12000);
     var VUO_LIVE_NAMES = { gm_construct:'Garry\'s Mod: Construct', gm_flatgrass:'Garry\'s Mod: Flatgrass', background01:'Half-Life 2: Station', background02:'Half-Life 2: Canals', background03:'Half-Life 2: Ravenholm', background04:'Half-Life 2: Coast', background05:'Half-Life 2: Nova Prospekt', background06:'Half-Life 2: City 17', background07:'Half-Life 2: Citadel' };
     var VUO_HL2_SCENES = ['background01', 'background02', 'background03', 'background04', 'background05', 'background06', 'background07'];
     function vuoStRenderLive(){
@@ -2452,7 +2512,7 @@
               '</div>'+
             '</div>'+
             '<div class="vuo-st-page" data-p="about">'+
-              '<div class="vuo-st-abouthead"><span class="vuo-st-abouttitle">Vanilla UI+ v'+VUO_VERSION+'</span><span class="vuo-st-by"><span data-l="made_by">Made by</span> <b id="vuo_st_author" class="vuo-st-link">Qude</b></span></div>'+
+              '<div class="vuo-st-abouthead"><span class="vuo-st-abouttitle">Vanilla UI+ v'+VUO_VERSION+' · <span id="vuo_st_build">'+vuoBuildDate(VUO_BUILD)+'</span></span><span class="vuo-st-by"><span data-l="made_by">Made by</span> <b id="vuo_st_author" class="vuo-st-link">Qude</b></span></div>'+
               '<div class="vuo-st-about" data-l="about_desc">A redesigned main menu. Choose your own fonts, backgrounds, music and layout.</div>'+
               '<div class="vuo-st-updrow"><span id="vuo_st_updstate" class="vuo-st-updstate"></span><span id="vuo_st_updcheck" class="vuo-st-link" data-l="upd_check">Check for updates</span></div>'+
               '<div class="vuo-st-aboutlinks"><span id="vuo_st_gh" class="vuo-st-link" data-l="gh_page">GitHub page</span><span id="vuo_st_steam" class="vuo-st-link" data-l="steam_page">Steam page</span></div>'+
