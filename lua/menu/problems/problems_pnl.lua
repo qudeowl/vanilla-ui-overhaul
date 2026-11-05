@@ -86,14 +86,14 @@ local nfCheckMat = Material( "vuo_ui/check.png", "smooth mips" )
 
 local function nfDrawCheckbox( w, h, checked, onCol )
 	if ( checked ) then
-		draw.RoundedBox( 4, 0, 0, w, h, onCol )
+		draw.RoundedBox( 3, 0, 0, w, h, onCol )
 		local m = math.floor( w / 14 + 0.5 )
 		surface.SetDrawColor( 255, 255, 255, 255 )
 		surface.SetMaterial( nfCheckMat )
 		surface.DrawTexturedRect( m, m, w - m * 2, h - m * 2 )
 	else
-		draw.RoundedBox( 4, 0, 0, w, h, Color( 255, 255, 255, 97 ) )
-		draw.RoundedBox( 4, 1, 1, w - 2, h - 2, Color( 10, 10, 10, 255 ) )
+		draw.RoundedBox( 3, 0, 0, w, h, Color( 255, 255, 255, 97 ) )
+		draw.RoundedBox( 3, 1, 1, w - 2, h - 2, Color( 10, 10, 10, 255 ) )
 	end
 end
 
@@ -123,30 +123,6 @@ local function nfOutline( x, y, w, h, r, col )
 		surface.DrawRect( x + w - 1 - p[1], y + p[2], 1, 1 )
 		surface.DrawRect( x + p[1], y + h - 1 - p[2], 1, 1 )
 		surface.DrawRect( x + w - 1 - p[1], y + h - 1 - p[2], 1, 1 )
-	end
-end
-
-local function nfAccentLine( x, y, w, a, b )
-	for i = 0, w - 1, 2 do
-		local f = ( i + 1 ) / w
-		local r, g, bl, al
-		if ( f < 0.3 ) then
-			r, g, bl, al = a[1], a[2], a[3], 0.65 * f / 0.3
-		elseif ( f < 0.7 ) then
-			local k = ( f - 0.3 ) / 0.4
-			r, g, bl, al = Lerp( k, a[1], b[1] ), Lerp( k, a[2], b[2] ), Lerp( k, a[3], b[3] ), Lerp( k, 0.65, 0.55 )
-		else
-			r, g, bl, al = b[1], b[2], b[3], 0.55 * ( 1 - f ) / 0.3
-		end
-		local sw = math.min( 2, w - i )
-		surface.SetDrawColor( r, g, bl, al * 255 )
-		surface.DrawRect( x + i, y, sw, 1 )
-		surface.SetDrawColor( a[1], a[2], a[3], al * 40 )
-		surface.DrawRect( x + i, y - 1, sw, 1 )
-		surface.DrawRect( x + i, y + 1, sw, 1 )
-		surface.SetDrawColor( a[1], a[2], a[3], al * 16 )
-		surface.DrawRect( x + i, y - 2, sw, 1 )
-		surface.DrawRect( x + i, y + 2, sw, 1 )
 	end
 end
 
@@ -199,10 +175,8 @@ function PANEL:Init()
 
 	ProblemsFrame.Paint = function( frm, w, h )
 		DrawBlur( frm, 6 )
-		draw.RoundedBox( 10, 0, 0, w, h, THEME.frameBg )
-		nfOutline( 0, 0, w, h, 10, THEME.frameBorder )
-
-		nfAccentLine( 1, 26, w - 2, accBlue, accGreen )
+		draw.RoundedBox( 4, 0, 0, w, h, THEME.frameBg )
+		nfOutline( 0, 0, w, h, 4, THEME.frameBorder )
 
 		draw.SimpleText( "Problems", "DermaDefault", 10, 8, Color(180, 185, 195, 140), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP )
 	end
