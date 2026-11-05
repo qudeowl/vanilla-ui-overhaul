@@ -33,7 +33,7 @@ surface.CreateFont( "WorkshopLarge", {
 	weight		= 800
 })
 
-local cornerRadius = 8
+local cornerRadius = 4
 local cornerPixels = {}
 
 for py = 0, cornerRadius - 1 do
