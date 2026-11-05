@@ -5,7 +5,7 @@ title Vanilla UI Overhaul
 :menu
 cls
 echo.
-echo  Vanilla UI+ v1.5
+echo  Vanilla UI+ v1.5.1
 echo  github.com/qudeowl/vanilla-ui-overhaul
 echo.
 echo   1. Install
@@ -24,7 +24,7 @@ goto menu
 cls
 echo.
 echo  Update removes the files of every previous version, then installs
-echo  v1.5. Your settings, music, sounds, backgrounds and fonts are kept.
+echo  v1.5.1. Your settings, music, sounds, backgrounds and fonts are kept.
 echo.
 echo   1. Continue
 echo   2. Back
@@ -36,7 +36,7 @@ set "action=update"
 goto variant
 
 :variant
-set "archive=Vanilla_UI_Overhaul_v1.5.zip"
+set "archive=Vanilla_UI_Overhaul_v1.5.1.zip"
 set "mode="
 set "cssfail="
 cls
@@ -88,7 +88,7 @@ echo  Found Garry's Mod at: !gmod!
 echo  Downloading...
 set "tmp=%TEMP%\vuo_%RANDOM%"
 mkdir "!tmp!" 2>nul
-set "url=https://github.com/qudeowl/vanilla-ui-overhaul/releases/download/vuo_v1.5/!archive!"
+set "url=https://github.com/qudeowl/vanilla-ui-overhaul/releases/download/vuo_v1.5.1/!archive!"
 curl -fL --ssl-no-revoke -o "!tmp!\!archive!" "!url!"
 if not exist "!tmp!\!archive!" powershell -Command "[Net.ServicePointManager]::SecurityProtocol='Tls12';(New-Object Net.WebClient).DownloadFile('!url!','!tmp!\!archive!')"
 if not exist "!tmp!\!archive!" (
@@ -110,6 +110,10 @@ if "%action%"=="update" (
     echo.
     echo  Removing previous version...
     call :removefiles keepdata
+    for %%F in ("Hazardous Environments" "Love's Official Theme" "Self Esteem Fund" "Taste of Blood" "Very Important Bunny") do (
+        del /f /q "!gmod!\sound\vuo_music\%%~F.flac" 2>nul
+        del /f /q "!gmod!\addons\garrysmod\sound\vuo_music\%%~F.flac" 2>nul
+    )
 )
 
 echo  Installing...

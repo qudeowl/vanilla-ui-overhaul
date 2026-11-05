@@ -1,8 +1,8 @@
 #!/usr/bin/env -S bash \c
 grep -q $'\r' "$0" 2> /dev/null && sed -i 's/\r$//' "$0" && exec bash "$0" "$@";
 
-ARCHIVE="Vanilla_UI_Overhaul_v1.5.zip"
-URL="https://github.com/qudeowl/vanilla-ui-overhaul/releases/download/vuo_v1.5/$ARCHIVE"
+ARCHIVE="Vanilla_UI_Overhaul_v1.5.1.zip"
+URL="https://github.com/qudeowl/vanilla-ui-overhaul/releases/download/vuo_v1.5.1/$ARCHIVE"
 CSS_URL="https://raw.githubusercontent.com/Facepunch/garrysmod/master/garrysmod/html/awesomium_global.css"
 
 FILES=(
@@ -123,7 +123,7 @@ update_info() {
 		screen
 		echo
 		echo " Update removes the files of every previous version, then installs"
-		echo " v1.5. Your settings, music, sounds, backgrounds and fonts are kept."
+		echo " v1.5.1. Your settings, music, sounds, backgrounds and fonts are kept."
 		echo
 		echo "  1. Continue"
 		echo "  2. Back"
@@ -383,6 +383,9 @@ run_install() {
 		echo
 		echo " Removing previous version..."
 		remove_files keepdata
+		for f in "Hazardous Environments" "Love's Official Theme" "Self Esteem Fund" "Taste of Blood" "Very Important Bunny"; do
+			rm -f "$GMOD/sound/vuo_music/$f.flac" "$GMOD/addons/garrysmod/sound/vuo_music/$f.flac"
+		done
 	fi
 
 	echo " Installing..."
@@ -517,7 +520,7 @@ main() {
 	while true; do
 		screen
 		echo
-		echo " Vanilla UI+ v1.5"
+		echo " Vanilla UI+ v1.5.1"
 		echo " github.com/qudeowl/vanilla-ui-overhaul"
 		echo
 		echo "  1. Install"
