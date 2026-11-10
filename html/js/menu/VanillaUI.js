@@ -1712,7 +1712,7 @@
                     ldWidth:280, ldBar:7, ldText:13, ldPos:'right', ldY:0, ldInfoScale:1, ldInfoPos:'left', ldInfoY:100, updSeen:'', updOk:'' };
     var vuoSt  = { built:false, open:false, panel:null, btn:null, bgs:[], defbgs:[], defOpen:false, cusOpen:false, navTarget:'all' };
     var VUO_VERSION = '1.5.1';
-    var VUO_BUILD = 20261105;
+    var VUO_BUILD = 20261110;
     var VUO_RELEASES = 'https://github.com/qudeowl/vanilla-ui-overhaul/releases/latest';
     var VUO_BUILD_URL = 'https://raw.githubusercontent.com/qudeowl/vanilla-ui-overhaul/main/build.txt';
     var vuoUpd = { latest:'', build:0, lua:null, state:'', cfg:false, ingame:false, el:null, okHide:false, okTimer:0, failTimer:0 };
@@ -2512,8 +2512,8 @@
             '<div class="vuo-st-page" data-p="music">'+
               '<div class="vuo-st-cap" data-l="music">Music</div>'+
               '<div class="vuo-st-row"><span data-l="enable_music">Enable music player</span><div id="vuo_st_music" class="vuo-st-toggle"></div></div>'+
-              '<div class="vuo-st-row"><span data-l="stop_on_join">Stop music when joining</span><div id="vuo_st_stopjoin" class="vuo-st-toggle"></div></div>'+
-              '<div class="vuo-st-row"><span data-l="np_toast">Now playing popup</span><div id="vuo_st_nptoast" class="vuo-st-toggle"></div></div>'+
+              '<div class="vuo-st-row" id="vuo_st_stopjoinrow"><span data-l="stop_on_join">Stop music when joining</span><div id="vuo_st_stopjoin" class="vuo-st-toggle"></div></div>'+
+              '<div class="vuo-st-row" id="vuo_st_nptoastrow"><span data-l="np_toast">Now playing popup</span><div id="vuo_st_nptoast" class="vuo-st-toggle"></div></div>'+
               '<div class="vuo-st-cap" data-l="cap_sounds">Sounds</div>'+
               '<div class="vuo-st-row"><span data-l="custom_sounds">Custom UI sounds</span><div id="vuo_st_sounds" class="vuo-st-toggle"></div></div>'+
               '<div class="vuo-st-hint" id="vuo_st_sndhint">Portal 2&#39;s menu sounds are used by default.<br>Drop your own <b>hover</b> / <b>click</b> / <b>back</b> sounds into<br><b>garrysmod/sound/vuo_sounds/</b></div>'+
@@ -2592,8 +2592,8 @@
         vuoSliderBind('vuo_st_dim', function(f){ vuoCfg.dim=Math.round(f*0.85*1000)/1000; vuoApplyDim(); });
         var ba=vuoEl('vuo_st_bganim'); if(ba){ var bb=ba.querySelectorAll('.vuo-st-segbtn'); for(var k=0;k<bb.length;k++){ bb[k].addEventListener('click', function(){ if(vuoAnimLocked()) return; vuoCfg.bganim=this.getAttribute('data-an'); vuoApplyBg(); vuoStSync(); vuoSaveCfg(); }); } }
         vuoEl('vuo_st_music').addEventListener('click', function(){ vuoCfg.music=!vuoCfg.music; vuoApplyMusic(); vuoStSync(); vuoSaveCfg(); vuoUiPlay(vuoCfg.music ? 'accept' : 'back'); });
-        vuoEl('vuo_st_stopjoin').addEventListener('click', function(){ vuoCfg.stopOnJoin=!vuoCfg.stopOnJoin; vuoStSync(); vuoSaveCfg(); vuoUiPlay(vuoCfg.stopOnJoin ? 'accept' : 'back'); });
-        vuoEl('vuo_st_nptoast').addEventListener('click', function(){ vuoCfg.npToast=(vuoCfg.npToast===false); vuoStSync(); vuoSaveCfg(); vuoUiPlay(vuoCfg.npToast ? 'accept' : 'back'); });
+        vuoEl('vuo_st_stopjoin').addEventListener('click', function(){ if(!vuoCfg.music) return; vuoCfg.stopOnJoin=!vuoCfg.stopOnJoin; vuoStSync(); vuoSaveCfg(); vuoUiPlay(vuoCfg.stopOnJoin ? 'accept' : 'back'); });
+        vuoEl('vuo_st_nptoast').addEventListener('click', function(){ if(!vuoCfg.music) return; vuoCfg.npToast=(vuoCfg.npToast===false); vuoStSync(); vuoSaveCfg(); vuoUiPlay(vuoCfg.npToast ? 'accept' : 'back'); });
         vuoEl('vuo_st_sounds').addEventListener('click', function(){ vuoCfg.customSounds=!vuoCfg.customSounds; vuoStSync(); vuoSaveCfg(); vuoUiPlay(vuoCfg.customSounds ? 'accept' : 'back'); });
         vuoEl('vuo_st_font').addEventListener('change', function(){ vuoCfg.font=this.value; vuoApplyFont(); vuoSaveCfg(); });
         var vuoStHover=vuoEl('vuo_st_hover'); if(vuoStHover){ var hvb=vuoStHover.querySelectorAll('.vuo-st-segbtn'); for(var hk=0;hk<hvb.length;hk++){ hvb[hk].addEventListener('click', function(){ vuoCfg.hoverStyle=this.getAttribute('data-hv'); vuoApplyHover(); vuoStSync(); vuoSaveCfg(); vuoUiPlay('accept'); }); } }
@@ -2722,8 +2722,10 @@
         var df=vuoEl('vuo_st_dimfill'); if(df) df.style.width=((vuoCfg.dim/0.85)*100)+'%';
         vuoStRenderAccents();
         var m=vuoEl('vuo_st_music'); if(m) m.classList.toggle('vuo-on', !!vuoCfg.music);
-        var sj=vuoEl('vuo_st_stopjoin'); if(sj) sj.classList.toggle('vuo-on', !!vuoCfg.stopOnJoin);
-        var nt=vuoEl('vuo_st_nptoast'); if(nt) nt.classList.toggle('vuo-on', vuoCfg.npToast!==false);
+        var sj=vuoEl('vuo_st_stopjoin'); if(sj) sj.classList.toggle('vuo-on', !!vuoCfg.music && !!vuoCfg.stopOnJoin);
+        var nt=vuoEl('vuo_st_nptoast'); if(nt) nt.classList.toggle('vuo-on', !!vuoCfg.music && vuoCfg.npToast!==false);
+        var sjr=vuoEl('vuo_st_stopjoinrow'); if(sjr) sjr.classList.toggle('vuo-st-off', !vuoCfg.music);
+        var ntr=vuoEl('vuo_st_nptoastrow'); if(ntr) ntr.classList.toggle('vuo-st-off', !vuoCfg.music);
         var sd=vuoEl('vuo_st_sounds'); if(sd) sd.classList.toggle('vuo-on', !!vuoCfg.customSounds);
         vuoStRenderFonts();
         var hv=vuoCfg.hoverStyle==='vanilla'?'vanilla':'vuo';
