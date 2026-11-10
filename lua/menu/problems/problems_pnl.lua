@@ -4,9 +4,9 @@ include( "permissions.lua" )
 
 local THEME = {
 
-	frameBg      = Color( 0,   0,   0,   220 ),
+	frameBg      = Color( 0,   0,   0,   173 ),
 
-	contentBg    = Color( 0,   0,   0,   160 ),
+	contentBg    = Color( 0,   0,   0,   100 ),
 
 	tabBarBg     = Color( 0,   0,   0,   140 ),
 
@@ -61,6 +61,13 @@ local function nfCustomSounds()
 		if ( cfg and cfg.customSounds ~= nil ) then return cfg.customSounds and true or false end
 	end
 	return true
+end
+
+local function nfAccentBars()
+	local raw = nfSettingsRaw()
+	local cfg = raw and util.JSONToTable( raw )
+	if ( !istable( cfg ) ) then return true end
+	return cfg.hoverStyle ~= "vanilla" and cfg.hoverBar ~= false and cfg.menuLayout ~= "modern"
 end
 
 local blurMat = Material( "pp/blurscreen" )
@@ -138,6 +145,7 @@ function PANEL:Init()
 	THEME.titleBg   = PRIMARY( 25 )
 
 	local sndOn = nfCustomSounds()
+	local barsOn = nfAccentBars()
 	local function nfPlay( f ) if ( sndOn ) then surface.PlaySound( f ) end end
 	self._nfPlay = nfPlay
 	self._openedAt = SysTime()
@@ -292,10 +300,10 @@ function PANEL:Init()
 			local isActive  = s:GetPropertySheet():GetActiveTab() == s
 			local isHovered = s:IsHovered()
 
-			if isActive then
+			if barsOn and isActive then
 				surface.SetDrawColor( SECONDARY( 235 ) )
 				surface.DrawRect( 6, h - 2, w - 12, 2 )
-			elseif isHovered then
+			elseif barsOn and isHovered then
 				surface.SetDrawColor( THEME.accent.r, THEME.accent.g, THEME.accent.b, 200 )
 				surface.DrawRect( 6, h - 2, w - 12, 2 )
 			end
