@@ -633,6 +633,7 @@
         al_center:     {'en':'Center','bg':'Център','cs':'Střed','da':'Midt','de':'Mitte','el':'Κέντρο','es-es':'Centro','et':'Kesk','fi':'Keski','fr':'Centre','he':'מרכז','hr':'Sredina','hu':'Közép','it':'Centro','ja':'中央','ko':'가운데','lt':'Centras','nl':'Midden','no':'Midt','pl':'Środek','pt-br':'Centro','pt-pt':'Centro','ru':'Центр','sk':'Stred','sv-se':'Mitten','th':'กลาง','tr':'Orta','uk':'Центр','vi':'Giữa','zh-cn':'中','zh-tw':'中'},
         al_right:      {'en':'Right','bg':'Дясно','cs':'Vpravo','da':'Højre','de':'Rechts','el':'Δεξιά','es-es':'Derecha','et':'Parem','fi':'Oikea','fr':'Droite','he':'ימין','hr':'Desno','hu':'Jobbra','it':'Destra','ja':'右','ko':'오른쪽','lt':'Dešinė','nl':'Rechts','no':'Høyre','pl':'Prawo','pt-br':'Direita','pt-pt':'Direita','ru':'Справа','sk':'Vpravo','sv-se':'Höger','th':'ขวา','tr':'Sağ','uk':'Праворуч','vi':'Phải','zh-cn':'右','zh-tw':'右'},
         logo:          {'en':'Logo','bg':'Лого','el':'Λογότυπο','he':'לוגו','ja':'ロゴ','ko':'로고','ru':'Лого','uk':'Лого','th':'โลโก้','zh-cn':'标志','zh-tw':'標誌'},
+        menu_shade:    {'en':'Darken behind menu','bg':'Затъмняване зад менюто','cs':'Ztmavit za menu','da':'Mørkere bag menuen','de':'Hinter Menü abdunkeln','el':'Σκίαση πίσω από το μενού','es-es':'Oscurecer tras el menú','et':'Tumenda menüü taga','fi':'Tummenna valikon takaa','fr':'Assombrir derrière le menu','he':'הכהה מאחורי התפריט','hr':'Zatamni iza izbornika','hu':'Sötétítés a menü mögött','it':'Scurisci dietro il menu','ja':'メニューの背後を暗くする','ko':'메뉴 뒤 어둡게','lt':'Patamsinti už meniu','nl':'Donker achter menu','no':'Mørkere bak menyen','pl':'Przyciemnij za menu','pt-br':'Escurecer atrás do menu','pt-pt':'Escurecer atrás do menu','ru':'Затемнение за меню','sk':'Stmaviť za menu','sv-se':'Mörkare bakom menyn','th':'ทำให้มืดหลังเมนู','tr':'Menü arkasını karart','uk':'Затемнення за меню','vi':'Làm tối sau menu','zh-cn':'菜单背后变暗','zh-tw':'選單背後變暗'},
         show_logo:     {'en':'Show logo','bg':'Покажи лого','cs':'Zobrazit logo','da':'Vis logo','de':'Logo anzeigen','el':'Εμφάνιση λογότυπου','es-es':'Mostrar logo','et':'Näita logo','fi':'Näytä logo','fr':'Afficher le logo','he':'הצג לוגו','hr':'Prikaži logo','hu':'Logó mutatása','it':'Mostra logo','ja':'ロゴを表示','ko':'로고 표시','lt':'Rodyti logotipą','nl':'Logo tonen','no':'Vis logo','pl':'Pokaż logo','pt-br':'Mostrar logo','pt-pt':'Mostrar logo','ru':'Показать лого','sk':'Zobraziť logo','sv-se':'Visa logga','th':'แสดงโลโก้','tr':'Logoyu göster','uk':'Показати лого','vi':'Hiện logo','zh-cn':'显示标志','zh-tw':'顯示標誌'},
         idle_anim:     {'en':'Idle animation','bg':'Анимация при бездействие','cs':'Animace při nečinnosti','da':'Animation ved inaktivitet','de':'Leerlaufanimation','el':'Κίνηση σε αδράνεια','es-es':'Animación en reposo','et':'Jõudeoleku animatsioon','fi':'Joutoanimaatio','fr':'Animation d’inactivité','he':'אנימציה בהמתנה','hr':'Animacija u mirovanju','hu':'Tétlenségi animáció','it':'Animazione di inattività','ja':'放置アニメーション','ko':'대기 애니메이션','lt':'Neveiklumo animacija','nl':'Animatie bij inactiviteit','no':'Animasjon ved inaktivitet','pl':'Animacja bezczynności','pt-br':'Animação ociosa','pt-pt':'Animação em repouso','ru':'Анимация простоя','sk':'Animácia pri nečinnosti','sv-se':'Animation vid inaktivitet','th':'แอนิเมชันขณะว่าง','tr':'Bekleme animasyonu','uk':'Анімація простою','vi':'Hoạt ảnh khi chờ','zh-cn':'闲置动画','zh-tw':'閒置動畫'},
         size:          {'en':'Size','bg':'Размер','cs':'Velikost','da':'Størrelse','de':'Größe','el':'Μέγεθος','es-es':'Tamaño','et':'Suurus','fi':'Koko','fr':'Taille','he':'גודל','hr':'Veličina','hu':'Méret','it':'Dimensione','ja':'サイズ','ko':'크기','lt':'Dydis','nl':'Grootte','no':'Størrelse','pl':'Rozmiar','pt-br':'Tamanho','pt-pt':'Tamanho','ru':'Размер','sk':'Veľkosť','sv-se':'Storlek','th':'ขนาด','tr':'Boyut','uk':'Розмір','vi':'Kích cỡ','zh-cn':'大小','zh-tw':'大小'},
@@ -826,11 +827,7 @@
         p.querySelector('.vuo-mp-volicon').addEventListener('click', vuoMuteToggle);
         vuoMusic.vol = (vuoCfg.vol!=null?vuoCfg.vol:0.7); a0.volume = vuoMusic.vol; a1.volume = vuoMusic.vol; vuoVolUi();
 
-        vuoEl('vuo_mp_folder').addEventListener('click', function(){
-            var ok=false, sep=/win/i.test(navigator.platform||'')?'\\':'/';
-            try { var ta=document.createElement('textarea'); ta.value=['steamapps','common','GarrysMod','garrysmod','sound','vuo_music'].join(sep); ta.style.cssText='position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); ok=document.execCommand('copy'); document.body.removeChild(ta); } catch(e){}
-            var m=vuoEl('vuo_mp_msg'); if(m){ m.textContent = ok?vuoT('copied'):['steamapps','common','GarrysMod','...'].join(sep); setTimeout(function(){ if(m) m.textContent=''; }, 3400); }
-        });
+        vuoEl('vuo_mp_folder').addEventListener('click', function(){ vuoCopyPath(['sound','vuo_music'], vuoEl('vuo_mp_msg')); });
 
         function vuoSeekMark(){ vuoMusic.seekUntil = Date.now() + 2500; }
         function vuoBindAudio(au){
@@ -898,6 +895,11 @@
     }
     function vuoVW(){ return (window.innerWidth||1920)/vuoZoom; }
     function vuoVH(){ return (window.innerHeight||1080)/vuoZoom; }
+    function vuoCopyPath(sub, m){
+        var ok=false, sep=/win/i.test(navigator.platform||'')?'\\':'/';
+        try { var ta=document.createElement('textarea'); ta.value=['steamapps','common','GarrysMod','garrysmod'].concat(sub).join(sep); ta.style.cssText='position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); ok=document.execCommand('copy'); document.body.removeChild(ta); } catch(e){}
+        if(m){ m.textContent = ok?vuoT('copied'):['steamapps','common','GarrysMod','...'].join(sep); clearTimeout(m._vuoT); m._vuoT=setTimeout(function(){ m.textContent=''; }, 3400); }
+    }
     function vuoPositionPanel(panel, btn){
         if(!panel || !btn) return;
         var br=vuoRect(btn); if(br.width===0 && br.height===0) return;
@@ -1706,13 +1708,13 @@
     window.vuoSetMusic = function(tracks){ vuoMusic.tracks = tracks||[]; if(!vuoMusic.built) vuoMusicBuild(); vuoMusicRenderList(); };
 
     var vuoCfg = { uiScale:0, dim:0.48, accentBlue:'35,135,237', accentGreen:'60,200,140', music:true, autoplay:false, bg:'', bgOn:[], bgSwap:30, bgFade:true, bgBlurOn:false, bgBlur:0, bganim:'none', liveBg:false, liveBgMap:'random', shuffle:false, repeat:'off', disabled:[], crossfade:0, stopOnJoin:false, npToast:true, customSounds:true, hoverStyle:'vuo', hoverBar:true, font:'', menuFontSize:24, menuSpacing:0.04, vol:0.7,
-                    menuLayout:'centered', menuAlign:'center', loBtnX:0, loBtnY:0, loLogoX:0, loLogoY:0, loLogoScale:1, loLogoHide:false, logoIdle:true, textIdle:true, navIdle:true, navIconsOnly:false, loNavX:0, loNavY:0,
+                    menuLayout:'centered', menuAlign:'center', menuShade:true, loBtnX:0, loBtnY:0, loLogoX:0, loLogoY:0, loLogoScale:1, loLogoHide:false, logoIdle:true, textIdle:true, navIdle:true, navIconsOnly:false, loNavX:0, loNavY:0,
                     navPbX:0, navPbY:0, navGmX:0, navGmY:0, navGtX:0, navGtY:0, navLgX:0, navLgY:0,
                     navNwX:0, navNwY:0, navStX:0, navStY:0, navMuX:0, navMuY:0,
                     ldWidth:280, ldBar:7, ldText:13, ldPos:'right', ldY:0, ldInfoScale:1, ldInfoPos:'left', ldInfoY:100, updSeen:'', updOk:'' };
     var vuoSt  = { built:false, open:false, panel:null, btn:null, bgs:[], defbgs:[], defOpen:false, cusOpen:false, navTarget:'all' };
     var VUO_VERSION = '1.5.1';
-    var VUO_BUILD = 20261110;
+    var VUO_BUILD = 20261119;
     var VUO_RELEASES = 'https://github.com/qudeowl/vanilla-ui-overhaul/releases/latest';
     var VUO_BUILD_URL = 'https://raw.githubusercontent.com/qudeowl/vanilla-ui-overhaul/main/build.txt';
     var vuoUpd = { latest:'', build:0, lua:null, state:'', cfg:false, ingame:false, el:null, okHide:false, okTimer:0, failTimer:0 };
@@ -1965,6 +1967,8 @@
         }
         st.textContent = css;
         var van=(vuoCfg.menuLayout==='vanilla');
+        document.body.classList.toggle('vuo-menu-shade', !!vuoCfg.menuShade);
+        document.body.classList.toggle('vuo-layout-centered', !vuoCfg.menuLayout || vuoCfg.menuLayout==='centered');
         document.body.classList.toggle('vuo-layout-vanilla', van);
         document.body.classList.toggle('vuo-layout-vanillaright', vuoCfg.menuLayout==='vanillaright');
         document.body.classList.toggle('vuo-layout-gmod10', vuoCfg.menuLayout==='gmod10');
@@ -2251,6 +2255,7 @@
     }
     function vuoClampAll(){
         vuoFit = {}; vuoApplyLayout();
+        var hs=window.location.hash; vuoCinTick(hs==='#/' || hs==='#' || hs==='');
         vuoClampKeys('loBtnX','loBtnY',[VUO_BTN_SEL]);
         if(!vuoCfg.loLogoHide) vuoClampKeys('loLogoX','loLogoY',[vuoLogoSel()]);
         var items=[['loNavX','loNavY','all'],['navPbX','navPbY','problems'],['navGmX','navGmY','games'],['navGtX','navGtY','gamemode'],['navLgX','navLgY','lang'],['navNwX','navNwY','news'],['navStX','navStY','settings'],['navMuX','navMuY','music']];
@@ -2500,7 +2505,7 @@
               '<div class="vuo-st-row"><span data-l="accent2">Secondary accent</span><div id="vuo_st_hue_g" class="vuo-st-hue"><div id="vuo_st_hue_g_k" class="vuo-st-hueknob"></div></div></div>'+
               '<div class="vuo-st-cap vuo-st-caprow"><span data-l="cap_text">Text</span><span id="vuo_st_txtreset" class="vuo-st-link vuo-st-capreset" data-l="reset">Reset</span></div>'+
               '<div class="vuo-st-row"><span data-l="font">Font</span><select id="vuo_st_font" class="vuo-st-select"></select></div>'+
-              '<div class="vuo-st-hint" id="vuo_st_fonthint">Drop <b>.ttf / .otf</b> files into<br><b>garrysmod/materials/vuo_fonts/</b></div>'+
+              '<div class="vuo-st-hint vuo-st-copy" id="vuo_st_fonthint" title="Click to copy the path from your Steam folder">Drop <b>.ttf / .otf</b> files into<br><b>garrysmod/materials/vuo_fonts/</b></div><div class="vuo-st-hint vuo-mp-msg" id="vuo_st_fontmsg"></div>'+
               '<div class="vuo-st-row"><span data-l="font_size">Font size</span><div id="vuo_st_fsize" class="vuo-st-slider"><div id="vuo_st_fsizefill" class="vuo-st-sfill"></div></div></div>'+
               '<div class="vuo-st-row"><span data-l="letter_spacing">Letter spacing</span><div id="vuo_st_fspace" class="vuo-st-slider"><div id="vuo_st_fspacefill" class="vuo-st-sfill"></div></div></div>'+
               '<div class="vuo-st-row"><span data-l="hover_effect">Hover effect</span><div id="vuo_st_hover" class="vuo-st-seg"><div class="vuo-st-segbtn" data-hv="vuo">Vanilla UI+</div><div class="vuo-st-segbtn" data-hv="vanilla" data-l="lo_vanilla">Vanilla</div></div></div>'+
@@ -2539,6 +2544,7 @@
             '<div class="vuo-st-page" data-p="layout">'+
               '<div class="vuo-st-cap" data-l="menu_layout">Menu layout</div>'+
               '<div class="vuo-st-row"><span data-l="preset">Preset</span><select id="vuo_st_preset" class="vuo-st-select"><option value="centered" data-l="lo_centered">Centered</option><option value="vanilla" data-l="lo_vanilla">Vanilla</option><option value="vanillaright" data-l="lo_vanillaright">Vanilla Right</option><option value="gmod10">GMod 10</option><option value="cinematic" data-l="lo_cinematic">Horizontal</option><option value="modern" data-l="lo_modern">Modern</option></select></div>'+
+              '<div class="vuo-st-row"><span data-l="menu_shade">Darken behind menu</span><div id="vuo_st_menushade" class="vuo-st-toggle"></div></div>'+
               '<div class="vuo-st-cap vuo-st-caprow"><span data-l="main_menu_text">Main menu text</span><span id="vuo_st_btnreset" class="vuo-st-link vuo-st-capreset" data-l="reset">Reset</span></div>'+
               '<div class="vuo-st-row"><span data-l="idle_anim">Idle animation</span><div id="vuo_st_textidle" class="vuo-st-toggle"></div></div>'+
               '<div class="vuo-st-row"><span data-l="horizontal">Horizontal</span><div id="vuo_st_btnx" class="vuo-st-slider"><div id="vuo_st_btnxfill" class="vuo-st-sfill"></div></div></div>'+
@@ -2600,6 +2606,7 @@
         vuoEl('vuo_st_hoverbar').addEventListener('click', function(){ if(vuoCfg.hoverStyle==='vanilla' || vuoCfg.menuLayout==='modern') return; vuoCfg.hoverBar=!vuoCfg.hoverBar; vuoApplyHover(); vuoStSync(); vuoSaveCfg(); vuoUiPlay(vuoCfg.hoverBar ? 'accept' : 'back'); });
 
         vuoSliderBind('vuo_st_fsize',  function(f){ vuoCfg.menuFontSize=Math.round(16+f*24); vuoApplyFont(); });
+        var vuoFontHint=vuoEl('vuo_st_fonthint'); if(vuoFontHint) vuoFontHint.addEventListener('click', function(){ vuoCopyPath(['materials','vuo_fonts'], vuoEl('vuo_st_fontmsg')); });
         var vuoStScale=vuoEl('vuo_st_uiscale'); if(vuoStScale) vuoStScale.addEventListener('change', function(){ vuoCfg.uiScale=+this.value||0; vuoApplyScale(); vuoClampAll(); vuoStSync(); vuoSaveCfg(); });
         vuoSliderBind('vuo_st_fspace', function(f){ vuoCfg.menuSpacing=Math.round(f*0.2*1000)/1000; vuoApplyFont(); });
         vuoHueBind('vuo_st_hue_b','vuo_st_hue_b_k','blue');
@@ -2621,6 +2628,7 @@
         vuoSliderBind('vuo_st_navy',  function(f){ var nk=vuoNavKeys(); vuoCfg[nk[1]]=Math.round((f*2-1)*vuoNavRange('y')); vuoApplyLayout(); vuoClampKeys(nk[0],nk[1],vuoNavSels(vuoSt.navTarget||'all'), true); });
         vuoEl('vuo_st_navtarget').addEventListener('change', function(){ vuoSt.navTarget=this.value; vuoStSync(); });
         vuoEl('vuo_st_navicons').addEventListener('click', function(){ vuoCfg.navIconsOnly=!vuoCfg.navIconsOnly; vuoApplyLayout(); vuoStSync(); vuoSaveCfg(); vuoUiPlay(vuoCfg.navIconsOnly ? 'accept' : 'back'); });
+        vuoEl('vuo_st_menushade').addEventListener('click', function(){ vuoCfg.menuShade=!vuoCfg.menuShade; vuoApplyLayout(); vuoStSync(); vuoSaveCfg(); vuoUiPlay(vuoCfg.menuShade ? 'accept' : 'back'); });
         vuoEl('vuo_st_navidle').addEventListener('click', function(){ vuoCfg.navIdle=!vuoCfg.navIdle; vuoStSync(); vuoSaveCfg(); vuoUiPlay(vuoCfg.navIdle ? 'accept' : 'back'); });
         var vuoStPreset=vuoEl('vuo_st_preset'); if(vuoStPreset) vuoStPreset.addEventListener('change', function(){ vuoCfg.menuLayout=this.value; vuoCfg.menuAlign=vuoDefaultAlign(); vuoApplyLayout(); vuoApplyHover(); vuoClampAll(); vuoStSync(); vuoSaveCfg(); vuoReplayIn(); });
         var vuoStMalign=vuoEl('vuo_st_malign'); if(vuoStMalign){ var mab=vuoStMalign.querySelectorAll('.vuo-st-segbtn'); for(var mk=0;mk<mab.length;mk++){ mab[mk].addEventListener('click', function(){ vuoCfg.menuAlign=this.getAttribute('data-al'); vuoApplyLayout(); vuoStSync(); vuoSaveCfg(); vuoUiPlay('accept'); }); } }
@@ -2765,6 +2773,7 @@
         var nt=vuoEl('vuo_st_navtarget'); if(nt) nt.value=vuoSt.navTarget||'all';
         var ni=vuoEl('vuo_st_navicons'); if(ni) ni.classList.toggle('vuo-on', !!vuoCfg.navIconsOnly);
         var nid=vuoEl('vuo_st_navidle'); if(nid) nid.classList.toggle('vuo-on', !!vuoCfg.navIdle);
+        var msh=vuoEl('vuo_st_menushade'); if(msh) msh.classList.toggle('vuo-on', !!vuoCfg.menuShade);
         var lh=vuoEl('vuo_st_logohide'); if(lh) lh.classList.toggle('vuo-on', !vuoCfg.loLogoHide);
         var lid=vuoEl('vuo_st_logoidle'); if(lid) lid.classList.toggle('vuo-on', !vuoCfg.loLogoHide && !!vuoCfg.logoIdle);
         var lidr=vuoEl('vuo_st_logoidlerow'); if(lidr) lidr.classList.toggle('vuo-st-off', !!vuoCfg.loLogoHide);
@@ -2807,8 +2816,10 @@
         var h='<div class="vuo-st-bg vuo-st-bgdefault'+(on.length===0?' vuo-sel':'')+'" data-u=""><span class="vuo-st-bgname">'+vuoT('default_3d')+'</span></div>';
         h+=vuoBgFolder('def',vuoT('default_bgs'), vuoSt.defbgs, !!vuoSt.defOpen);
         h+=vuoBgFolder('cus',vuoT('custom'), vuoSt.bgs, !!vuoSt.cusOpen);
-        h+='<div class="vuo-st-bgempty">'+(vuoSt.bgs.length?vuoT('add_images'):vuoT('drop_images'))+'<br><b>garrysmod/materials/vuo_backgrounds/</b></div>';
+        h+='<div class="vuo-st-bgempty"><span class="vuo-st-copy" title="Click to copy the path from your Steam folder">'+(vuoSt.bgs.length?vuoT('add_images'):vuoT('drop_images'))+'<br><b>garrysmod/materials/vuo_backgrounds/</b></span><span class="vuo-mp-fmt">.png / .jpg</span><span class="vuo-mp-msg"></span></div>';
         list.innerHTML=h;
+        var bgCopy=list.querySelector('.vuo-st-bgempty .vuo-st-copy');
+        if(bgCopy) bgCopy.addEventListener('click', function(){ vuoCopyPath(['materials','vuo_backgrounds'], list.querySelector('.vuo-st-bgempty .vuo-mp-msg')); });
         var folds=list.querySelectorAll('.vuo-st-folder');
         for(var f=0;f<folds.length;f++){ folds[f].addEventListener('click', function(){ var k=this.getAttribute('data-fold'), nowOpen; if(k==='def'){ vuoSt.defOpen=!vuoSt.defOpen; nowOpen=vuoSt.defOpen; } else if(k==='cus'){ vuoSt.cusOpen=!vuoSt.cusOpen; nowOpen=vuoSt.cusOpen; } if(typeof vuoUiPlay==='function') vuoUiPlay(nowOpen ? 'accept' : 'back'); vuoStRenderBg(); }); }
         var it=list.querySelectorAll('.vuo-st-bg');
