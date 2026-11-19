@@ -2699,8 +2699,8 @@ controls control[ng-click="Favorite( file, false )"] img {
 #vuo_toast {
     position: fixed; top: 50px; right: 5px; width: 300px; box-sizing: border-box; overflow: hidden;
     display: flex; align-items: center; gap: 11px; padding: 10px 10px 12px 10px;
-    background: rgba(0,0,0,0.68); border: 1px solid rgba(255,255,255,0.05); border-radius: 5px;
-    box-shadow: 0 12px 34px rgba(0,0,0,0.66);
+    background: rgba(0,0,0,0.48); border: 1px solid rgba(255,255,255,0.05); border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.03);
     color: #e0ecff; font-family: var(--vuo-font); z-index: 10000; cursor: pointer;
     opacity: 0; transform: translateY(-8px); pointer-events: none;
     transition: opacity 0.22s ease, transform 0.28s cubic-bezier(0.25, 0.8, 0.3, 1);
@@ -2851,7 +2851,11 @@ body.vuo-live-on #vuo_bg_overlay { opacity: 0 !important; transition: opacity 1.
 .vuo-st-bgdefault { background: linear-gradient(135deg, rgba(var(--vuo-blue-rgb),0.25), rgba(0,0,0,0.7)); display: flex; align-items: center; justify-content: center; }
 .vuo-st-bgname { position: absolute; left: 0; right: 0; bottom: 0; padding: 9px 7px 4px; font-size: 10px; color: #eaf2ff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background: linear-gradient(to top, rgba(0,0,0,0.80), rgba(0,0,0,0)); }
 .vuo-st-bgdefault .vuo-st-bgname { position: static; padding: 0; background: none; text-align: center; font-size: 11px; font-weight: 600; }
-.vuo-st-bgempty { grid-column: 1 / -1; font-size: 11px; color: rgba(160,185,225,0.6); text-align: center; padding: 14px 6px 4px; line-height: 1.6; }
+.vuo-st-bgempty { grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; color: rgba(160,185,225,0.6); text-align: center; padding: 14px 6px 4px; line-height: 1.6; }
+.vuo-st-copy { cursor: pointer; transition: color 0.15s ease; }
+.vuo-st-copy:hover { color: rgb(var(--vuo-blue-rgb)); }
+.vuo-st-bgempty .vuo-mp-msg, .vuo-st-hint.vuo-mp-msg { white-space: normal; color: rgba(var(--vuo-green-rgb),0.95); }
+.vuo-st-hint.vuo-mp-msg:empty { display: none; }
 
 .vuo-st-bgcat { grid-column: 1 / -1; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(150,175,215,0.75); padding: 8px 2px 2px; }
 .vuo-st-bgcheck { position: absolute; top: 5px; right: 5px; width: 16px; height: 16px; box-sizing: border-box; border-radius: 3px; background-color: rgba(0,0,0,0.55); border: 1.5px solid rgba(255,255,255,0.38); background-repeat: no-repeat; background-position: center; background-size: 12px 12px; opacity: 0; transition: opacity 0.12s ease; }
@@ -2884,8 +2888,8 @@ body.vuo-live-on #vuo_bg_overlay { opacity: 0 !important; transition: opacity 1.
 
 #vuo_update {
     position: fixed; top: 50px; right: 5px; width: 240px; padding: 11px 13px 13px;
-    background: rgba(0,0,0,0.68); border: 1px solid rgba(255,255,255,0.05); border-radius: 5px;
-    box-shadow: 0 12px 34px rgba(0,0,0,0.66);
+    background: rgba(0,0,0,0.48); border: 1px solid rgba(255,255,255,0.05); border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.03);
     color: #e0ecff; font-family: var(--vuo-font); z-index: 10000; box-sizing: border-box;
     opacity: 0; transform: translateY(-8px); pointer-events: none;
     transition: opacity 0.18s ease, transform 0.18s ease;
@@ -3157,7 +3161,29 @@ body.vuo-layout-gmod10 div[ng-controller="ControllerMain"] .options a {
 body.vuo-layout-cinematic div[ng-controller="ControllerMain"] {
     display: block !important;
 }
-body.vuo-layout-cinematic div[ng-controller="ControllerMain"]::before {
+body.vuo-menu-shade.vuo-layout-centered div[ng-controller="ControllerMain"]::before,
+body.vuo-menu-shade.vuo-layout-vanilla div[ng-controller="ControllerMain"]::before,
+body.vuo-menu-shade.vuo-layout-vanillaright div[ng-controller="ControllerMain"]::before,
+body.vuo-menu-shade.vuo-layout-gmod10 div[ng-controller="ControllerMain"]::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+}
+body.vuo-menu-shade.vuo-layout-centered div[ng-controller="ControllerMain"]::before {
+    background: radial-gradient(ellipse calc(var(--vuo-vw, 1vw) * 30) calc(var(--vuo-vh, 1vh) * 50) at 50% 50%, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+}
+body.vuo-menu-shade.vuo-layout-vanilla div[ng-controller="ControllerMain"]::before,
+body.vuo-menu-shade.vuo-layout-gmod10 div[ng-controller="ControllerMain"]::before {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0) 55%);
+}
+body.vuo-menu-shade.vuo-layout-vanillaright div[ng-controller="ControllerMain"]::before {
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0) 55%);
+}
+body.vuo-menu-shade.vuo-layout-cinematic div[ng-controller="ControllerMain"]::before {
     content: '';
     position: fixed;
     left: 0;
@@ -3263,7 +3289,7 @@ body.vuo-layout-cinematic div[ng-controller="ControllerMain"] .options a.active:
 body.vuo-layout-modern div[ng-controller="ControllerMain"] {
     display: block !important;
 }
-body.vuo-layout-modern div[ng-controller="ControllerMain"]::before {
+body.vuo-menu-shade.vuo-layout-modern div[ng-controller="ControllerMain"]::before {
     content: '';
     position: fixed;
     left: 0;
